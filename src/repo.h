@@ -3,11 +3,10 @@
 #include <stdlib.h>
 #include <stdint.h>
 
+#include "buffer.h"
+
 struct repo;
 typedef struct repo Repo;
-
-struct buffer;
-typedef struct buffer Buffer;
 
 struct key;
 typedef struct key Key;

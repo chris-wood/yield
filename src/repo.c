@@ -1,13 +1,19 @@
 #include "repo.h"
+#include "buffer.h"
 
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
+#include "siphash24.c"
 
-struct buffer {
-    uint8_t *bytes;
-    uint32_t length;
-};
+typedef int bool;
+#define true 1
+#define false 0
+
+#define BUCKET_CAPACITY 10
+#define MIN_BUCKETS 16 // 2^4
+#define KEYLEN 16
+#define HASHLEN 8
 
 struct key {
     Buffer *buffer;
@@ -21,76 +27,118 @@ struct repo_entry;
 typedef struct repo_entry {
     Key *key;
     Value *value;
-    struct repo_entry *next;
+    uint8_t occupied;
 } RepoEntry;
 
+typedef struct repo_bucket {
+    RepoEntry **entryList;
+    uint32_t count;
+    uint32_t capacity;
+} RepoBucket;
+
 struct repo {
-    RepoEntry *head;
-    uint32_t numEntries;
+    RepoBucket **buckets;
+    uint32_t numBuckets;
+
+    uint8_t key[KEYLEN];
+    uint32_t layer;
 };
+
+RepoEntry *
+repoEntry_Create()
+{
+    RepoEntry *entry = (RepoEntry *) malloc(sizeof(RepoEntry));
+    entry->key = NULL;
+    entry->value = NULL;
+    entry->occupied = 0;
+    return entry;
+}
+
+RepoBucket *
+repoBucket_Create(uint32_t capacity)
+{
+    RepoBucket *bucket = (RepoBucket *) malloc(sizeof(RepoBucket));
+    bucket->entryList = (RepoEntry **) malloc(sizeof(RepoEntry *) * capacity);
+    for (int i = 0; i < capacity; i++) {
+        bucket->entryList[i] = repoEntry_Create();
+    }
+    bucket->capacity = capacity;
+    bucket->count = 0;
+    return bucket;
+}
+
+bool
+repoBucket_Insert(RepoBucket *bucket, Key *key, Value *value)
+{
+    if (bucket == NULL) {
+        return false;
+    } else if (bucket->count == bucket->capacity) {
+        return false;
+    } else {
+        int index = bucket->count++;
+        bucket->entryList[index]->occupied = 1;
+        bucket->entryList[index]->key = key;
+        bucket->entryList[index]->value = value;
+        return true;
+    }
+}
+
+Value *
+repoBucket_Index(RepoBucket *bucket, Key *key)
+{
+    if (bucket == NULL) {
+        return NULL;
+    } else {
+        for (int i = 0; i < bucket->count; i++) { // this iteration count is finite (-> set to BUCKET_SIZE)
+            RepoEntry *entry = bucket->entryList[i];
+            if (buffer_Compare(entry->key->buffer, key->buffer) == 0) {
+                return entry->value;
+            }
+        }
+        return NULL;
+    }
+}
+
+// Linear scan through the bucket list
+bool
+repoBucket_Contains(RepoBucket *bucket, Key *key)
+{
+    if (bucket == NULL) {
+        return false;
+    } else {
+        for (int i = 0; i < bucket->count; i++) { // this iteration count is finite (-> set to BUCKET_SIZE)
+            RepoEntry *entry = bucket->entryList[i];
+            if (buffer_Compare(entry->key->buffer, key->buffer) == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
 
 Repo *
 repo_Create()
 {
     Repo *repo = (Repo *) malloc(sizeof(Repo));
 
-    repo->head = NULL;
-    repo->numEntries = 0;
+    // this is just a huge matrix of entries of size (MIN_BUCKETS * BUCKET_CAPACITY)
+    repo->buckets = (RepoBucket **)malloc(sizeof(RepoBucket **) * MIN_BUCKETS);
+    repo->numBuckets = MIN_BUCKETS;
+
+    for (int i = 0; i < MIN_BUCKETS; i++) {
+        repo->buckets[i] = repoBucket_Create(BUCKET_CAPACITY);
+    }
+
+    // 4 bits to start
+    repo->layer = 4;
+
+    for (int i = 0; i < KEYLEN; ++i) {
+        repo->key[i] = i;
+    }
 
     return repo;
 }
 
-void
-buffer_Display(FILE *fp, Buffer *b)
-{
-    for (int i = 0; i < b->length; i++) {
-        fprintf(fp, "%x", b->bytes[i]);
-    }
-    fprintf(fp, "\n");
-}
-
-Buffer *
-buffer_CreateEmpty()
-{
-    Buffer *buffer = (Buffer *) malloc(sizeof(Buffer));
-    buffer->length = 0;
-    buffer->bytes = NULL;
-    return buffer;
-}
-
-Buffer *
-buffer_CreateFromArray(uint8_t *bytes, size_t length)
-{
-    Buffer *buffer = (Buffer *) malloc(sizeof(Buffer));
-    buffer->length = length;
-    buffer->bytes = (uint8_t *) malloc(length);
-    memcpy(buffer->bytes, bytes, length);
-    return buffer;
-}
-
-Buffer *
-buffer_Copy(Buffer *copy)
-{
-    Buffer *buffer = (Buffer *) malloc(sizeof(Buffer));
-    buffer->length = copy->length;
-    buffer->bytes = (uint8_t *) malloc(copy->length);
-    memcpy(buffer->bytes, copy->bytes, copy->length);
-    return buffer;
-}
-
-int
-buffer_Compare(Buffer *this, Buffer *other)
-{
-    if (other == NULL || this == NULL) {
-        return -1;
-    } else if (this->length > other->length) {
-        return 1;
-    } else if (this->length < other->length) {
-        return -1;
-    } else {
-        return memcmp(this->bytes, other->bytes, other->length);
-    }
-}
 
 Value *
 value_CreateFromArray(uint8_t *bytes, size_t length)
@@ -115,7 +163,7 @@ key_CreateFromBuffer(Buffer *buffer)
 }
 
 int
-add(Repo *repo, Key *key, Value *value)
+repo_Add(Repo *repo, Key *key, Value *value)
 {
     RepoEntry *entry = (RepoEntry *) malloc(sizeof(RepoEntry));
     entry->key = (Key *) malloc(sizeof(Key));
@@ -124,55 +172,66 @@ add(Repo *repo, Key *key, Value *value)
     entry->key->buffer = buffer_Copy(key->buffer);
     entry->value->buffer = buffer_Copy(value->buffer);
 
-    if (repo->head == NULL) {
-        repo->head = entry;
-    } else {
-        RepoEntry *curr = repo->head;
-        while (curr->next != NULL) {
-            curr = curr->next;
-        }
-        curr->next = entry;
+
+    // 1. Compute the hash
+    uint8_t output[HASHLEN];
+    memset(output, 0, HASHLEN);
+    siphash(output, buffer_Overlay(entry->key->buffer), buffer_Size(entry->key->buffer), repo->key);
+
+    // 2. Take the L(ayer) LSbs
+    uint32_t bucket_id = output[0] & repo->layer; // mask out the bucket ID
+    if (repoBucket_Insert(repo->buckets[bucket_id], key, value) == false) {
+        // TODO: double the bucket size and then re-insert
     }
+
+    // if (repo->head == NULL) {
+    //     repo->head = entry;
+    // } else {
+    //     RepoEntry *curr = repo->head;
+    //     while (curr->next != NULL) {
+    //         curr = curr->next;
+    //     }
+    //     curr->next = entry;
+    // }
 
     return 0;
 }
 
 Value *
-set(Repo *repo, Key *key, Value *value)
+repo_Set(Repo *repo, Key *key, Value *value)
 {
-    if (repo->head == NULL) {
-        return NULL;
-    } else {
-        RepoEntry *curr = repo->head;
-        while (curr != NULL) {
-            if (buffer_Compare(curr->key->buffer, key->buffer) == 0) {
-                Value *old = curr->value;
+    return NULL;
 
-                curr->value->buffer = buffer_Copy(value->buffer);
-
-                return old;
-            }
-            curr = curr->next;
-        }
-        return NULL;
-    }
+    // if (repo->head == NULL) {
+    //     return NULL;
+    // } else {
+    //     RepoEntry *curr = repo->head;
+    //     while (curr != NULL) {
+    //         if (buffer_Compare(curr->key->buffer, key->buffer) == 0) {
+    //             Value *old = curr->value;
+    //
+    //             curr->value->buffer = buffer_Copy(value->buffer);
+    //
+    //             return old;
+    //         }
+    //         curr = curr->next;
+    //     }
+    //     return NULL;
+    // }
 }
 
 Value *
-get(Repo *repo, Key *key)
+repo_Get(Repo *repo, Key *key)
 {
-    if (repo->head == NULL) {
-        return NULL;
-    } else {
-        RepoEntry *curr = repo->head;
-        while (curr != NULL) {
-            if (buffer_Compare(curr->key->buffer, key->buffer) == 0) {
-                return curr->value;
-            }
-            curr = curr->next;
-        }
-        return NULL;
-    }
+    // 1. Compute the hash
+    uint8_t output[HASHLEN];
+    memset(output, 0, HASHLEN);
+    siphash(output, buffer_Overlay(key->buffer), buffer_Size(key->buffer), repo->key);
+
+    // 2. Index.
+    uint32_t bucket_id = output[0] & repo->layer; // mask out the bucket ID
+    Value *value = repoBucket_Index(repo->buckets[bucket_id], key);
+    return value;
 }
 
 size_t
@@ -256,10 +315,7 @@ Buffer *
 _readName(uint8_t *buffer, size_t length)
 {
     size_t len = _getNameLength(buffer, length);
-    Buffer *b = (Buffer *) malloc(sizeof(Buffer));
-    b->bytes = malloc(len);
-    b->length = len;
-    memcpy(b->bytes, buffer + _getNameIndex(buffer, length), len);
+    Buffer *b = buffer_CreateFromArray(buffer + _getNameIndex(buffer, length), len);
     return b;
 }
 
@@ -268,10 +324,7 @@ _readContentObjectHash(uint8_t *buffer, size_t length)
 {
     size_t len = _getContentHashLength(buffer, length);
     if (len > 0) {
-        Buffer *b = (Buffer *) malloc(sizeof(Buffer));
-        b->bytes = malloc(len);
-        b->length = len;
-        memcpy(b->bytes, buffer + _getContentHashIndex(buffer, length), len);
+        Buffer *b = buffer_CreateFromArray(buffer + _getContentHashIndex(buffer, length), len);
         return b;
     } else {
         return NULL;
@@ -283,10 +336,7 @@ _readKeyId(uint8_t *buffer, size_t length)
 {
     size_t len = _getKeyIdLength(buffer, length);
     if (len > 0) {
-        Buffer *b = (Buffer *) malloc(sizeof(Buffer));
-        b->bytes = malloc(len);
-        b->length = len;
-        memcpy(b->bytes, buffer + _getKeyIdIndex(buffer, length), len);
+        Buffer *b = buffer_CreateFromArray(buffer + _getKeyIdIndex(buffer, length), len);
         return b;
     } else {
         return NULL;
@@ -314,11 +364,11 @@ main(int argc, char **argv)
     // 3. insert into repo
     Repo *repo = repo_Create();
     Value *value1 = value_CreateFromArray(buffer, numBytesRead);
-    add(repo, key, value1);
+    repo_Add(repo, key, value1);
     buffer_Display(stdout, value1->buffer);
 
     // 4. get from repo
-    Value *value2 = get(repo, key);
+    Value *value2 = repo_Get(repo, key);
 
     // 5. Sanity check
     printf("Equal? %d\n", value_Compare(value1, value2) == 0);
