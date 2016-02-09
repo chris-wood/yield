@@ -1,0 +1,584 @@
+#-----------------------------------------------------------
+# Vivado v2015.4 (64-bit)
+# SW Build 1412921 on Wed Nov 18 09:43:45 MST 2015
+# IP Build 1412968 on Wed Nov 18 10:19:19 MST 2015
+# Start of session at: Tue Feb 02 21:36:35 2016
+# Process ID: 223344
+# Current directory: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/p0/ipi
+# Command line: vivado.exe -mode batch -source C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/p0/ipi/top.ipi.tcl
+# Log file: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/p0/ipi/vivado.log
+# Journal file: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/p0/ipi\vivado.jou
+#-----------------------------------------------------------
+source C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/p0/ipi/top.ipi.tcl
+# puts "Running ipi tcl"
+Running ipi tcl
+# open_project C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/p0/ipi/zc702.xpr
+INFO: [Project 1-313] Project file moved from '/wrk/hdstaff/jece/work1/Rodin/REL/2015.4_sdsoc/src/products/sdsoc/platforms/zc702/vivado' since last save.
+Scanning sources...
+Finished scanning sources
+WARNING: [filemgmt 56-2] IPUserFilesDir: Could not find the directory 'C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/p0/ipi/zc702.ip_user_files', nor could it be found using path 'C:/wrk/hdstaff/jece/work1/Rodin/REL/2015.4_sdsoc/src/products/sdsoc/platforms/zc702/vivado/zc702.ip_user_files'.
+WARNING: [filemgmt 56-2] IPStaticSourceDir: Could not find the directory 'C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/p0/ipi/zc702.ip_user_files/ipstatic', nor could it be found using path 'C:/wrk/hdstaff/jece/work1/Rodin/REL/2015.4_sdsoc/src/products/sdsoc/platforms/zc702/vivado/zc702.ip_user_files/ipstatic'.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/SDSoC/2015.4/Vivado/2015.4/data/ip'.
+# set_param cg.skipHiddenCheck true
+# set_property ip_repo_paths {C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo C:/Xilinx/SDSoC/2015.4/data/ip/xilinx} [current_fileset]
+# set_param bd.skipSupportedIPCheck true
+# update_ip_catalog -rebuild
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Xilinx/SDSoC/2015.4/data/ip/xilinx'.
+# close_project
+# open_project C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/p0/ipi/zc702.xpr
+Scanning sources...
+Finished scanning sources
+WARNING: [filemgmt 56-3] IPUserFilesDir: Could not find the directory 'C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/p0/ipi/zc702.ip_user_files'.
+WARNING: [filemgmt 56-3] IPStaticSourceDir: Could not find the directory 'C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/p0/ipi/zc702.ip_user_files/ipstatic'.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Xilinx/SDSoC/2015.4/data/ip/xilinx'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/SDSoC/2015.4/Vivado/2015.4/data/ip'.
+# set_param bd.get_bd_obj.warning_on_empty_result true
+# set_param bd.propagate.allow_set_readonly_param true
+# source top.bd.tcl
+## if {[llength [get_files *.bd]] == 1} {
+##   set diagram_handle [open_bd_design [get_files *.bd]]
+## } else {
+##   set diagram_handle [open_bd_design [get_files zc702.bd]]
+## }
+Adding component instance block -- xilinx.com:ip:proc_sys_reset:5.0 - proc_sys_reset_1
+INFO: [Ipptcl 7-1463] No Compatible Board Interface found. Board Tab not created in customize GUI
+Adding component instance block -- xilinx.com:ip:proc_sys_reset:5.0 - proc_sys_reset_2
+INFO: [Ipptcl 7-1463] No Compatible Board Interface found. Board Tab not created in customize GUI
+Adding component instance block -- xilinx.com:ip:proc_sys_reset:5.0 - proc_sys_reset_3
+INFO: [Ipptcl 7-1463] No Compatible Board Interface found. Board Tab not created in customize GUI
+Adding component instance block -- xilinx.com:ip:proc_sys_reset:5.0 - proc_sys_reset_0
+INFO: [Ipptcl 7-1463] No Compatible Board Interface found. Board Tab not created in customize GUI
+Adding component instance block -- xilinx.com:ip:processing_system7:5.5 - ps7
+Adding component instance block -- xilinx.com:ip:xlconcat:2.1 - xlconcat
+Successfully read diagram <zc702> from BD file <C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/p0/ipi/zc702.srcs/sources_1/bd/zc702/zc702.bd>
+open_bd_design: Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 308.059 ; gain = 67.672
+## set ps7 [get_bd_cell /ps7]
+## set_property -dict [ list \
+##   CONFIG.PCW_USE_M_AXI_GP0 1 \
+##   CONFIG.PCW_USE_S_AXI_ACP 1 \
+##   CONFIG.PCW_USE_DEFAULT_ACP_USER_VAL 1 \
+##   ] $ps7
+## set xlconcat [get_bd_cell /xlconcat]
+## set_property -dict [ list \
+##   CONFIG.NUM_PORTS 1 \
+##   ] $xlconcat
+## set get_0 [create_bd_cell -type ip -vlnv xilinx.com:hls:get:1.0 get_0]
+## set set_0 [create_bd_cell -type ip -vlnv xilinx.com:hls:set:1.0 set_0]
+## set get_0_if [create_bd_cell -type ip -vlnv xilinx.com:ip:axis_accelerator_adapter:2.1 get_0_if]
+## set_property -dict [ list \
+##   CONFIG.C_OUTPUT_SCALAR_0_WIDTH {32} \
+##   CONFIG.C_INPUT_SCALAR_0_WIDTH {32} \
+##   CONFIG.C_INPUT_SCALAR_1_WIDTH {32} \
+##   CONFIG.C_OUTPUT_SCALAR_1_WIDTH {32} \
+##   CONFIG.C_OSCALAR_1_MODE {AP_VLD} \
+##   CONFIG.C_N_OUTPUT_ARGS {0} \
+##   CONFIG.C_N_INPUT_ARGS {0} \
+##   CONFIG.C_N_INPUT_SCALARS {2} \
+##   CONFIG.C_N_OUTPUT_SCALARS {2} \
+##   ] $get_0_if
+## set get_0_val_r [create_bd_cell -type ip -vlnv xilinx.com:ip:ovld_reg:1.0 get_0_val_r]
+## set_property -dict [ list \
+##   CONFIG.DATA_WIDTH {32} \
+##   ] $get_0_val_r
+## set set_0_if [create_bd_cell -type ip -vlnv xilinx.com:ip:axis_accelerator_adapter:2.1 set_0_if]
+## set_property -dict [ list \
+##   CONFIG.C_OUTPUT_SCALAR_0_WIDTH {32} \
+##   CONFIG.C_INPUT_SCALAR_0_WIDTH {32} \
+##   CONFIG.C_INPUT_SCALAR_1_WIDTH {32} \
+##   CONFIG.C_INPUT_SCALAR_2_WIDTH {32} \
+##   CONFIG.C_N_OUTPUT_ARGS {0} \
+##   CONFIG.C_N_INPUT_ARGS {0} \
+##   CONFIG.C_N_INPUT_SCALARS {3} \
+##   CONFIG.C_N_OUTPUT_SCALARS {1} \
+##   ] $set_0_if
+## set axi_ic_ps7_M_AXI_GP0 [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_ic_ps7_M_AXI_GP0]
+## set_property -dict [ list \
+##   CONFIG.NUM_MI {2} \
+##   CONFIG.NUM_SI {1} \
+##   CONFIG.STRATEGY {2} \
+##   CONFIG.M00_HAS_REGSLICE {1} \
+##   CONFIG.M01_HAS_REGSLICE {1} \
+##   CONFIG.S00_HAS_REGSLICE {1} \
+##   ] $axi_ic_ps7_M_AXI_GP0
+## set axi_ic_ps7_S_AXI_ACP [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_ic_ps7_S_AXI_ACP]
+## set_property -dict [ list \
+##   CONFIG.NUM_MI {1} \
+##   CONFIG.NUM_SI {2} \
+##   CONFIG.STRATEGY {2} \
+##   CONFIG.M00_HAS_REGSLICE {1} \
+##   CONFIG.M00_HAS_DATA_FIFO {2} \
+##   CONFIG.S00_HAS_REGSLICE {1} \
+##   CONFIG.S00_HAS_DATA_FIFO {2} \
+##   CONFIG.S01_HAS_REGSLICE {1} \
+##   CONFIG.S01_HAS_DATA_FIFO {2} \
+##   ] $axi_ic_ps7_S_AXI_ACP
+## set ps7_irq_const [create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 ps7_irq_const]
+## set_property -dict [ list \
+##   CONFIG.CONST_WIDTH {1} \
+##   CONFIG.CONST_VAL {0} \
+##   ] $ps7_irq_const
+## set acp_axcache_0xF [create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 acp_axcache_0xF]
+## set_property -dict [ list \
+##   CONFIG.CONST_WIDTH {4} \
+##   CONFIG.CONST_VAL {15} \
+##   ] $acp_axcache_0xF
+## connect_bd_net  \
+##   [get_bd_pins /get_0_if/aresetn] \
+##   [get_bd_pins /get_0/ap_rst_n] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /get_0/ap_return] \
+##   [get_bd_pins /get_0_if/ap_oscalar_0_din] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /get_0_if/ap_iscalar_0_dout] \
+##   [get_bd_pins /get_0/data] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /get_0_if/ap_iscalar_1_dout] \
+##   [get_bd_pins /get_0/key] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /get_0/val_r] \
+##   [get_bd_pins /get_0_val_r/data_in] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /get_0/val_r_ap_vld] \
+##   [get_bd_pins /get_0_val_r/vld_in] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /get_0_val_r/vld_out] \
+##   [get_bd_pins /get_0_if/ap_oscalar_1_vld] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /get_0_val_r/data_out] \
+##   [get_bd_pins /get_0_if/ap_oscalar_1_din] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /set_0_if/aresetn] \
+##   [get_bd_pins /set_0/ap_rst_n] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /set_0/ap_return] \
+##   [get_bd_pins /set_0_if/ap_oscalar_0_din] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /set_0_if/ap_iscalar_0_dout] \
+##   [get_bd_pins /set_0/data] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /set_0_if/ap_iscalar_1_dout] \
+##   [get_bd_pins /set_0/key] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /set_0_if/ap_iscalar_2_dout] \
+##   [get_bd_pins /set_0/val_r] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /ps7/FCLK_CLK2] \
+##   [get_bd_pins /ps7/M_AXI_GP0_ACLK] \
+##   [get_bd_pins /ps7/S_AXI_ACP_ACLK] \
+##   [get_bd_pins /get_0/ap_clk] \
+##   [get_bd_pins /set_0/ap_clk] \
+##   [get_bd_pins /get_0_if/s_axi_aclk] \
+##   [get_bd_pins /get_0_if/aclk] \
+##   [get_bd_pins /get_0_val_r/clk] \
+##   [get_bd_pins /set_0_if/s_axi_aclk] \
+##   [get_bd_pins /set_0_if/aclk] \
+##   [get_bd_pins /axi_ic_ps7_M_AXI_GP0/ACLK] \
+##   [get_bd_pins /axi_ic_ps7_M_AXI_GP0/S00_ACLK] \
+##   [get_bd_pins /axi_ic_ps7_M_AXI_GP0/M00_ACLK] \
+##   [get_bd_pins /axi_ic_ps7_M_AXI_GP0/M01_ACLK] \
+##   [get_bd_pins /axi_ic_ps7_S_AXI_ACP/ACLK] \
+##   [get_bd_pins /axi_ic_ps7_S_AXI_ACP/M00_ACLK] \
+##   [get_bd_pins /axi_ic_ps7_S_AXI_ACP/S00_ACLK] \
+##   [get_bd_pins /axi_ic_ps7_S_AXI_ACP/S01_ACLK] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /proc_sys_reset_2/interconnect_aresetn] \
+##   [get_bd_pins /axi_ic_ps7_M_AXI_GP0/ARESETN] \
+##   [get_bd_pins /axi_ic_ps7_M_AXI_GP0/S00_ARESETN] \
+##   [get_bd_pins /axi_ic_ps7_M_AXI_GP0/M00_ARESETN] \
+##   [get_bd_pins /axi_ic_ps7_M_AXI_GP0/M01_ARESETN] \
+##   [get_bd_pins /axi_ic_ps7_S_AXI_ACP/ARESETN] \
+##   [get_bd_pins /axi_ic_ps7_S_AXI_ACP/M00_ARESETN] \
+##   [get_bd_pins /axi_ic_ps7_S_AXI_ACP/S00_ARESETN] \
+##   [get_bd_pins /axi_ic_ps7_S_AXI_ACP/S01_ARESETN] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /proc_sys_reset_2/peripheral_aresetn] \
+##   [get_bd_pins /get_0_if/s_axi_aresetn] \
+##   [get_bd_pins /set_0_if/s_axi_aresetn] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /ps7_irq_const/dout] \
+##   [get_bd_pins /xlconcat/In0] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /acp_axcache_0xF/dout] \
+##   [get_bd_pins /axi_ic_ps7_S_AXI_ACP/S00_AXI_arcache] \
+##   [get_bd_pins /axi_ic_ps7_S_AXI_ACP/S00_AXI_awcache] \
+##   [get_bd_pins /axi_ic_ps7_S_AXI_ACP/S01_AXI_arcache] \
+##   [get_bd_pins /axi_ic_ps7_S_AXI_ACP/S01_AXI_awcache] \
+## 
+WARNING: [BD 41-1306] The connection to interface pin /axi_ic_ps7_S_AXI_ACP/S00_AXI_arcache is being overridden by the user. This pin will not be connected as a part of interface connection S00_AXI
+WARNING: [BD 41-1306] The connection to interface pin /axi_ic_ps7_S_AXI_ACP/S00_AXI_awcache is being overridden by the user. This pin will not be connected as a part of interface connection S00_AXI
+WARNING: [BD 41-1306] The connection to interface pin /axi_ic_ps7_S_AXI_ACP/S01_AXI_arcache is being overridden by the user. This pin will not be connected as a part of interface connection S01_AXI
+WARNING: [BD 41-1306] The connection to interface pin /axi_ic_ps7_S_AXI_ACP/S01_AXI_awcache is being overridden by the user. This pin will not be connected as a part of interface connection S01_AXI
+## connect_bd_intf_net \
+##   [get_bd_intf_pins /get_0_if/ap_ctrl] \
+##   [get_bd_intf_pins /get_0/ap_ctrl] \
+## 
+## connect_bd_intf_net \
+##   [get_bd_intf_pins /get_0_if/ap_ctrl] \
+##   [get_bd_intf_pins /get_0_val_r/AP_CTRL] \
+## 
+## connect_bd_intf_net \
+##   [get_bd_intf_pins /set_0_if/ap_ctrl] \
+##   [get_bd_intf_pins /set_0/ap_ctrl] \
+## 
+## connect_bd_intf_net \
+##   [get_bd_intf_pins /ps7/M_AXI_GP0] \
+##   [get_bd_intf_pins /axi_ic_ps7_M_AXI_GP0/S00_AXI] \
+## 
+## connect_bd_intf_net \
+##   [get_bd_intf_pins /axi_ic_ps7_S_AXI_ACP/M00_AXI] \
+##   [get_bd_intf_pins /ps7/S_AXI_ACP] \
+## 
+## connect_bd_intf_net \
+##   [get_bd_intf_pins /get_0/m_axi_gmem] \
+##   [get_bd_intf_pins /axi_ic_ps7_S_AXI_ACP/S00_AXI] \
+## 
+## connect_bd_intf_net \
+##   [get_bd_intf_pins /set_0/m_axi_gmem] \
+##   [get_bd_intf_pins /axi_ic_ps7_S_AXI_ACP/S01_AXI] \
+## 
+## connect_bd_intf_net \
+##   [get_bd_intf_pins /axi_ic_ps7_M_AXI_GP0/M00_AXI] \
+##   [get_bd_intf_pins /get_0_if/S_AXI] \
+## 
+## connect_bd_intf_net \
+##   [get_bd_intf_pins /axi_ic_ps7_M_AXI_GP0/M01_AXI] \
+##   [get_bd_intf_pins /set_0_if/S_AXI] \
+## 
+## assign_bd_address
+</ps7/S_AXI_ACP/ACP_DDR_LOWOCM> is being mapped into </get_0/Data_m_axi_gmem> at <0x00000000 [ 1G ]>
+</ps7/S_AXI_ACP/ACP_DDR_LOWOCM> is being mapped into </set_0/Data_m_axi_gmem> at <0x00000000 [ 1G ]>
+</ps7/S_AXI_ACP/ACP_QSPI_LINEAR> is being mapped into </get_0/Data_m_axi_gmem> at <0xFC000000 [ 16M ]>
+</ps7/S_AXI_ACP/ACP_QSPI_LINEAR> is being mapped into </set_0/Data_m_axi_gmem> at <0xFC000000 [ 16M ]>
+</ps7/S_AXI_ACP/ACP_IOP> is being mapped into </get_0/Data_m_axi_gmem> at <0xE0000000 [ 4M ]>
+INFO: [BD 41-1051] The usage <register> of peripheral </ps7/S_AXI_ACP/ACP_IOP> does not match the usage <memory> of master </get_0/Data_m_axi_gmem> and will be excluded using sparse connectivity from its address space. Use the include_bd_addr_seg command to override this precaution and make this peripheral visible within this masters address space.
+Excluding </ps7/S_AXI_ACP/ACP_IOP> from </get_0/Data_m_axi_gmem>
+</ps7/S_AXI_ACP/ACP_IOP> is being mapped into </set_0/Data_m_axi_gmem> at <0xE0000000 [ 4M ]>
+INFO: [BD 41-1051] The usage <register> of peripheral </ps7/S_AXI_ACP/ACP_IOP> does not match the usage <memory> of master </set_0/Data_m_axi_gmem> and will be excluded using sparse connectivity from its address space. Use the include_bd_addr_seg command to override this precaution and make this peripheral visible within this masters address space.
+Excluding </ps7/S_AXI_ACP/ACP_IOP> from </set_0/Data_m_axi_gmem>
+</ps7/S_AXI_ACP/ACP_M_AXI_GP0> is being mapped into </get_0/Data_m_axi_gmem> at <0x40000000 [ 1G ]>
+INFO: [BD 41-1051] The usage <register> of peripheral </ps7/S_AXI_ACP/ACP_M_AXI_GP0> does not match the usage <memory> of master </get_0/Data_m_axi_gmem> and will be excluded using sparse connectivity from its address space. Use the include_bd_addr_seg command to override this precaution and make this peripheral visible within this masters address space.
+Excluding </ps7/S_AXI_ACP/ACP_M_AXI_GP0> from </get_0/Data_m_axi_gmem>
+</ps7/S_AXI_ACP/ACP_M_AXI_GP0> is being mapped into </set_0/Data_m_axi_gmem> at <0x40000000 [ 1G ]>
+INFO: [BD 41-1051] The usage <register> of peripheral </ps7/S_AXI_ACP/ACP_M_AXI_GP0> does not match the usage <memory> of master </set_0/Data_m_axi_gmem> and will be excluded using sparse connectivity from its address space. Use the include_bd_addr_seg command to override this precaution and make this peripheral visible within this masters address space.
+Excluding </ps7/S_AXI_ACP/ACP_M_AXI_GP0> from </set_0/Data_m_axi_gmem>
+</get_0_if/S_AXI/Reg> is being mapped into </ps7/Data> at <0x43C00000 [ 64K ]>
+</set_0_if/S_AXI/Reg> is being mapped into </ps7/Data> at <0x43C10000 [ 64K ]>
+## include_bd_addr_seg [get_bd_addr_segs -excluded -of_objects [get_bd_addr_segs -of_objects [get_bd_intf_pin -of_objects [get_bd_cells] -filter "Mode==Slave"]]]
+Including </ps7/S_AXI_ACP/ACP_IOP> into </get_0/Data_m_axi_gmem>
+Including </ps7/S_AXI_ACP/ACP_IOP> into </set_0/Data_m_axi_gmem>
+Including </ps7/S_AXI_ACP/ACP_M_AXI_GP0> into </get_0/Data_m_axi_gmem>
+Including </ps7/S_AXI_ACP/ACP_M_AXI_GP0> into </set_0/Data_m_axi_gmem>
+## set xml_file address_map.xml
+## set fp [open ${xml_file} w]
+## set addr_segs [get_bd_addr_segs -hier]
+## puts $fp "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+## puts $fp "<xd:addressMap xmlns:xd=\"http://www.xilinx.com/xd\">"
+## foreach addr_seg $addr_segs {
+##   set path [get_property PATH $addr_seg]
+##   set offset [get_property OFFSET $addr_seg]
+##   if {$offset != ""} {
+##     set range [format 0x%X [get_property RANGE $addr_seg]]
+##     set high_addr [format 0x%X [expr $offset + $range - 1]]
+##     set slave [get_bd_addr_segs -of_object $addr_seg]
+##     regexp {([^/]+)/([^/]+)/([^/]+)$} $path match componentRef addressSpace segment
+##     regexp {([^/]+)/([^/]+)/([^/]+)$} $slave match slaveRef slaveMemoryMap slaveSegment  
+##     set slaveIntfPin [get_bd_intf_pins -of_objects $slave]
+##     regexp {([^/]+)$} $slaveIntfPin match slaveInterface
+##     puts $fp "  <xd:addressRange xd:componentRef=\"${componentRef}\" xd:addressSpace=\"${addressSpace}\" xd:segment=\"${segment}\" xd:slaveRef=\"${slaveRef}\" xd:slaveInterface=\"${slaveInterface}\" xd:slaveSegment=\"${slaveSegment}\" xd:baseAddr=\"${offset}\" xd:range=\"${range}\"/>"
+##   }
+## }
+## puts $fp "</xd:addressMap>"
+## close $fp
+# regenerate_bd_layout
+# save_bd_design
+Wrote  : <C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/p0/ipi/zc702.srcs/sources_1/bd/zc702/zc702.bd> 
+# report_ip_status
+Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2015.4 (win64) Build 1412921 Wed Nov 18 09:43:45 MST 2015
+| Date         : Tue Feb 02 21:37:11 2016
+| Host         :  running 64-bit Service Pack 1  (build 7601)
+| Command      : report_ip_status
+------------------------------------------------------------------------------------
+
+IP Status Summary
+
+1. Project IP Status
+--------------------
+Your project uses 15 IP. Some of these IP may have undergone changes in this release of the software. Please review the recommended actions.
+
+More information on the Xilinx versioning policy is available at www.xilinx.com.
+
+Project IP Instances
++------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| Instance Name                | Status     | Recommendation      | Change    | IP Name            | IP      | New Version           | New        | Original Part        |
+|                              |            |                     | Log       |                    | Version |                       | License    |                      |
++------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| zc702_acp_axcache_0xF_0      | Up-to-date | No changes required |  *(1)     | Constant           | 1.1     | 1.1 (Rev. 2)          | Included   | xc7z020clg484-1      |
+|                              |            |                     |           |                    | (Rev.   |                       |            |                      |
+|                              |            |                     |           |                    | 2)      |                       |            |                      |
++------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| zc702_axi_ic_ps7_M_AXI_GP0_0 | Up-to-date | No changes required |  *(2)     | AXI Interconnect   | 2.1     | 2.1 (Rev. 8)          | Included   | xc7z020clg484-1      |
+|                              |            |                     |           |                    | (Rev.   |                       |            |                      |
+|                              |            |                     |           |                    | 8)      |                       |            |                      |
++------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| zc702_axi_ic_ps7_S_AXI_ACP_0 | Up-to-date | No changes required |  *(3)     | AXI Interconnect   | 2.1     | 2.1 (Rev. 8)          | Included   | xc7z020clg484-1      |
+|                              |            |                     |           |                    | (Rev.   |                       |            |                      |
+|                              |            |                     |           |                    | 8)      |                       |            |                      |
++------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| zc702_get_0_0                | Up-to-date | No changes required | Change    | Get                | 1.0     | 1.0 (Rev. 1602022135) | Included   | xc7z020clg484-1      |
+|                              |            |                     | Log not   |                    | (Rev.   |                       |            |                      |
+|                              |            |                     | available |                    | 1602022 |                       |            |                      |
++------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| zc702_get_0_if_0             | Up-to-date | No changes required |  *(4)     | AXI4-Stream        | 2.1     | 2.1 (Rev. 6)          | Included   | xc7z020clg484-1      |
+|                              |            |                     |           | Accelerator        | (Rev.   |                       |            |                      |
+|                              |            |                     |           | Adapter            | 6)      |                       |            |                      |
++------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| zc702_get_0_val_r_0          | Up-to-date | No changes required | Change    | ovld_reg_v1_0      | 1.0     | 1.0 (Rev. 2)          | Included   | xc7z020clg484-1      |
+|                              |            |                     | Log not   |                    | (Rev.   |                       |            |                      |
+|                              |            |                     | available |                    | 2)      |                       |            |                      |
++------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| zc702_proc_sys_reset_1_0     | Up-to-date | No changes required |  *(5)     | Processor System   | 5.0     | 5.0 (Rev. 8)          | Included   | xc7z020clg484-1      |
+|                              |            |                     |           | Reset              | (Rev.   |                       |            |                      |
+|                              |            |                     |           |                    | 8)      |                       |            |                      |
++------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| zc702_proc_sys_reset_2_1     | Up-to-date | No changes required |  *(6)     | Processor System   | 5.0     | 5.0 (Rev. 8)          | Included   | xc7z020clg484-1      |
+|                              |            |                     |           | Reset              | (Rev.   |                       |            |                      |
+|                              |            |                     |           |                    | 8)      |                       |            |                      |
++------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| zc702_proc_sys_reset_3_2     | Up-to-date | No changes required |  *(7)     | Processor System   | 5.0     | 5.0 (Rev. 8)          | Included   | xc7z020clg484-1      |
+|                              |            |                     |           | Reset              | (Rev.   |                       |            |                      |
+|                              |            |                     |           |                    | 8)      |                       |            |                      |
++------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| zc702_proc_sys_reset_4_3     | Up-to-date | No changes required |  *(8)     | Processor System   | 5.0     | 5.0 (Rev. 8)          | Included   | xc7z020clg484-1      |
+|                              |            |                     |           | Reset              | (Rev.   |                       |            |                      |
+|                              |            |                     |           |                    | 8)      |                       |            |                      |
++------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| zc702_processing_system7_1_0 | Up-to-date | No changes required |  *(9)     | ZYNQ7 Processing   | 5.5     | 5.5 (Rev. 3)          | Included   | xc7z020clg484-1      |
+|                              |            |                     |           | System             | (Rev.   |                       |            |                      |
+|                              |            |                     |           |                    | 3)      |                       |            |                      |
++------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| zc702_ps7_irq_const_0        | Up-to-date | No changes required |  *(10)    | Constant           | 1.1     | 1.1 (Rev. 2)          | Included   | xc7z020clg484-1      |
+|                              |            |                     |           |                    | (Rev.   |                       |            |                      |
+|                              |            |                     |           |                    | 2)      |                       |            |                      |
++------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| zc702_set_0_0                | Up-to-date | No changes required | Change    | Set                | 1.0     | 1.0 (Rev. 1602022136) | Included   | xc7z020clg484-1      |
+|                              |            |                     | Log not   |                    | (Rev.   |                       |            |                      |
+|                              |            |                     | available |                    | 1602022 |                       |            |                      |
++------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| zc702_set_0_if_0             | Up-to-date | No changes required |  *(11)    | AXI4-Stream        | 2.1     | 2.1 (Rev. 6)          | Included   | xc7z020clg484-1      |
+|                              |            |                     |           | Accelerator        | (Rev.   |                       |            |                      |
+|                              |            |                     |           | Adapter            | 6)      |                       |            |                      |
++------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| zc702_xlconcat_1_0           | Up-to-date | No changes required |  *(12)    | Concat             | 2.1     | 2.1 (Rev. 2)          | Included   | xc7z020clg484-1      |
+|                              |            |                     |           |                    | (Rev.   |                       |            |                      |
+|                              |            |                     |           |                    | 2)      |                       |            |                      |
++------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+*(1) c:/Xilinx/SDSoC/2015.4/Vivado/2015.4/data/rsb/iprepos/xilinx.com_ip_xlconstant_1.1/doc/xlconstant_v1_1_changelog.txt
+*(2) c:/Xilinx/SDSoC/2015.4/Vivado/2015.4/data/ip/xilinx/axi_interconnect_v2_1/doc/axi_interconnect_v2_1_changelog.txt
+*(3) c:/Xilinx/SDSoC/2015.4/Vivado/2015.4/data/ip/xilinx/axi_interconnect_v2_1/doc/axi_interconnect_v2_1_changelog.txt
+*(4) c:/Xilinx/SDSoC/2015.4/Vivado/2015.4/data/ip/xilinx/axis_accelerator_adapter_v2_1/doc/axis_accelerator_adapter_v2_1_changelog.txt
+*(5) c:/Xilinx/SDSoC/2015.4/Vivado/2015.4/data/ip/xilinx/proc_sys_reset_v5_0/doc/proc_sys_reset_v5_0_changelog.txt
+*(6) c:/Xilinx/SDSoC/2015.4/Vivado/2015.4/data/ip/xilinx/proc_sys_reset_v5_0/doc/proc_sys_reset_v5_0_changelog.txt
+*(7) c:/Xilinx/SDSoC/2015.4/Vivado/2015.4/data/ip/xilinx/proc_sys_reset_v5_0/doc/proc_sys_reset_v5_0_changelog.txt
+*(8) c:/Xilinx/SDSoC/2015.4/Vivado/2015.4/data/ip/xilinx/proc_sys_reset_v5_0/doc/proc_sys_reset_v5_0_changelog.txt
+*(9) c:/Xilinx/SDSoC/2015.4/Vivado/2015.4/data/ip/xilinx/processing_system7_v5_5/doc/processing_system7_v5_5_changelog.txt
+*(10) c:/Xilinx/SDSoC/2015.4/Vivado/2015.4/data/rsb/iprepos/xilinx.com_ip_xlconstant_1.1/doc/xlconstant_v1_1_changelog.txt
+*(11) c:/Xilinx/SDSoC/2015.4/Vivado/2015.4/data/ip/xilinx/axis_accelerator_adapter_v2_1/doc/axis_accelerator_adapter_v2_1_changelog.txt
+*(12) c:/Xilinx/SDSoC/2015.4/Vivado/2015.4/data/rsb/iprepos/xilinx.com_ip_xlconcat_2.1/doc/xlconcat_v2_1_changelog.txt
+
+
+# validate_bd_design
+WARNING: [BD 41-237] Bus Interface property AWUSER_WIDTH does not match between /ps7/S_AXI_ACP(5) and /axi_ic_ps7_S_AXI_ACP/m00_couplers/m00_regslice/M_AXI(0)
+WARNING: [BD 41-237] Bus Interface property ARUSER_WIDTH does not match between /ps7/S_AXI_ACP(5) and /axi_ic_ps7_S_AXI_ACP/m00_couplers/m00_regslice/M_AXI(0)
+WARNING: [BD 41-1271] The connection to the pin: /axi_ic_ps7_S_AXI_ACP/S00_AXI_arcache has been overridden by the user. This pin will not be connected as a part of the interface connection: get_0_m_axi_gmem 
+WARNING: [BD 41-1271] The connection to the pin: /axi_ic_ps7_S_AXI_ACP/S00_AXI_awcache has been overridden by the user. This pin will not be connected as a part of the interface connection: get_0_m_axi_gmem 
+WARNING: [BD 41-1271] The connection to the pin: /axi_ic_ps7_S_AXI_ACP/S01_AXI_arcache has been overridden by the user. This pin will not be connected as a part of the interface connection: set_0_m_axi_gmem 
+WARNING: [BD 41-1271] The connection to the pin: /axi_ic_ps7_S_AXI_ACP/S01_AXI_awcache has been overridden by the user. This pin will not be connected as a part of the interface connection: set_0_m_axi_gmem 
+validate_bd_design: Time (s): cpu = 00:00:07 ; elapsed = 00:00:14 . Memory (MB): peak = 467.293 ; gain = 7.902
+# update_compile_order -fileset sim_1
+# update_compile_order -fileset sources_1
+# if {[llength [get_files *.bd]] == 1 } {
+#   set bd_file [get_files *.bd]
+# } else {
+#   set bd_file [get_files zc702.bd]
+# }
+# generate_target all [get_files -of_objects [get_fileset {sources_1}] $bd_file]
+INFO: [BD 41-1662] The design 'zc702.bd' is already validated. Therefore parameter propagation will not be re-run.
+WARNING: [BD 41-1271] The connection to the pin: /axi_ic_ps7_S_AXI_ACP/S00_AXI_arcache has been overridden by the user. This pin will not be connected as a part of the interface connection: get_0_m_axi_gmem 
+WARNING: [BD 41-1271] The connection to the pin: /axi_ic_ps7_S_AXI_ACP/S00_AXI_awcache has been overridden by the user. This pin will not be connected as a part of the interface connection: get_0_m_axi_gmem 
+WARNING: [BD 41-1271] The connection to the pin: /axi_ic_ps7_S_AXI_ACP/S01_AXI_arcache has been overridden by the user. This pin will not be connected as a part of the interface connection: set_0_m_axi_gmem 
+WARNING: [BD 41-1271] The connection to the pin: /axi_ic_ps7_S_AXI_ACP/S01_AXI_awcache has been overridden by the user. This pin will not be connected as a part of the interface connection: set_0_m_axi_gmem 
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/axi_ic_ps7_S_AXI_ACP/s00_couplers/s00_regslice/s_axi_arlock'(1) to net 's00_couplers_to_s00_regslice_ARLOCK'(2) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/axi_ic_ps7_S_AXI_ACP/s00_couplers/s00_regslice/s_axi_awlock'(1) to net 's00_couplers_to_s00_regslice_AWLOCK'(2) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/axi_ic_ps7_S_AXI_ACP/s01_couplers/s01_regslice/s_axi_arlock'(1) to net 's01_couplers_to_s01_regslice_ARLOCK'(2) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/axi_ic_ps7_S_AXI_ACP/s01_couplers/s01_regslice/s_axi_awlock'(1) to net 's01_couplers_to_s01_regslice_AWLOCK'(2) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/axi_ic_ps7_S_AXI_ACP/m00_couplers/m00_regslice/m_axi_rid'(1) to net 'm00_regslice_to_m00_couplers_RID'(3) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/axi_ic_ps7_S_AXI_ACP/m00_couplers/m00_regslice/m_axi_bid'(1) to net 'm00_regslice_to_m00_couplers_BID'(3) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/ps7/S_AXI_ACP_WID'(3) to net 'axi_ic_ps7_S_AXI_ACP_M00_AXI_WID'(1) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/ps7/S_AXI_ACP_ARID'(3) to net 'axi_ic_ps7_S_AXI_ACP_M00_AXI_ARID'(1) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/ps7/S_AXI_ACP_AWID'(3) to net 'axi_ic_ps7_S_AXI_ACP_M00_AXI_AWID'(1) - Only lower order bits will be connected.
+Verilog Output written to : C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/p0/ipi/zc702.srcs/sources_1/bd/zc702/hdl/zc702.v
+Verilog Output written to : C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/p0/ipi/zc702.srcs/sources_1/bd/zc702/hdl/zc702_wrapper.v
+Wrote  : <C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/p0/ipi/zc702.srcs/sources_1/bd/zc702/zc702.bd> 
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'zc702_processing_system7_1_0'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'zc702_processing_system7_1_0'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'zc702_processing_system7_1_0'...
+WARNING: [xilinx.com:ip:processing_system7:5.5-1] zc702_processing_system7_1_0: The Zynq BFM requires an AXI BFM license to run. Please ensure that you have purchased and setup the AXI BFM license prior to running simulation with this block. Please contact your Xilinx sales office for more information on purchasing this license
+INFO: [IP_Flow 19-1686] Generating 'Miscellaneous' target for IP 'zc702_processing_system7_1_0'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'zc702_processing_system7_1_0'...
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps7 .
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'zc702_xlconcat_1_0'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'zc702_xlconcat_1_0'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'zc702_xlconcat_1_0'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'zc702_xlconcat_1_0'...
+INFO: [BD 41-1029] Generation completed for the IP Integrator block xlconcat .
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'zc702_proc_sys_reset_1_0'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'zc702_proc_sys_reset_1_0'...
+INFO: [Device 21-403] Loading part xc7z020clg484-1
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'zc702_proc_sys_reset_1_0'...
+INFO: [IP_Flow 19-1686] Generating 'Implementation' target for IP 'zc702_proc_sys_reset_1_0'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'zc702_proc_sys_reset_1_0'...
+INFO: [BD 41-1029] Generation completed for the IP Integrator block proc_sys_reset_1 .
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'zc702_proc_sys_reset_2_1'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'zc702_proc_sys_reset_2_1'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'zc702_proc_sys_reset_2_1'...
+INFO: [IP_Flow 19-1686] Generating 'Implementation' target for IP 'zc702_proc_sys_reset_2_1'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'zc702_proc_sys_reset_2_1'...
+INFO: [BD 41-1029] Generation completed for the IP Integrator block proc_sys_reset_2 .
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'zc702_proc_sys_reset_3_2'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'zc702_proc_sys_reset_3_2'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'zc702_proc_sys_reset_3_2'...
+INFO: [IP_Flow 19-1686] Generating 'Implementation' target for IP 'zc702_proc_sys_reset_3_2'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'zc702_proc_sys_reset_3_2'...
+INFO: [BD 41-1029] Generation completed for the IP Integrator block proc_sys_reset_3 .
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'zc702_proc_sys_reset_4_3'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'zc702_proc_sys_reset_4_3'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'zc702_proc_sys_reset_4_3'...
+INFO: [IP_Flow 19-1686] Generating 'Implementation' target for IP 'zc702_proc_sys_reset_4_3'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'zc702_proc_sys_reset_4_3'...
+INFO: [BD 41-1029] Generation completed for the IP Integrator block proc_sys_reset_0 .
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'zc702_get_0_0'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'zc702_get_0_0'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'zc702_get_0_0'...
+INFO: [IP_Flow 19-1686] Generating 'Miscellaneous' target for IP 'zc702_get_0_0'...
+INFO: [BD 41-1029] Generation completed for the IP Integrator block get_0 .
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'zc702_set_0_0'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'zc702_set_0_0'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'zc702_set_0_0'...
+INFO: [IP_Flow 19-1686] Generating 'Miscellaneous' target for IP 'zc702_set_0_0'...
+INFO: [BD 41-1029] Generation completed for the IP Integrator block set_0 .
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'zc702_get_0_if_0'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'zc702_get_0_if_0'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'zc702_get_0_if_0'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'zc702_get_0_if_0'...
+INFO: [BD 41-1029] Generation completed for the IP Integrator block get_0_if .
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'zc702_get_0_val_r_0'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'zc702_get_0_val_r_0'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'zc702_get_0_val_r_0'...
+INFO: [BD 41-1029] Generation completed for the IP Integrator block get_0_val_r .
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'zc702_set_0_if_0'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'zc702_set_0_if_0'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'zc702_set_0_if_0'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'zc702_set_0_if_0'...
+INFO: [BD 41-1029] Generation completed for the IP Integrator block set_0_if .
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'zc702_xbar_0'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'zc702_xbar_0'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'zc702_xbar_0'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'zc702_xbar_0'...
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_ps7_M_AXI_GP0/xbar .
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'zc702_xbar_1'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'zc702_xbar_1'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'zc702_xbar_1'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'zc702_xbar_1'...
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_ps7_S_AXI_ACP/xbar .
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'zc702_ps7_irq_const_0'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'zc702_ps7_irq_const_0'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'zc702_ps7_irq_const_0'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'zc702_ps7_irq_const_0'...
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps7_irq_const .
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'zc702_acp_axcache_0xF_0'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'zc702_acp_axcache_0xF_0'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'zc702_acp_axcache_0xF_0'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'zc702_acp_axcache_0xF_0'...
+INFO: [BD 41-1029] Generation completed for the IP Integrator block acp_axcache_0xF .
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'zc702_s00_regslice_0'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'zc702_s00_regslice_0'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'zc702_s00_regslice_0'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'zc702_s00_regslice_0'...
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_ps7_M_AXI_GP0/s00_couplers/s00_regslice .
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'zc702_s00_data_fifo_0'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'zc702_s00_data_fifo_0'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'zc702_s00_data_fifo_0'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'zc702_s00_data_fifo_0'...
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_ps7_M_AXI_GP0/s00_couplers/s00_data_fifo .
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'zc702_m00_regslice_0'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'zc702_m00_regslice_0'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'zc702_m00_regslice_0'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'zc702_m00_regslice_0'...
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_ps7_M_AXI_GP0/m00_couplers/m00_regslice .
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'zc702_m01_regslice_0'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'zc702_m01_regslice_0'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'zc702_m01_regslice_0'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'zc702_m01_regslice_0'...
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_ps7_M_AXI_GP0/m01_couplers/m01_regslice .
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'zc702_s00_regslice_1'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'zc702_s00_regslice_1'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'zc702_s00_regslice_1'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'zc702_s00_regslice_1'...
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_ps7_S_AXI_ACP/s00_couplers/s00_regslice .
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'zc702_s01_regslice_0'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'zc702_s01_regslice_0'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'zc702_s01_regslice_0'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'zc702_s01_regslice_0'...
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_ps7_S_AXI_ACP/s01_couplers/s01_regslice .
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'zc702_m00_data_fifo_0'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'zc702_m00_data_fifo_0'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'zc702_m00_data_fifo_0'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'zc702_m00_data_fifo_0'...
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_ps7_S_AXI_ACP/m00_couplers/m00_data_fifo .
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'zc702_m00_regslice_1'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'zc702_m00_regslice_1'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'zc702_m00_regslice_1'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'zc702_m00_regslice_1'...
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_ps7_S_AXI_ACP/m00_couplers/m00_regslice .
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'zc702_auto_pc_0'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'zc702_auto_pc_0'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'zc702_auto_pc_0'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'zc702_auto_pc_0'...
+INFO: [Common 17-14] Message 'IP_Flow 19-1686' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_ps7_M_AXI_GP0/s00_couplers/auto_pc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_ps7_S_AXI_ACP/m00_couplers/auto_pc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_ps7_S_AXI_ACP/s00_couplers/auto_us_df .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_ps7_S_AXI_ACP/s01_couplers/auto_us_df .
+Exporting to file C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/p0/ipi/zc702.srcs/sources_1/bd/zc702/hw_handoff/zc702.hwh
+Generated Block Design Tcl file C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/p0/ipi/zc702.srcs/sources_1/bd/zc702/hw_handoff/zc702_bd.tcl
+Generated Hardware Definition File C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/p0/ipi/zc702.srcs/sources_1/bd/zc702/hdl/zc702.hwdef
+generate_target: Time (s): cpu = 00:00:37 ; elapsed = 00:00:49 . Memory (MB): peak = 669.668 ; gain = 197.762
+# file mkdir C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/p0/ipi/zc702.sdk
+# write_hwdef -force -file C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/p0/ipi/zc702.sdk/zc702.hdf
+# close_project
+INFO: [Common 17-206] Exiting Vivado at Tue Feb 02 21:38:16 2016...

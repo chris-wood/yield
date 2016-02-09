@@ -1,0 +1,15 @@
+(c) Copyright 2012-2015 Xilinx, Inc. All Rights Reserved.
+#-----------------------------------------------------------
+# Tool version  : sds++ 2015.4 SW Build on Dec 14 2015 23:02:57
+# Start time    : Tue Feb 02 21:35:17 -0800 2016
+# Command line  : sds++ -Wall -O0 -g -I../src -c -fmessage-length=0 -MTsrc/main.o -MMD -MP -MFsrc/main.d -MTsrc/main.d -o src/main.o ../src/main.cpp -sds-hw get main.cpp -clkid 2 -sds-end -sds-hw set main.cpp -clkid 2 -sds-end -target-os standalone -sds-pf zc702
+# Log file      : C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/reports/sds_main.log
+# Journal file  : C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/reports/sds_main.jou
+# Report file   : C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/reports/sds_main.rpt
+#-----------------------------------------------------------
+
+High-Level Synthesis
+--------------------
+
+  Vivado HLS Report : file not found : C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls/get set/solution/syn/report/get set_csynth.rpt
+

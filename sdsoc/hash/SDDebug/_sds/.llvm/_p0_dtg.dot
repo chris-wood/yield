@@ -1,0 +1,73 @@
+digraph dm_graph {
+v0 [label = "v0:main" ,style=filled];
+v1 [label = "v1:XFER(IN):data @58, ARRAY\nCPU\nAXIMM(mm2s) on ACP(PS to ACC)\n" ,style=filled,fillcolor = green];
+v2 [label = "v2:XFER(IN):key @58, SCALAR\nAXILITE(mm2s) on GP(PS to ACC)\n" ,style=filled,fillcolor = green];
+v3 [label = "v3:call 'get' in 'main.cpp' @58\nACC\n" ,style=filled,fillcolor = red];
+v4 [label = "v4:XFER(OUT):v_return @58, SCALAR\nAXILITE(s2mm) on GP(PS to ACC)\n" ,style=filled,fillcolor = yellow];
+v5 [label = "v5:XFER(OUT):val @58, SCALAR\nAXILITE(s2mm) on GP(PS to ACC)\n" ,style=filled,fillcolor = yellow];
+v6 [label = "v6:cf_wait(): \nXFER(IN):data @58, ARRAY\nCPU\nAXIMM(mm2s) on ACP(PS to ACC)\nXFER(OUT):v_return @58, SCALAR\nAXILITE(s2mm) on GP(PS to ACC)\nXFER(IN):key @58, SCALAR\nAXILITE(mm2s) on GP(PS to ACC)\nXFER(OUT):val @58, SCALAR\nAXILITE(s2mm) on GP(PS to ACC)\n\nCPU\nCPU\nCPU\nCPU\n" ,style=filled,fillcolor = cyan];
+v7 [label = "v7:XFER(IN):key @62, SCALAR\nAXILITE(mm2s) on GP(PS to ACC)\n" ,style=filled,fillcolor = green];
+v8 [label = "v8:XFER(IN):val @62, SCALAR\nAXILITE(mm2s) on GP(PS to ACC)\n" ,style=filled,fillcolor = green];
+v9 [label = "v9:call 'set' in 'main.cpp' @62\nACC\n" ,style=filled,fillcolor = red];
+v10 [label = "v10:XFER(OUT):v_return @62, SCALAR\nAXILITE(s2mm) on GP(PS to ACC)\n" ,style=filled,fillcolor = yellow];
+v11 [label = "v11:XFER(OUT):data @62, ARRAY\nCPU\nAXIMM(s2mm) on ACP(ACC to PS)\n" ,style=filled,fillcolor = yellow];
+v12 [label = "v12:cf_wait(): \nXFER(OUT):data @62, ARRAY\nCPU\nAXIMM(s2mm) on ACP(ACC to PS)\nXFER(IN):key @62, SCALAR\nAXILITE(mm2s) on GP(PS to ACC)\nXFER(IN):val @62, SCALAR\nAXILITE(mm2s) on GP(PS to ACC)\nXFER(OUT):v_return @62, SCALAR\nAXILITE(s2mm) on GP(PS to ACC)\n\nCPU\nCPU\nCPU\nCPU\n" ,style=filled,fillcolor = cyan];
+v13 [label = "v13:XFER(IN):data @67, ARRAY\nCPU\nAXIMM(mm2s) on ACP(PS to ACC)\n" ,style=filled,fillcolor = green];
+v14 [label = "v14:XFER(IN):key @67, SCALAR\nAXILITE(mm2s) on GP(PS to ACC)\n" ,style=filled,fillcolor = green];
+v15 [label = "v15:call 'get' in 'main.cpp' @67\nACC\n" ,style=filled,fillcolor = red];
+v16 [label = "v16:XFER(OUT):v_return @67, SCALAR\nAXILITE(s2mm) on GP(PS to ACC)\n" ,style=filled,fillcolor = yellow];
+v17 [label = "v17:XFER(OUT):val @67, SCALAR\nAXILITE(s2mm) on GP(PS to ACC)\n" ,style=filled,fillcolor = yellow];
+v18 [label = "v18:cf_wait(): \nXFER(IN):data @67, ARRAY\nCPU\nAXIMM(mm2s) on ACP(PS to ACC)\nXFER(IN):key @67, SCALAR\nAXILITE(mm2s) on GP(PS to ACC)\nXFER(OUT):v_return @67, SCALAR\nAXILITE(s2mm) on GP(PS to ACC)\nXFER(OUT):val @67, SCALAR\nAXILITE(s2mm) on GP(PS to ACC)\n\nCPU\nCPU\nCPU\nCPU\n" ,style=filled,fillcolor = cyan];
+subgraph cluster0 {
+v13;
+v14;
+v15;
+v16;
+v17;
+v18;
+label = "call 'get' in 'main.cpp' @67\nACC\n";
+}
+subgraph cluster1 {
+v1;
+v2;
+v3;
+v4;
+v5;
+v6;
+label = "call 'get' in 'main.cpp' @58\nACC\n";
+}
+subgraph cluster2 {
+v7;
+v8;
+v9;
+v10;
+v11;
+v12;
+label = "call 'set' in 'main.cpp' @62\nACC\n";
+}
+v1 -> v3 [label = "0"];
+v2 -> v3 [label = "0"];
+v3 -> v4 [label = "0"];
+v3 -> v5 [label = "0"];
+v4 -> v6 [label = "", style = dotted];
+v5 -> v6 [label = "", style = dotted];
+v7 -> v9 [label = "0"];
+v8 -> v9 [label = "0"];
+v9 -> v10 [label = "0"];
+v9 -> v11 [label = "0"];
+v11 -> v13 [label = "0"];
+v10 -> v12 [label = "", style = dotted];
+v11 -> v12 [label = "", style = dotted];
+v13 -> v15 [label = "0"];
+v14 -> v15 [label = "0"];
+v15 -> v16 [label = "0"];
+v15 -> v17 [label = "0"];
+v16 -> v18 [label = "", style = dotted];
+v17 -> v18 [label = "", style = dotted];
+v6 -> v7 [label = "", style = dotted];
+v6 -> v8 [label = "", style = dotted];
+v12 -> v13 [label = "", style = dotted];
+v12 -> v14 [label = "", style = dotted];
+v0 -> v1 [label = "", style = dotted];
+v0 -> v2 [label = "", style = dotted];
+}

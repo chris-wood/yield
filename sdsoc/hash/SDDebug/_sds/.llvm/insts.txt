@@ -1,0 +1,49 @@
+SW(2)@54\n   %1 = call i8* @sds_alloc(i32 40), !dbg !54
+SW(5)@55\n   call void @llvm.memset.p0i8.i32(i8* %1, i8 0, i32 40, i32 4, i1 false), !dbg !57
+SW(6)@0\n   %err = alloca i32, align 4
+SW(7)@0\n   %val = alloca i32, align 4
+SW(8)@54\n   %2 = bitcast i8* %1 to i32*, !dbg !54
+SW(9)@54\n   call void @llvm.dbg.value(metadata !{i32* %2}, i64 0, metadata !55), !dbg !56
+SW(10)@54\n   call void @llvm.dbg.value(metadata !{null}, i64 0, metadata !55), !dbg !56
+SW(11)@54\n   call void @llvm.dbg.value(metadata !{null}, i64 0, metadata !55), !dbg !56
+SW(12)@57\n   call void @llvm.dbg.value(metadata !{i32* %err}, i64 0, metadata !58), !dbg !59
+SW(13)@57\n   call void @llvm.dbg.value(metadata !{i32* %err}, i64 0, metadata !58), !dbg !59
+SW(14)@59\n   %4 = load i32* %err, align 4, !dbg !61
+SW(15)@59\n   %5 = call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([11 x i8]* @.str, i32 0, i32 0), i32 %4), !dbg !61
+SW(16)@61\n   call void @llvm.dbg.value(metadata !62, i64 0, metadata !63), !dbg !65
+SW(17)@61\n   br label %6, !dbg !66
+SW(18)@0\n   %storemerge = phi i32 [ 0, %0 ], [ %12, %11 ]
+SW(19)@61\n   call void @llvm.dbg.value(metadata !{null}, i64 0, metadata !63), !dbg !65
+SW(20)@61\n   %7 = icmp ult i32 %storemerge, 10, !dbg !67
+SW(21)@61\n   br i1 %7, label %8, label %13, !dbg !67
+SW(22)@54\n   call void @llvm.dbg.value(metadata !{null}, i64 0, metadata !55), !dbg !56
+SW(23)@61\n   call void @llvm.dbg.value(metadata !{null}, i64 0, metadata !63), !dbg !65
+SW(24)@61\n   call void @llvm.dbg.value(metadata !{null}, i64 0, metadata !63), !dbg !65
+SW(25)@62\n   %9 = add i32 %storemerge, 1, !dbg !70
+SW(26)@63\n   br label %11, !dbg !72
+SW(27)@61\n   call void @llvm.dbg.value(metadata !{null}, i64 0, metadata !63), !dbg !65
+SW(28)@61\n   %12 = add i32 %storemerge, 1, !dbg !73
+SW(29)@61\n   call void @llvm.dbg.value(metadata !{i32 %12}, i64 0, metadata !63), !dbg !65
+SW(30)@61\n   br label %6, !dbg !73
+SW(31)@65\n   call void @llvm.dbg.value(metadata !62, i64 0, metadata !74), !dbg !76
+SW(32)@65\n   br label %14, !dbg !77
+SW(33)@0\n   %storemerge1 = phi i32 [ 0, %13 ], [ %21, %20 ]
+SW(34)@65\n   call void @llvm.dbg.value(metadata !{null}, i64 0, metadata !74), !dbg !76
+SW(35)@65\n   %15 = icmp ult i32 %storemerge1, 10, !dbg !78
+SW(36)@65\n   br i1 %15, label %16, label %22, !dbg !78
+SW(37)@54\n   call void @llvm.dbg.value(metadata !{null}, i64 0, metadata !55), !dbg !56
+SW(38)@65\n   call void @llvm.dbg.value(metadata !{null}, i64 0, metadata !74), !dbg !76
+SW(39)@66\n   call void @llvm.dbg.value(metadata !{i32* %val}, i64 0, metadata !81), !dbg !83
+SW(40)@65\n   call void @llvm.dbg.value(metadata !{null}, i64 0, metadata !74), !dbg !76
+SW(41)@66\n   call void @llvm.dbg.value(metadata !{i32* %val}, i64 0, metadata !81), !dbg !83
+SW(42)@68\n   %18 = load i32* %val, align 4, !dbg !85
+SW(43)@68\n   %19 = call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([14 x i8]* @.str1, i32 0, i32 0), i32 %storemerge1, i32 %18), !dbg !85
+SW(44)@69\n   br label %20, !dbg !86
+SW(45)@65\n   call void @llvm.dbg.value(metadata !{null}, i64 0, metadata !74), !dbg !76
+SW(46)@65\n   %21 = add i32 %storemerge1, 1, !dbg !87
+SW(47)@65\n   call void @llvm.dbg.value(metadata !{i32 %21}, i64 0, metadata !74), !dbg !76
+SW(48)@65\n   br label %14, !dbg !87
+SW(49)@54\n   call void @llvm.dbg.value(metadata !{null}, i64 0, metadata !55), !dbg !56
+SW(50)@71\n   %23 = bitcast i32* %2 to i8*, !dbg !88
+SW(51)@71\n   call void @sds_free(i8* %23), !dbg !88
+SW(52)@72\n   ret i32 0, !dbg !89

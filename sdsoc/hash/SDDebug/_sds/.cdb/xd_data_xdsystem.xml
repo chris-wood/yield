@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xd:data xmlns:xd="http://www.xilinx.com/xd">
+  <xd:accel name="get" platform="zc702"/>
+  <xd:accel name="set" platform="zc702"/>
+</xd:data>

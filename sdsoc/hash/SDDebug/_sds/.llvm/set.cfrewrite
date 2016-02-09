@@ -1,0 +1,26 @@
+int _p0_set_0(val_type * data, key_type key, val_type val);
+int _p0_set_0(val_type * data, key_type key, val_type val)
+{
+  switch_to_next_partition(0);
+  int start_seq[3];
+  start_seq[0] = 0x00000700;
+  start_seq[1] = 0x00010100;
+  start_seq[2] = 0x00020000;
+  cf_request_handle_t _p0_swinst_set_0_cmd;
+  cf_send_i(&(_p0_swinst_set_0.cmd_set), start_seq, 3*sizeof(int), &_p0_swinst_set_0_cmd);
+  cf_wait(_p0_swinst_set_0_cmd);
+
+  cf_send_ref_i(&(_p0_swinst_set_0.data), &data, 40, &_p0_request_4);
+  cf_send_i(&(_p0_swinst_set_0.key), &key, 4, &_p0_request_5);
+  cf_send_i(&(_p0_swinst_set_0.val_r), &val, 4, &_p0_request_6);
+
+  int _p0_set_0_v_return;
+  cf_receive_i(&(_p0_swinst_set_0.ap_return), &_p0_set_0_v_return, 4, &_p0_set_0_num_ap_return, &_p0_request_7);
+
+  cf_wait(_p0_request_4);
+  cf_wait(_p0_request_5);
+  cf_wait(_p0_request_6);
+  cf_wait(_p0_request_7);
+  return _p0_set_0_v_return;
+}
+

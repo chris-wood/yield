@@ -1,0 +1,178 @@
+
+
+================================================================
+== Vivado HLS Report for 'set_assign_val'
+================================================================
+* Date:           Tue Feb 02 21:35:59 2016
+
+* Version:        2015.4 (Build 1412921 on Wed Nov 18 09:58:55 AM 2015)
+* Project:        set
+* Solution:       solution
+* Product family: zynq
+* Target device:  xc7z020clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   8.50|      7.44|        1.06|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |    7|    7|    7|    7|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 8
+* Pipeline: 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / true
+3 --> 
+	4  / true
+4 --> 
+	5  / true
+5 --> 
+	6  / true
+6 --> 
+	7  / true
+7 --> 
+	8  / true
+8 --> 
+* FSM state operations: 
+
+ <State 1>: 2.44ns
+ST_1: tmp_read [1/1] 0.00ns
+:1  %tmp_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %tmp)
+
+ST_1: data1_read [1/1] 0.00ns
+:2  %data1_read = call i30 @_ssdm_op_Read.ap_auto.i30(i30 %data1)
+
+ST_1: tmp_cast_cast [1/1] 0.00ns
+:3  %tmp_cast_cast = zext i32 %tmp_read to i33
+
+ST_1: sext_cast [1/1] 0.00ns
+:4  %sext_cast = zext i30 %data1_read to i33
+
+ST_1: sum [1/1] 2.44ns
+:5  %sum = add i33 %tmp_cast_cast, %sext_cast
+
+ST_1: sum_cast [1/1] 0.00ns
+:6  %sum_cast = zext i33 %sum to i64
+
+ST_1: dest_addr [1/1] 0.00ns
+:7  %dest_addr = getelementptr i32* %dest, i64 %sum_cast
+
+
+ <State 2>: 7.44ns
+ST_2: dest_addr_req [1/1] 7.44ns
+:9  %dest_addr_req = call i1 @_ssdm_op_WriteReq.m_axi.i32P(i32* %dest_addr, i32 1)
+
+
+ <State 3>: 7.44ns
+ST_3: src_read [1/1] 0.00ns
+:0  %src_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %src)
+
+ST_3: stg_18 [1/1] 7.44ns
+:10  call void @_ssdm_op_Write.m_axi.i32P(i32* %dest_addr, i32 %src_read, i4 -1)
+
+
+ <State 4>: 7.44ns
+ST_4: dest_addr_resp [5/5] 7.44ns
+:11  %dest_addr_resp = call i1 @_ssdm_op_WriteResp.m_axi.i32P(i32* %dest_addr)
+
+
+ <State 5>: 7.44ns
+ST_5: dest_addr_resp [4/5] 7.44ns
+:11  %dest_addr_resp = call i1 @_ssdm_op_WriteResp.m_axi.i32P(i32* %dest_addr)
+
+
+ <State 6>: 7.44ns
+ST_6: dest_addr_resp [3/5] 7.44ns
+:11  %dest_addr_resp = call i1 @_ssdm_op_WriteResp.m_axi.i32P(i32* %dest_addr)
+
+
+ <State 7>: 7.44ns
+ST_7: dest_addr_resp [2/5] 7.44ns
+:11  %dest_addr_resp = call i1 @_ssdm_op_WriteResp.m_axi.i32P(i32* %dest_addr)
+
+
+ <State 8>: 7.44ns
+ST_8: stg_23 [1/1] 0.00ns
+:8  call void (...)* @_ssdm_op_SpecInterface(i32* %dest, [6 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [7 x i8]* @p_str2, [1 x i8]* @p_str, [1 x i8]* @p_str)
+
+ST_8: dest_addr_resp [1/5] 7.44ns
+:11  %dest_addr_resp = call i1 @_ssdm_op_WriteResp.m_axi.i32P(i32* %dest_addr)
+
+ST_8: stg_25 [1/1] 0.00ns
+:12  ret void
+
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

@@ -1,0 +1,21 @@
+digraph cfg {
+v0 [label = "bb0"];
+v1 [label = "bb1"];
+v2 [label = "bb2"];
+v3 [label = "bb3"];
+v4 [label = "bb4"];
+v5 [label = "bb5"];
+v6 [label = "bb6"];
+v7 [label = "bb7"];
+v8 [label = "bb8"];
+v0 -> v1;
+v1 -> v2;
+v1 -> v4;
+v2 -> v3;
+v3 -> v1;
+v4 -> v5;
+v5 -> v6;
+v5 -> v8;
+v6 -> v7;
+v7 -> v5;
+}

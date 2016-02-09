@@ -1,0 +1,7 @@
+digraph defuse_graph {
+v0 [label = "use: (bb0),sw(5)@55"];
+v1 [label = "use: (bb0),hw, call:get"];
+v2 [label = "def: (bb2),hw, call:set"];
+v3 [label = "use: (bb6),hw, call:get"];
+v2 -> v3;
+}

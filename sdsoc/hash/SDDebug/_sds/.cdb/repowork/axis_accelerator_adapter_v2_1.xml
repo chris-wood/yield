@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xd:repository xd:vendor="xilinx.com" xd:library="xd" xd:name="xd_ip" xd:version="2.01.a"
+               xmlns:xd="http://www.xilinx.com/xd" >
+    
+    <xd:component xd:vendor="xilinx.com" xd:library="ip" xd:name="axis_accelerator_adapter" xd:version="2.1" xd:type="accelerator">
+        <xd:busInterface xd:name="S_AXI" xd:busTypeRef="aximm" xd:mode="slave" xd:direction="inout" xd:regionSize="0x10000" xd:clockRef="s_axi_aclk" xd:resetRef="s_axi_aresetn" />
+        <xd:busInterface xd:name="M_AXIS_0" xd:busTypeRef="axis" xd:mode="master" xd:direction="out" xd:hasTlast="true" xd:clockRef="m_axis_0_aclk" xd:resetRef="m_axis_0_aresetn"/>
+        <xd:busInterface xd:name="M_AXIS_1" xd:busTypeRef="axis" xd:mode="master" xd:direction="out" xd:hasTlast="true" xd:clockRef="m_axis_1_aclk" xd:resetRef="m_axis_1_aresetn"/>
+        <xd:busInterface xd:name="M_AXIS_2" xd:busTypeRef="axis" xd:mode="master" xd:direction="out" xd:hasTlast="true" xd:clockRef="m_axis_2_aclk" xd:resetRef="m_axis_2_aresetn"/>
+        <xd:busInterface xd:name="M_AXIS_3" xd:busTypeRef="axis" xd:mode="master" xd:direction="out" xd:hasTlast="true" xd:clockRef="m_axis_3_aclk" xd:resetRef="m_axis_3_aresetn"/>
+        <xd:busInterface xd:name="M_AXIS_4" xd:busTypeRef="axis" xd:mode="master" xd:direction="out" xd:hasTlast="true" xd:clockRef="m_axis_4_aclk" xd:resetRef="m_axis_4_aresetn"/>
+        <xd:busInterface xd:name="M_AXIS_5" xd:busTypeRef="axis" xd:mode="master" xd:direction="out" xd:hasTlast="true" xd:clockRef="m_axis_5_aclk" xd:resetRef="m_axis_5_aresetn"/>
+        <xd:busInterface xd:name="M_AXIS_6" xd:busTypeRef="axis" xd:mode="master" xd:direction="out" xd:hasTlast="true" xd:clockRef="m_axis_6_aclk" xd:resetRef="m_axis_6_aresetn"/>
+        <xd:busInterface xd:name="M_AXIS_7" xd:busTypeRef="axis" xd:mode="master" xd:direction="out" xd:hasTlast="true" xd:clockRef="m_axis_7_aclk" xd:resetRef="m_axis_7_aresetn"/>
+        <xd:busInterface xd:name="S_AXIS_0" xd:busTypeRef="axis" xd:mode="slave" xd:direction="in" xd:hasTlast="true" xd:clockRef="s_axis_0_aclk" xd:resetRef="s_axis_0_aresetn"/>
+        <xd:busInterface xd:name="S_AXIS_1" xd:busTypeRef="axis" xd:mode="slave" xd:direction="in" xd:hasTlast="true" xd:clockRef="s_axis_1_aclk" xd:resetRef="s_axis_1_aresetn"/>
+        <xd:busInterface xd:name="S_AXIS_2" xd:busTypeRef="axis" xd:mode="slave" xd:direction="in" xd:hasTlast="true" xd:clockRef="s_axis_2_aclk" xd:resetRef="s_axis_2_aresetn"/>
+        <xd:busInterface xd:name="S_AXIS_3" xd:busTypeRef="axis" xd:mode="slave" xd:direction="in" xd:hasTlast="true" xd:clockRef="s_axis_3_aclk" xd:resetRef="s_axis_3_aresetn"/>
+        <xd:busInterface xd:name="S_AXIS_4" xd:busTypeRef="axis" xd:mode="slave" xd:direction="in" xd:hasTlast="true" xd:clockRef="s_axis_4_aclk" xd:resetRef="s_axis_4_aresetn"/>
+        <xd:busInterface xd:name="S_AXIS_5" xd:busTypeRef="axis" xd:mode="slave" xd:direction="in" xd:hasTlast="true" xd:clockRef="s_axis_5_aclk" xd:resetRef="s_axis_5_aresetn"/>
+        <xd:busInterface xd:name="S_AXIS_6" xd:busTypeRef="axis" xd:mode="slave" xd:direction="in" xd:hasTlast="true" xd:clockRef="s_axis_6_aclk" xd:resetRef="s_axis_6_aresetn"/>
+        <xd:busInterface xd:name="S_AXIS_7" xd:busTypeRef="axis" xd:mode="slave" xd:direction="in" xd:hasTlast="true" xd:clockRef="s_axis_7_aclk" xd:resetRef="s_axis_7_aresetn"/>
+        <xd:busInterface xd:name="s_axis_0_aclk" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="s_axis_1_aclk" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="s_axis_2_aclk" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="s_axis_3_aclk" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="s_axis_5_aclk" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="s_axis_4_aclk" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="s_axis_6_aclk" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="s_axis_7_aclk" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="m_axis_0_aclk" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="m_axis_1_aclk" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="m_axis_2_aclk" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="m_axis_3_aclk" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="m_axis_4_aclk" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="m_axis_5_aclk" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="m_axis_6_aclk" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="m_axis_7_aclk" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="s_axis_0_aresetn" xd:busTypeRef="reset" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="s_axis_1_aresetn" xd:busTypeRef="reset" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="s_axis_2_aresetn" xd:busTypeRef="reset" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="s_axis_3_aresetn" xd:busTypeRef="reset" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="s_axis_4_aresetn" xd:busTypeRef="reset" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="s_axis_5_aresetn" xd:busTypeRef="reset" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="s_axis_6_aresetn" xd:busTypeRef="reset" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="s_axis_7_aresetn" xd:busTypeRef="reset" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="m_axis_0_aresetn" xd:busTypeRef="reset" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="m_axis_1_aresetn" xd:busTypeRef="reset" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="m_axis_2_aresetn" xd:busTypeRef="reset" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="m_axis_3_aresetn" xd:busTypeRef="reset" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="m_axis_4_aresetn" xd:busTypeRef="reset" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="m_axis_5_aresetn" xd:busTypeRef="reset" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="m_axis_6_aresetn" xd:busTypeRef="reset" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="m_axis_7_aresetn" xd:busTypeRef="reset" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="AP_FIFO_IARG_0" xd:busTypeRef="acc_fifo_read" xd:mode="slave" xd:direction="in"/>
+        <xd:busInterface xd:name="AP_FIFO_IARG_1" xd:busTypeRef="acc_fifo_read" xd:mode="slave" xd:direction="in"/>
+        <xd:busInterface xd:name="AP_FIFO_IARG_2" xd:busTypeRef="acc_fifo_read" xd:mode="slave" xd:direction="in"/>
+        <xd:busInterface xd:name="AP_FIFO_IARG_3" xd:busTypeRef="acc_fifo_read" xd:mode="slave" xd:direction="in"/>
+        <xd:busInterface xd:name="AP_FIFO_IARG_4" xd:busTypeRef="acc_fifo_read" xd:mode="slave" xd:direction="in"/>
+        <xd:busInterface xd:name="AP_FIFO_IARG_5" xd:busTypeRef="acc_fifo_read" xd:mode="slave" xd:direction="in"/>
+        <xd:busInterface xd:name="AP_FIFO_IARG_6" xd:busTypeRef="acc_fifo_read" xd:mode="slave" xd:direction="in"/>
+        <xd:busInterface xd:name="AP_FIFO_IARG_7" xd:busTypeRef="acc_fifo_read" xd:mode="slave" xd:direction="in"/>
+        <xd:busInterface xd:name="AP_FIFO_OARG_0" xd:busTypeRef="acc_fifo_write" xd:mode="slave" xd:direction="out"/>
+        <xd:busInterface xd:name="AP_FIFO_OARG_1" xd:busTypeRef="acc_fifo_write" xd:mode="slave" xd:direction="out"/>
+        <xd:busInterface xd:name="AP_FIFO_OARG_2" xd:busTypeRef="acc_fifo_write" xd:mode="slave" xd:direction="out"/>
+        <xd:busInterface xd:name="AP_FIFO_OARG_3" xd:busTypeRef="acc_fifo_write" xd:mode="slave" xd:direction="out"/>
+        <xd:busInterface xd:name="AP_FIFO_OARG_4" xd:busTypeRef="acc_fifo_write" xd:mode="slave" xd:direction="out"/>
+        <xd:busInterface xd:name="AP_FIFO_OARG_5" xd:busTypeRef="acc_fifo_write" xd:mode="slave" xd:direction="out"/>
+        <xd:busInterface xd:name="AP_FIFO_OARG_6" xd:busTypeRef="acc_fifo_write" xd:mode="slave" xd:direction="out"/>
+        <xd:busInterface xd:name="AP_FIFO_OARG_7" xd:busTypeRef="acc_fifo_write" xd:mode="slave" xd:direction="out"/>
+        <xd:busInterface xd:name="AP_BRAM_IARG_0" xd:busTypeRef="bram" xd:mode="slave" xd:direction="in"/>
+        <xd:busInterface xd:name="AP_BRAM_IARG_1" xd:busTypeRef="bram" xd:mode="slave" xd:direction="in"/>
+        <xd:busInterface xd:name="AP_BRAM_IARG_2" xd:busTypeRef="bram" xd:mode="slave" xd:direction="in"/>
+        <xd:busInterface xd:name="AP_BRAM_IARG_3" xd:busTypeRef="bram" xd:mode="slave" xd:direction="in"/>
+        <xd:busInterface xd:name="AP_BRAM_IARG_4" xd:busTypeRef="bram" xd:mode="slave" xd:direction="in"/>
+        <xd:busInterface xd:name="AP_BRAM_IARG_5" xd:busTypeRef="bram" xd:mode="slave" xd:direction="in"/>
+        <xd:busInterface xd:name="AP_BRAM_IARG_6" xd:busTypeRef="bram" xd:mode="slave" xd:direction="in"/>
+        <xd:busInterface xd:name="AP_BRAM_IARG_7" xd:busTypeRef="bram" xd:mode="slave" xd:direction="in"/>
+        <xd:busInterface xd:name="AP_BRAM_OARG_0" xd:busTypeRef="bram" xd:mode="slave" xd:direction="out"/>
+        <xd:busInterface xd:name="AP_BRAM_OARG_1" xd:busTypeRef="bram" xd:mode="slave" xd:direction="out"/>
+        <xd:busInterface xd:name="AP_BRAM_OARG_2" xd:busTypeRef="bram" xd:mode="slave" xd:direction="out"/>
+        <xd:busInterface xd:name="AP_BRAM_OARG_3" xd:busTypeRef="bram" xd:mode="slave" xd:direction="out"/>
+        <xd:busInterface xd:name="AP_BRAM_OARG_4" xd:busTypeRef="bram" xd:mode="slave" xd:direction="out"/>
+        <xd:busInterface xd:name="AP_BRAM_OARG_5" xd:busTypeRef="bram" xd:mode="slave" xd:direction="out"/>
+        <xd:busInterface xd:name="AP_BRAM_OARG_6" xd:busTypeRef="bram" xd:mode="slave" xd:direction="out"/>
+        <xd:busInterface xd:name="AP_BRAM_OARG_7" xd:busTypeRef="bram" xd:mode="slave" xd:direction="out"/>
+        <xd:busInterface xd:name="ap_ctrl" xd:busTypeRef="acc_handshake" xd:mode="master" xd:direct="out"/>
+        <xd:busInterface xd:name="aclk" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="aresetn" xd:busTypeRef="reset" xd:mode="master" xd:direction="out" xd:library="signal"/>
+        <xd:busInterface xd:name="s_axi_aclk" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="s_axi_aresetn" xd:busTypeRef="reset" xd:mode="slave" xd:direction="in" xd:library="signal"/>
+        <xd:busInterface xd:name="interrupt" xd:busTypeRef="interrupt" xd:mode="master" xd:direction="out" xd:library="signal"/>
+        <xd:port xd:name="ap_iscalar_0_dout" xd:direction="out" xd:size="32"/>
+        <xd:port xd:name="ap_iscalar_1_dout" xd:direction="out" xd:size="32"/>
+        <xd:port xd:name="ap_iscalar_2_dout" xd:direction="out" xd:size="32"/>
+        <xd:port xd:name="ap_iscalar_3_dout" xd:direction="out" xd:size="32"/>
+        <xd:port xd:name="ap_iscalar_4_dout" xd:direction="out" xd:size="32"/>
+        <xd:port xd:name="ap_iscalar_5_dout" xd:direction="out" xd:size="32"/>
+        <xd:port xd:name="ap_iscalar_6_dout" xd:direction="out" xd:size="32"/>
+        <xd:port xd:name="ap_iscalar_7_dout" xd:direction="out" xd:size="32"/>
+        <xd:port xd:name="ap_iscalar_8_dout" xd:direction="out" xd:size="32"/>
+        <xd:port xd:name="ap_iscalar_9_dout" xd:direction="out" xd:size="32"/>
+        <xd:port xd:name="ap_iscalar_10_dout" xd:direction="out" xd:size="32"/>
+        <xd:port xd:name="ap_iscalar_11_dout" xd:direction="out" xd:size="32"/>
+        <xd:port xd:name="ap_iscalar_12_dout" xd:direction="out" xd:size="32"/>
+        <xd:port xd:name="ap_iscalar_13_dout" xd:direction="out" xd:size="32"/>
+        <xd:port xd:name="ap_iscalar_14_dout" xd:direction="out" xd:size="32"/>
+        <xd:port xd:name="ap_iscalar_15_dout" xd:direction="out" xd:size="32"/>
+        <xd:port xd:name="ap_oscalar_0_din" xd:direction="in" xd:size="32"/>
+        <xd:port xd:name="ap_oscalar_1_din" xd:direction="in" xd:size="32"/>
+        <xd:port xd:name="ap_oscalar_2_din" xd:direction="in" xd:size="32"/>
+        <xd:port xd:name="ap_oscalar_3_din" xd:direction="in" xd:size="32"/>
+        <xd:port xd:name="ap_oscalar_4_din" xd:direction="in" xd:size="32"/>
+        <xd:port xd:name="ap_oscalar_5_din" xd:direction="in" xd:size="32"/>
+        <xd:port xd:name="ap_oscalar_6_din" xd:direction="in" xd:size="32"/>
+        <xd:port xd:name="ap_oscalar_7_din" xd:direction="in" xd:size="32"/>
+        <xd:port xd:name="ap_oscalar_8_din" xd:direction="in" xd:size="32"/>
+        <xd:port xd:name="ap_oscalar_9_din" xd:direction="in" xd:size="32"/>
+        <xd:port xd:name="ap_oscalar_10_din" xd:direction="in" xd:size="32"/>
+        <xd:port xd:name="ap_oscalar_11_din" xd:direction="in" xd:size="32"/>
+        <xd:port xd:name="ap_oscalar_12_din" xd:direction="in" xd:size="32"/>
+        <xd:port xd:name="ap_oscalar_13_din" xd:direction="in" xd:size="32"/>
+        <xd:port xd:name="ap_oscalar_14_din" xd:direction="in" xd:size="32"/>
+        <xd:port xd:name="ap_oscalar_15_din" xd:direction="in" xd:size="32"/>
+        <xd:port xd:name="ap_oscalar_0_vld" xd:direction="in" xd:size="1"/>
+        <xd:port xd:name="ap_oscalar_1_vld" xd:direction="in" xd:size="1"/>
+        <xd:port xd:name="ap_oscalar_2_vld" xd:direction="in" xd:size="1"/>
+        <xd:port xd:name="ap_oscalar_3_vld" xd:direction="in" xd:size="1"/>
+        <xd:port xd:name="ap_oscalar_4_vld" xd:direction="in" xd:size="1"/>
+        <xd:port xd:name="ap_oscalar_5_vld" xd:direction="in" xd:size="1"/>
+        <xd:port xd:name="ap_oscalar_6_vld" xd:direction="in" xd:size="1"/>
+        <xd:port xd:name="ap_oscalar_7_vld" xd:direction="in" xd:size="1"/>
+        <xd:port xd:name="ap_oscalar_8_vld" xd:direction="in" xd:size="1"/>
+        <xd:port xd:name="ap_oscalar_9_vld" xd:direction="in" xd:size="1"/>
+        <xd:port xd:name="ap_oscalar_10_vld" xd:direction="in" xd:size="1"/>
+        <xd:port xd:name="ap_oscalar_11_vld" xd:direction="in" xd:size="1"/>
+        <xd:port xd:name="ap_oscalar_12_vld" xd:direction="in" xd:size="1"/>
+        <xd:port xd:name="ap_oscalar_13_vld" xd:direction="in" xd:size="1"/>
+        <xd:port xd:name="ap_oscalar_14_vld" xd:direction="in" xd:size="1"/>
+        <xd:port xd:name="ap_oscalar_15_vld" xd:direction="in" xd:size="1"/>
+        
+        <xd:registerMap>
+            <xd:register xd:offset="0" xd:name="CTRL_REG" />
+            <xd:register xd:offset="4" xd:name="STATUS_REG" />
+            <xd:register xd:offset="28" xd:name="CMD_REG" xd:statusOffset="0" />
+            <xd:register xd:offset="80" xd:name="ISCALAR0_DATA" xd:statusOffset="180" />
+            <xd:register xd:offset="84" xd:name="ISCALAR1_DATA" xd:statusOffset="184" />
+            <xd:register xd:offset="88" xd:name="ISCALAR2_DATA" xd:statusOffset="188" />
+            <xd:register xd:offset="8C" xd:name="ISCALAR3_DATA" xd:statusOffset="18C" />
+            <xd:register xd:offset="90" xd:name="ISCALAR4_DATA" xd:statusOffset="190" />
+            <xd:register xd:offset="94" xd:name="ISCALAR5_DATA" xd:statusOffset="194" />
+            <xd:register xd:offset="98" xd:name="ISCALAR6_DATA" xd:statusOffset="198" />
+            <xd:register xd:offset="9C" xd:name="ISCALAR7_DATA" xd:statusOffset="19C" />
+            <xd:register xd:offset="A0" xd:name="ISCALAR8_DATA" xd:statusOffset="1A0" />
+            <xd:register xd:offset="A4" xd:name="ISCALAR9_DATA" xd:statusOffset="1A4" />
+            <xd:register xd:offset="A8" xd:name="ISCALAR10_DATA" xd:statusOffset="1A8" />
+            <xd:register xd:offset="AC" xd:name="ISCALAR11_DATA" xd:statusOffset="1AC" />
+            <xd:register xd:offset="B0" xd:name="ISCALAR12_DATA" xd:statusOffset="1B0" />
+            <xd:register xd:offset="B4" xd:name="ISCALAR13_DATA" xd:statusOffset="1B4" />
+            <xd:register xd:offset="B8" xd:name="ISCALAR14_DATA" xd:statusOffset="1B8" />
+            <xd:register xd:offset="BC" xd:name="ISCALAR15_DATA" xd:statusOffset="1BC" />
+            <xd:register xd:offset="C0" xd:name="OSCALAR0_DATA" xd:statusOffset="1C0" />
+            <xd:register xd:offset="C4" xd:name="OSCALAR1_DATA" xd:statusOffset="1C4" />
+            <xd:register xd:offset="C8" xd:name="OSCALAR2_DATA" xd:statusOffset="1C8" />
+            <xd:register xd:offset="CC" xd:name="OSCALAR3_DATA" xd:statusOffset="1CC" />
+            <xd:register xd:offset="D0" xd:name="OSCALAR4_DATA" xd:statusOffset="1D0" />
+            <xd:register xd:offset="D4" xd:name="OSCALAR5_DATA" xd:statusOffset="1D4" />
+            <xd:register xd:offset="D8" xd:name="OSCALAR6_DATA" xd:statusOffset="1D8" />
+            <xd:register xd:offset="DC" xd:name="OSCALAR7_DATA" xd:statusOffset="1D0" />
+            <xd:register xd:offset="100" xd:name="IARG0_STATUS"  />
+            <xd:register xd:offset="104" xd:name="IARG1_STATUS"  />
+            <xd:register xd:offset="108" xd:name="IARG2_STATUS"  />
+            <xd:register xd:offset="10C" xd:name="IARG3_STATUS"  />
+            <xd:register xd:offset="110" xd:name="IARG4_STATUS"  />
+            <xd:register xd:offset="114" xd:name="IARG5_STATUS"  />
+            <xd:register xd:offset="118" xd:name="IARG6_STATUS"  />
+            <xd:register xd:offset="11C" xd:name="IARG7_STATUS"  />
+            <xd:register xd:offset="140" xd:name="OARG0_STATUS"  />
+            <xd:register xd:offset="144" xd:name="OARG1_STATUS"  />
+            <xd:register xd:offset="148" xd:name="OARG2_STATUS"  />
+            <xd:register xd:offset="14C" xd:name="OARG3_STATUS"  />
+            <xd:register xd:offset="150" xd:name="OARG4_STATUS"  />
+            <xd:register xd:offset="154" xd:name="OARG5_STATUS"  />
+            <xd:register xd:offset="158" xd:name="OARG6_STATUS"  />
+            <xd:register xd:offset="15C" xd:name="OARG7_STATUS"  />
+        </xd:registerMap>
+    </xd:component>
+    
+</xd:repository>

@@ -1,0 +1,24 @@
+{
+	"file":	"C:/Users/sskalick/Xilinx/hash/hash/src/main.cpp",
+	"callers":	[{
+			"call":	"get",
+			"line":	67,
+			"repl":	"_p0_get_0"
+		}, {
+			"call":	"get",
+			"line":	58,
+			"repl":	"_p0_get_0"
+		}, {
+			"call":	"set",
+			"line":	62,
+			"repl":	"_p0_set_0"
+		}],
+	"parents":	[{
+			"function":	"main",
+			"proto":	"int _p0_get_0(val_type * data, key_type key, val_type & val);\n"
+		}, {
+			"function":	"main",
+			"proto":	"int _p0_set_0(val_type * data, key_type key, val_type val);\n"
+		}],
+	"waits":	[]
+}

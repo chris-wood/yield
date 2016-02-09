@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xd:component xmlns:xd="http://www.xilinx.com/xd" xd:vendor="xilinx.com" xd:library="xd" xd:name="top" xd:version="1.00" xd:type="design">
+  <xd:repository>
+    <xd:file xd:name="xd_ip_db.xml"/>
+  </xd:repository>
+  <xd:instance xd:componentVdr="xilinx.com" xd:componentLib="xd" xd:componentVer="1.0" xd:componentType="platform" xd:name="zc702" xd:componentRef="zc702">
+    <xd:parameter xd:name="PCW_USE_M_AXI_GP0" xd:value="1" xd:instanceRef="ps7"/>
+    <xd:parameter xd:name="PCW_USE_S_AXI_ACP" xd:value="1" xd:instanceRef="ps7"/>
+    <xd:parameter xd:name="PCW_USE_DEFAULT_ACP_USER_VAL" xd:value="1" xd:instanceRef="ps7"/>
+    <xd:parameter xd:name="NUM_PORTS" xd:value="1" xd:instanceRef="xlconcat"/>
+  </xd:instance>
+  <xd:instance xd:componentVdr="xilinx.com" xd:componentLib="hls" xd:componentVer="1.0" xd:componentType="accelerator" xd:name="get_0" xd:componentRef="get"/>
+  <xd:instance xd:componentVdr="xilinx.com" xd:componentLib="hls" xd:componentVer="1.0" xd:componentType="accelerator" xd:name="set_0" xd:componentRef="set"/>
+  <xd:instance xd:componentVdr="xilinx.com" xd:componentLib="ip" xd:componentVer="2.1" xd:componentType="accelerator" xd:name="get_0_if" xd:componentRef="axis_accelerator_adapter">
+    <xd:parameter xd:name="C_OUTPUT_SCALAR_0_WIDTH" xd:value="32"/>
+    <xd:parameter xd:name="C_INPUT_SCALAR_0_WIDTH" xd:value="32"/>
+    <xd:parameter xd:name="C_INPUT_SCALAR_1_WIDTH" xd:value="32"/>
+    <xd:parameter xd:name="C_OUTPUT_SCALAR_1_WIDTH" xd:value="32"/>
+    <xd:parameter xd:name="C_OSCALAR_1_MODE" xd:value="AP_VLD"/>
+    <xd:parameter xd:name="C_N_OUTPUT_ARGS" xd:value="0"/>
+    <xd:parameter xd:name="C_N_INPUT_ARGS" xd:value="0"/>
+    <xd:parameter xd:name="C_N_INPUT_SCALARS" xd:value="2"/>
+    <xd:parameter xd:name="C_N_OUTPUT_SCALARS" xd:value="2"/>
+  </xd:instance>
+  <xd:instance xd:componentVdr="xilinx.com" xd:componentLib="ip" xd:componentVer="1.0" xd:name="get_0_val_r" xd:componentRef="ovld_reg">
+    <xd:parameter xd:name="DATA_WIDTH" xd:value="32"/>
+  </xd:instance>
+  <xd:instance xd:componentVdr="xilinx.com" xd:componentLib="ip" xd:componentVer="2.1" xd:componentType="accelerator" xd:name="set_0_if" xd:componentRef="axis_accelerator_adapter">
+    <xd:parameter xd:name="C_OUTPUT_SCALAR_0_WIDTH" xd:value="32"/>
+    <xd:parameter xd:name="C_INPUT_SCALAR_0_WIDTH" xd:value="32"/>
+    <xd:parameter xd:name="C_INPUT_SCALAR_1_WIDTH" xd:value="32"/>
+    <xd:parameter xd:name="C_INPUT_SCALAR_2_WIDTH" xd:value="32"/>
+    <xd:parameter xd:name="C_N_OUTPUT_ARGS" xd:value="0"/>
+    <xd:parameter xd:name="C_N_INPUT_ARGS" xd:value="0"/>
+    <xd:parameter xd:name="C_N_INPUT_SCALARS" xd:value="3"/>
+    <xd:parameter xd:name="C_N_OUTPUT_SCALARS" xd:value="1"/>
+  </xd:instance>
+  <xd:instance xd:componentVdr="xilinx.com" xd:componentLib="ip" xd:componentVer="2.1" xd:componentType="interconnect" xd:name="axi_ic_ps7_M_AXI_GP0" xd:componentRef="axi_interconnect">
+    <xd:parameter xd:name="NUM_MI" xd:value="2"/>
+    <xd:parameter xd:name="NUM_SI" xd:value="1"/>
+    <xd:parameter xd:name="STRATEGY" xd:value="2"/>
+    <xd:parameter xd:name="M00_HAS_REGSLICE" xd:value="1"/>
+    <xd:parameter xd:name="M01_HAS_REGSLICE" xd:value="1"/>
+    <xd:parameter xd:name="S00_HAS_REGSLICE" xd:value="1"/>
+  </xd:instance>
+  <xd:instance xd:componentVdr="xilinx.com" xd:componentLib="ip" xd:componentVer="2.1" xd:componentType="interconnect" xd:name="axi_ic_ps7_S_AXI_ACP" xd:componentRef="axi_interconnect">
+    <xd:parameter xd:name="NUM_MI" xd:value="1"/>
+    <xd:parameter xd:name="NUM_SI" xd:value="2"/>
+    <xd:parameter xd:name="STRATEGY" xd:value="2"/>
+    <xd:parameter xd:name="M00_HAS_REGSLICE" xd:value="1"/>
+    <xd:parameter xd:name="M00_HAS_DATA_FIFO" xd:value="2"/>
+    <xd:parameter xd:name="S00_HAS_REGSLICE" xd:value="1"/>
+    <xd:parameter xd:name="S00_HAS_DATA_FIFO" xd:value="2"/>
+    <xd:parameter xd:name="S01_HAS_REGSLICE" xd:value="1"/>
+    <xd:parameter xd:name="S01_HAS_DATA_FIFO" xd:value="2"/>
+  </xd:instance>
+  <xd:instance xd:componentVdr="xilinx.com" xd:componentLib="ip" xd:componentVer="1.1" xd:name="ps7_irq_const" xd:componentRef="xlconstant">
+    <xd:parameter xd:name="CONST_WIDTH" xd:value="1"/>
+    <xd:parameter xd:name="CONST_VAL" xd:value="0"/>
+  </xd:instance>
+  <xd:instance xd:componentVdr="xilinx.com" xd:componentLib="ip" xd:componentVer="1.1" xd:name="acp_axcache_0xF" xd:componentRef="xlconstant">
+    <xd:parameter xd:name="CONST_WIDTH" xd:value="4"/>
+    <xd:parameter xd:name="CONST_VAL" xd:value="15"/>
+  </xd:instance>
+  <xd:connection>
+    <xd:port xd:name="aresetn" xd:instanceRef="get_0_if"/>
+    <xd:port xd:name="ap_rst_n" xd:instanceRef="get_0"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:busInterface xd:name="ap_ctrl" xd:instanceRef="get_0_if"/>
+    <xd:busInterface xd:name="ap_ctrl" xd:instanceRef="get_0"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:busInterface xd:name="ap_ctrl" xd:instanceRef="get_0_if"/>
+    <xd:busInterface xd:name="AP_CTRL" xd:instanceRef="get_0_val_r"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:port xd:name="ap_return" xd:instanceRef="get_0"/>
+    <xd:port xd:name="ap_oscalar_0_din" xd:instanceRef="get_0_if"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:port xd:name="ap_iscalar_0_dout" xd:instanceRef="get_0_if"/>
+    <xd:port xd:name="data" xd:instanceRef="get_0"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:port xd:name="ap_iscalar_1_dout" xd:instanceRef="get_0_if"/>
+    <xd:port xd:name="key" xd:instanceRef="get_0"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:port xd:name="val_r" xd:instanceRef="get_0"/>
+    <xd:port xd:name="data_in" xd:instanceRef="get_0_val_r"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:port xd:name="val_r_ap_vld" xd:instanceRef="get_0"/>
+    <xd:port xd:name="vld_in" xd:instanceRef="get_0_val_r"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:port xd:name="vld_out" xd:instanceRef="get_0_val_r"/>
+    <xd:port xd:name="ap_oscalar_1_vld" xd:instanceRef="get_0_if"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:port xd:name="data_out" xd:instanceRef="get_0_val_r"/>
+    <xd:port xd:name="ap_oscalar_1_din" xd:instanceRef="get_0_if"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:port xd:name="aresetn" xd:instanceRef="set_0_if"/>
+    <xd:port xd:name="ap_rst_n" xd:instanceRef="set_0"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:busInterface xd:name="ap_ctrl" xd:instanceRef="set_0_if"/>
+    <xd:busInterface xd:name="ap_ctrl" xd:instanceRef="set_0"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:port xd:name="ap_return" xd:instanceRef="set_0"/>
+    <xd:port xd:name="ap_oscalar_0_din" xd:instanceRef="set_0_if"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:port xd:name="ap_iscalar_0_dout" xd:instanceRef="set_0_if"/>
+    <xd:port xd:name="data" xd:instanceRef="set_0"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:port xd:name="ap_iscalar_1_dout" xd:instanceRef="set_0_if"/>
+    <xd:port xd:name="key" xd:instanceRef="set_0"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:port xd:name="ap_iscalar_2_dout" xd:instanceRef="set_0_if"/>
+    <xd:port xd:name="val_r" xd:instanceRef="set_0"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:busInterface xd:name="ps7_M_AXI_GP0" xd:instanceRef="zc702"/>
+    <xd:busInterface xd:name="S00_AXI" xd:instanceRef="axi_ic_ps7_M_AXI_GP0"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:busInterface xd:name="M00_AXI" xd:instanceRef="axi_ic_ps7_S_AXI_ACP"/>
+    <xd:busInterface xd:name="ps7_S_AXI_ACP" xd:instanceRef="zc702"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:busInterface xd:name="m_axi_gmem" xd:instanceRef="get_0"/>
+    <xd:busInterface xd:name="S00_AXI" xd:instanceRef="axi_ic_ps7_S_AXI_ACP"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:busInterface xd:name="m_axi_gmem" xd:instanceRef="set_0"/>
+    <xd:busInterface xd:name="S01_AXI" xd:instanceRef="axi_ic_ps7_S_AXI_ACP"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:busInterface xd:name="M00_AXI" xd:instanceRef="axi_ic_ps7_M_AXI_GP0"/>
+    <xd:busInterface xd:name="S_AXI" xd:instanceRef="get_0_if"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:busInterface xd:name="M01_AXI" xd:instanceRef="axi_ic_ps7_M_AXI_GP0"/>
+    <xd:busInterface xd:name="S_AXI" xd:instanceRef="set_0_if"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:port xd:name="ps7_FCLK_CLK2" xd:instanceRef="zc702"/>
+    <xd:port xd:name="ps7_M_AXI_GP0_ACLK" xd:instanceRef="zc702"/>
+    <xd:port xd:name="ps7_S_AXI_ACP_ACLK" xd:instanceRef="zc702"/>
+    <xd:port xd:name="ap_clk" xd:instanceRef="get_0"/>
+    <xd:port xd:name="ap_clk" xd:instanceRef="set_0"/>
+    <xd:port xd:name="s_axi_aclk" xd:instanceRef="get_0_if"/>
+    <xd:port xd:name="aclk" xd:instanceRef="get_0_if"/>
+    <xd:port xd:name="clk" xd:instanceRef="get_0_val_r"/>
+    <xd:port xd:name="s_axi_aclk" xd:instanceRef="set_0_if"/>
+    <xd:port xd:name="aclk" xd:instanceRef="set_0_if"/>
+    <xd:port xd:name="ACLK" xd:instanceRef="axi_ic_ps7_M_AXI_GP0"/>
+    <xd:port xd:name="S00_ACLK" xd:instanceRef="axi_ic_ps7_M_AXI_GP0"/>
+    <xd:port xd:name="M00_ACLK" xd:instanceRef="axi_ic_ps7_M_AXI_GP0"/>
+    <xd:port xd:name="M01_ACLK" xd:instanceRef="axi_ic_ps7_M_AXI_GP0"/>
+    <xd:port xd:name="ACLK" xd:instanceRef="axi_ic_ps7_S_AXI_ACP"/>
+    <xd:port xd:name="M00_ACLK" xd:instanceRef="axi_ic_ps7_S_AXI_ACP"/>
+    <xd:port xd:name="S00_ACLK" xd:instanceRef="axi_ic_ps7_S_AXI_ACP"/>
+    <xd:port xd:name="S01_ACLK" xd:instanceRef="axi_ic_ps7_S_AXI_ACP"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:port xd:name="proc_sys_reset_2_interconnect_aresetn" xd:instanceRef="zc702"/>
+    <xd:port xd:name="ARESETN" xd:instanceRef="axi_ic_ps7_M_AXI_GP0"/>
+    <xd:port xd:name="S00_ARESETN" xd:instanceRef="axi_ic_ps7_M_AXI_GP0"/>
+    <xd:port xd:name="M00_ARESETN" xd:instanceRef="axi_ic_ps7_M_AXI_GP0"/>
+    <xd:port xd:name="M01_ARESETN" xd:instanceRef="axi_ic_ps7_M_AXI_GP0"/>
+    <xd:port xd:name="ARESETN" xd:instanceRef="axi_ic_ps7_S_AXI_ACP"/>
+    <xd:port xd:name="M00_ARESETN" xd:instanceRef="axi_ic_ps7_S_AXI_ACP"/>
+    <xd:port xd:name="S00_ARESETN" xd:instanceRef="axi_ic_ps7_S_AXI_ACP"/>
+    <xd:port xd:name="S01_ARESETN" xd:instanceRef="axi_ic_ps7_S_AXI_ACP"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:port xd:name="proc_sys_reset_2_peripheral_aresetn" xd:instanceRef="zc702"/>
+    <xd:port xd:name="s_axi_aresetn" xd:instanceRef="get_0_if"/>
+    <xd:port xd:name="s_axi_aresetn" xd:instanceRef="set_0_if"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:port xd:name="dout" xd:instanceRef="ps7_irq_const"/>
+    <xd:port xd:name="xlconcat_In0" xd:instanceRef="zc702"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:port xd:name="dout" xd:instanceRef="acp_axcache_0xF"/>
+    <xd:port xd:name="S00_AXI_arcache" xd:instanceRef="axi_ic_ps7_S_AXI_ACP"/>
+    <xd:port xd:name="S00_AXI_awcache" xd:instanceRef="axi_ic_ps7_S_AXI_ACP"/>
+    <xd:port xd:name="S01_AXI_arcache" xd:instanceRef="axi_ic_ps7_S_AXI_ACP"/>
+    <xd:port xd:name="S01_AXI_awcache" xd:instanceRef="axi_ic_ps7_S_AXI_ACP"/>
+  </xd:connection>
+</xd:component>

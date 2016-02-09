@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xd:repository xmlns:xd="http://www.xilinx.com/xd" xd:vendor="xilinx.com" xd:library="ip" xd:name="ila" xd:version="4.0">
+    <xd:component xd:vendor="xilinx.com" xd:library="ip" xd:name="ila" xd:version="4.0" xd:type="monitor">
+        <xd:busInterface xd:name="SLOT_0_AXI" xd:busTypeRef="aximm" xd:mode="slave"/>
+        <xd:busInterface xd:name="signal_clock" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="clk"/>
+    </xd:component>
+</xd:repository>

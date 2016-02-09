@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    table, th, td
+    {
+      border-collapse:collapse;
+      border:1px solid black;
+    }
+    th, td
+    {
+      padding:5px;
+    }
+    p
+    {
+      font-size:200%
+    }
+  </style>
+</head>
+<body>
+<p>Partition 0</p>
+<table>
+<caption><b><font size="5">Data Motion Network</font></b></caption>
+<tr>
+<th>Accelerator</th>
+<th>Argument</th>
+<th>IP Port</th>
+<th>Direction</th>
+<th>Declared Size(bytes)</th>
+<th>Pragmas</th>
+<th>Connection</th>
+</tr>
+<tr>
+<td>get_0</td>
+<td>data</td>
+<td>data</td>
+<td>IN</td>
+<td>0*4</td>
+<td><ul>
+</ul>
+</td>
+<td>ps7_S_AXI_ACP:AXIMM:0x80</td>
+</tr>
+<td></td>
+<td>key</td>
+<td>key</td>
+<td>IN</td>
+<td>4</td>
+<td><ul>
+</ul>
+</td>
+<td>ps7_M_AXI_GP0:AXILITE:0x84</td>
+</tr>
+<td></td>
+<td>val</td>
+<td>val_r</td>
+<td>OUT</td>
+<td>4</td>
+<td><ul>
+</ul>
+</td>
+<td>ps7_M_AXI_GP0:AXILITE:0xC4</td>
+</tr>
+<td></td>
+<td>return</td>
+<td>ap_return</td>
+<td>OUT</td>
+<td>4</td>
+<td><ul>
+</ul>
+</td>
+<td>ps7_M_AXI_GP0:AXILITE:0xC0</td>
+</tr>
+<tr>
+<td>set_0</td>
+<td>data</td>
+<td>data</td>
+<td>OUT</td>
+<td>0*4</td>
+<td><ul>
+</ul>
+</td>
+<td>ps7_S_AXI_ACP:AXIMM:0x80</td>
+</tr>
+<td></td>
+<td>key</td>
+<td>key</td>
+<td>IN</td>
+<td>4</td>
+<td><ul>
+</ul>
+</td>
+<td>ps7_M_AXI_GP0:AXILITE:0x84</td>
+</tr>
+<td></td>
+<td>val</td>
+<td>val_r</td>
+<td>IN</td>
+<td>4</td>
+<td><ul>
+</ul>
+</td>
+<td>ps7_M_AXI_GP0:AXILITE:0x88</td>
+</tr>
+<td></td>
+<td>return</td>
+<td>ap_return</td>
+<td>OUT</td>
+<td>4</td>
+<td><ul>
+</ul>
+</td>
+<td>ps7_M_AXI_GP0:AXILITE:0xC0</td>
+</tr>
+</table>
+
+<table>
+<caption><b><font size="5">Accelerator Callsites</font></b></caption>
+<tr>
+<th>Accelerator</th>
+<th>Callsite</th>
+<th>IP Port</th>
+<th>Transfer Size(bytes)</th>
+<th>Paged or Contiguous</th>
+<th>Cacheable or Non-cacheable</th>
+</tr>
+<tr>
+<td>get_0</td>
+<td>main.cpp:67:3</td>
+<td>data</td>
+<td>40</td>
+<td>contiguous</td>
+<td>cacheable</td>
+</tr>
+<td></td>
+<td></td>
+<td>key</td>
+<td>4</td>
+<td>paged</td>
+<td>cacheable</td>
+</tr>
+<td></td>
+<td></td>
+<td>val_r</td>
+<td>4</td>
+<td>paged</td>
+<td>cacheable</td>
+</tr>
+<td></td>
+<td></td>
+<td>ap_return</td>
+<td>4</td>
+<td>paged</td>
+<td>cacheable</td>
+</tr>
+<td></td>
+<td>main.cpp:58:2</td>
+<td>data</td>
+<td>40</td>
+<td>contiguous</td>
+<td>cacheable</td>
+</tr>
+<td></td>
+<td></td>
+<td>key</td>
+<td>4</td>
+<td>paged</td>
+<td>cacheable</td>
+</tr>
+<td></td>
+<td></td>
+<td>val_r</td>
+<td>4</td>
+<td>paged</td>
+<td>cacheable</td>
+</tr>
+<td></td>
+<td></td>
+<td>ap_return</td>
+<td>4</td>
+<td>paged</td>
+<td>cacheable</td>
+</tr>
+<tr>
+<td>set_0</td>
+<td>main.cpp:62:3</td>
+<td>data</td>
+<td>40</td>
+<td>contiguous</td>
+<td>cacheable</td>
+</tr>
+<td></td>
+<td></td>
+<td>key</td>
+<td>4</td>
+<td>paged</td>
+<td>cacheable</td>
+</tr>
+<td></td>
+<td></td>
+<td>val_r</td>
+<td>4</td>
+<td>paged</td>
+<td>cacheable</td>
+</tr>
+<td></td>
+<td></td>
+<td>ap_return</td>
+<td>4</td>
+<td>paged</td>
+<td>cacheable</td>
+</tr>
+</table>
+</body>
+</html>

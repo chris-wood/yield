@@ -1,0 +1,88 @@
+================================================================
+  Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC
+  Version 2015.4
+  Build 1412921 on Wed Nov 18 09:58:55 AM 2015
+  Copyright (C) 2015 Xilinx Inc. All rights reserved.
+================================================================
+@I [HLS-10] Running 'C:/Xilinx/SDSoC/2015.4/VIVADO~1/2015.4/bin/unwrapped/win64.o/vivado_hls.exe'
+            for user 'sskalick' on host 'xsjsskalick30' (Windows NT_amd64 version 6.1) on Tue Feb 02 21:35:53 -0800 2016
+            in directory 'C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls'
+@I [HLS-10] Creating and opening project 'C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls/set'.
+@I [HLS-10] Adding design file 'C:/Users/sskalick/Xilinx/hash/hash/src/main.cpp' to the project
+@I [HLS-10] Creating and opening solution 'C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls/set/solution'.
+@I [HLS-10] Cleaning up the solution database.
+@I [HLS-10] Setting target device to ' xc7z020clg484-1 '
+@I [SYN-201] Setting up clock 'default' with a period of 8.5ns.
+@I [HLS-10] Analyzing design file 'C:/Users/sskalick/Xilinx/hash/hash/src/main.cpp' ... 
+@I [HLS-10] Validating synthesis directives ...
+@I [HLS-10] Starting code transformations ...
+@I [HLS-10] Checking synthesizability ...
+@I [XFORM-602] Inlining function 'hash' into 'set' (C:/Users/sskalick/Xilinx/hash/hash/src/main.cpp:44) automatically.
+@I [XFORM-602] Inlining function 'hash' into 'set' (C:/Users/sskalick/Xilinx/hash/hash/src/main.cpp:44) automatically.
+@I [HLS-111] Elapsed time: 6.714 seconds; current memory usage: 79.7 MB.
+@I [HLS-10] Starting hardware synthesis ...
+@I [HLS-10] Synthesizing 'set' ...
+@W [SYN-107] Renaming port name 'set/val' to 'set/val_r' to avoid the conflict with HDL keywords or other object names.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Scheduling module 'set_assign_val' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [SCHED-11] Starting scheduling ...
+@I [SCHED-11] Finished scheduling.
+@I [HLS-111] Elapsed time: 0.015 seconds; current memory usage: 80.6 MB.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Exploring micro-architecture for module 'set_assign_val' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [BIND-100] Starting micro-architecture generation ...
+@I [BIND-101] Performing variable lifetime analysis.
+@I [BIND-101] Exploring resource sharing.
+@I [BIND-101] Binding ...
+@I [BIND-100] Finished micro-architecture generation.
+@I [HLS-111] Elapsed time: 0.031 seconds; current memory usage: 80.6 MB.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Scheduling module 'set' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [SCHED-11] Starting scheduling ...
+@W [SCHED-71] Latency directive discarded for region setsince region contains function calls with variable latency.
+@I [SCHED-11] Finished scheduling.
+@I [HLS-111] Elapsed time: 0.032 seconds; current memory usage: 80.5 MB.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Exploring micro-architecture for module 'set' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [BIND-100] Starting micro-architecture generation ...
+@I [BIND-101] Performing variable lifetime analysis.
+@I [BIND-101] Exploring resource sharing.
+@I [BIND-101] Binding ...
+@I [BIND-100] Finished micro-architecture generation.
+@I [HLS-111] Elapsed time: 0.015 seconds; current memory usage: 80.5 MB.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Generating RTL for module 'set_assign_val' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [RTGEN-100] Finished creating RTL model for 'set_assign_val'.
+@I [HLS-111] Elapsed time: 0.047 seconds; current memory usage: 80.5 MB.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Generating RTL for module 'set' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [RTGEN-500] Setting interface mode on port 'set/gmem' to 'm_axi'.
+@I [RTGEN-500] Setting interface mode on port 'set/data' to 'ap_none'.
+@I [RTGEN-500] Setting interface mode on port 'set/key' to 'ap_none'.
+@I [RTGEN-500] Setting interface mode on port 'set/val_r' to 'ap_none'.
+@I [RTGEN-500] Setting interface mode on function 'set' to 'ap_ctrl_hs'.
+@I [RTGEN-100] Finished creating RTL model for 'set'.
+@I [HLS-111] Elapsed time: 0.109 seconds; current memory usage: 80.6 MB.
+@I [HLS-10] Finished generating all RTL models.
+@I [WSYSC-301] Generating RTL SystemC for 'set'.
+@I [WVHDL-304] Generating RTL VHDL for 'set'.
+@I [WVLOG-307] Generating RTL Verilog for 'set'.
+@I [IMPL-8] Exporting RTL as an IP in IP-XACT.
+
+****** Vivado v2015.4 (64-bit)
+  **** SW Build 1412921 on Wed Nov 18 09:43:45 MST 2015
+  **** IP Build 1412968 on Wed Nov 18 10:19:19 MST 2015
+    ** Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+
+source run_ippack.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/SDSoC/2015.4/Vivado/2015.4/data/ip'.
+INFO: [Common 17-206] Exiting Vivado at Tue Feb 02 21:36:07 2016...
+@I [HLS-112] Total elapsed time: 29.412 seconds; peak memory usage: 80.6 MB.

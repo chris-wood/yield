@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xd:addressMap xmlns:xd="http://www.xilinx.com/xd">
+  <xd:addressRange xd:componentRef="get_0" xd:addressSpace="Data_m_axi_gmem" xd:segment="SEG_ps7_ACP_DDR_LOWOCM" xd:slaveRef="ps7" xd:slaveInterface="S_AXI_ACP" xd:slaveSegment="ACP_DDR_LOWOCM" xd:baseAddr="0x00000000" xd:range="0x40000000"/>
+  <xd:addressRange xd:componentRef="set_0" xd:addressSpace="Data_m_axi_gmem" xd:segment="SEG_ps7_ACP_DDR_LOWOCM" xd:slaveRef="ps7" xd:slaveInterface="S_AXI_ACP" xd:slaveSegment="ACP_DDR_LOWOCM" xd:baseAddr="0x00000000" xd:range="0x40000000"/>
+  <xd:addressRange xd:componentRef="get_0" xd:addressSpace="Data_m_axi_gmem" xd:segment="SEG_ps7_ACP_QSPI_LINEAR" xd:slaveRef="ps7" xd:slaveInterface="S_AXI_ACP" xd:slaveSegment="ACP_QSPI_LINEAR" xd:baseAddr="0xFC000000" xd:range="0x1000000"/>
+  <xd:addressRange xd:componentRef="set_0" xd:addressSpace="Data_m_axi_gmem" xd:segment="SEG_ps7_ACP_QSPI_LINEAR" xd:slaveRef="ps7" xd:slaveInterface="S_AXI_ACP" xd:slaveSegment="ACP_QSPI_LINEAR" xd:baseAddr="0xFC000000" xd:range="0x1000000"/>
+  <xd:addressRange xd:componentRef="get_0" xd:addressSpace="Data_m_axi_gmem" xd:segment="SEG_ps7_ACP_IOP" xd:slaveRef="ps7" xd:slaveInterface="S_AXI_ACP" xd:slaveSegment="ACP_IOP" xd:baseAddr="0xE0000000" xd:range="0x400000"/>
+  <xd:addressRange xd:componentRef="set_0" xd:addressSpace="Data_m_axi_gmem" xd:segment="SEG_ps7_ACP_IOP" xd:slaveRef="ps7" xd:slaveInterface="S_AXI_ACP" xd:slaveSegment="ACP_IOP" xd:baseAddr="0xE0000000" xd:range="0x400000"/>
+  <xd:addressRange xd:componentRef="get_0" xd:addressSpace="Data_m_axi_gmem" xd:segment="SEG_ps7_ACP_M_AXI_GP0" xd:slaveRef="ps7" xd:slaveInterface="S_AXI_ACP" xd:slaveSegment="ACP_M_AXI_GP0" xd:baseAddr="0x40000000" xd:range="0x40000000"/>
+  <xd:addressRange xd:componentRef="set_0" xd:addressSpace="Data_m_axi_gmem" xd:segment="SEG_ps7_ACP_M_AXI_GP0" xd:slaveRef="ps7" xd:slaveInterface="S_AXI_ACP" xd:slaveSegment="ACP_M_AXI_GP0" xd:baseAddr="0x40000000" xd:range="0x40000000"/>
+  <xd:addressRange xd:componentRef="ps7" xd:addressSpace="Data" xd:segment="SEG_get_0_if_Reg" xd:slaveRef="get_0_if" xd:slaveInterface="S_AXI" xd:slaveSegment="Reg" xd:baseAddr="0x43C00000" xd:range="0x10000"/>
+  <xd:addressRange xd:componentRef="ps7" xd:addressSpace="Data" xd:segment="SEG_set_0_if_Reg" xd:slaveRef="set_0_if" xd:slaveInterface="S_AXI" xd:slaveSegment="Reg" xd:baseAddr="0x43C10000" xd:range="0x10000"/>
+</xd:addressMap>

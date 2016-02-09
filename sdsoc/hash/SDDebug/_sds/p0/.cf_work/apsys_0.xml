@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<cf:model cf:partition="0" cf:prefix="_p0_" cf:name="top" xd:type="design" xmlns:xd="http://www.xilinx.com/xd" xmlns:cf="http://www.xilinx.com/connections">
+  <cf:block cf:name="hwblk_get">
+    <cf:port cf:name="cmd_get" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="data" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="key" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="val_r" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="ap_return" cf:portType="stream" cf:direction="out"/>
+  </cf:block>
+  <cf:block cf:name="swblk_get">
+    <cf:port cf:name="cmd_get" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="data" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="key" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="val_r" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="ap_return" cf:portType="stream" cf:direction="in"/>
+  </cf:block>
+  <cf:block cf:name="hwblk_set">
+    <cf:port cf:name="cmd_set" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="data" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="key" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="val_r" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="ap_return" cf:portType="stream" cf:direction="out"/>
+  </cf:block>
+  <cf:block cf:name="swblk_set">
+    <cf:port cf:name="cmd_set" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="data" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="key" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="val_r" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="ap_return" cf:portType="stream" cf:direction="in"/>
+  </cf:block>
+  <cf:comp cf:name="zc702" xd:componentRef="zc702" xd:clockId="2"/>
+  <cf:comp cf:name="get_0" xd:componentRef="get" xd:clockId="2"/>
+  <cf:comp cf:name="set_0" xd:componentRef="set" xd:clockId="2"/>
+  <cf:instance cf:name="hwinst_get_0" cf:blockName="hwblk_get" cf:compName="get_0">
+    <cf:portMap cf:blockPort="cmd_get" cf:compPort="ap_ctrl" xd:register="0x28"/>
+    <cf:portMap cf:blockPort="data" cf:compPort="m_axi_gmem" cf:ctrlPort="ap_ctrl" xd:register="0x80"/>
+    <cf:portMap cf:blockPort="key" cf:compPort="key" xd:register="0x84"/>
+    <cf:portMap cf:blockPort="val_r" cf:compPort="val_r" xd:register="0xC4"/>
+    <cf:portMap cf:blockPort="ap_return" cf:compPort="ap_return" xd:register="0xC0"/>
+  </cf:instance>
+  <cf:instance cf:name="swinst_get_0" cf:blockName="swblk_get" cf:compName="zc702">
+    <cf:portMap cf:blockPort="cmd_get" cf:compPort="ps7_M_AXI_GP0"/>
+    <cf:portMap cf:blockPort="data" cf:compPort="ps7_S_AXI_ACP" cf:ctrlPort="ps7_M_AXI_GP0"/>
+    <cf:portMap cf:blockPort="key" cf:compPort="ps7_M_AXI_GP0"/>
+    <cf:portMap cf:blockPort="val_r" cf:compPort="ps7_M_AXI_GP0"/>
+    <cf:portMap cf:blockPort="ap_return" cf:compPort="ps7_M_AXI_GP0"/>
+  </cf:instance>
+  <cf:instance cf:name="hwinst_set_0" cf:blockName="hwblk_set" cf:compName="set_0">
+    <cf:portMap cf:blockPort="cmd_set" cf:compPort="ap_ctrl" xd:register="0x28"/>
+    <cf:portMap cf:blockPort="data" cf:compPort="m_axi_gmem" cf:ctrlPort="ap_ctrl" xd:register="0x80"/>
+    <cf:portMap cf:blockPort="key" cf:compPort="key" xd:register="0x84"/>
+    <cf:portMap cf:blockPort="val_r" cf:compPort="val_r" xd:register="0x88"/>
+    <cf:portMap cf:blockPort="ap_return" cf:compPort="ap_return" xd:register="0xC0"/>
+  </cf:instance>
+  <cf:instance cf:name="swinst_set_0" cf:blockName="swblk_set" cf:compName="zc702">
+    <cf:portMap cf:blockPort="cmd_set" cf:compPort="ps7_M_AXI_GP0"/>
+    <cf:portMap cf:blockPort="data" cf:compPort="ps7_S_AXI_ACP" cf:ctrlPort="ps7_M_AXI_GP0"/>
+    <cf:portMap cf:blockPort="key" cf:compPort="ps7_M_AXI_GP0"/>
+    <cf:portMap cf:blockPort="val_r" cf:compPort="ps7_M_AXI_GP0"/>
+    <cf:portMap cf:blockPort="ap_return" cf:compPort="ps7_M_AXI_GP0"/>
+  </cf:instance>
+  <cf:connection cf:srcInst="swinst_get_0" cf:srcPort="cmd_get" cf:dstInst="hwinst_get_0" cf:dstPort="cmd_get">
+    <cf:dataMover cf:compName="zc702" cf:softwareLib="axi_lite"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_get_0" cf:srcPort="data" cf:dstInst="hwinst_get_0" cf:dstPort="data">
+    <cf:dataMover cf:compName="get_0" cf:softwareLib="zero_copy"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_get_0" cf:srcPort="key" cf:dstInst="hwinst_get_0" cf:dstPort="key">
+    <cf:dataMover cf:compName="zc702" cf:softwareLib="axi_lite"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="hwinst_get_0" cf:srcPort="val_r" cf:dstInst="swinst_get_0" cf:dstPort="val_r">
+    <cf:dataMover cf:compName="zc702" cf:softwareLib="axi_lite"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="hwinst_get_0" cf:srcPort="ap_return" cf:dstInst="swinst_get_0" cf:dstPort="ap_return">
+    <cf:dataMover cf:compName="zc702" cf:softwareLib="axi_lite"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_set_0" cf:srcPort="cmd_set" cf:dstInst="hwinst_set_0" cf:dstPort="cmd_set">
+    <cf:dataMover cf:compName="zc702" cf:softwareLib="axi_lite"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_set_0" cf:srcPort="data" cf:dstInst="hwinst_set_0" cf:dstPort="data">
+    <cf:dataMover cf:compName="set_0" cf:softwareLib="zero_copy"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_set_0" cf:srcPort="key" cf:dstInst="hwinst_set_0" cf:dstPort="key">
+    <cf:dataMover cf:compName="zc702" cf:softwareLib="axi_lite"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_set_0" cf:srcPort="val_r" cf:dstInst="hwinst_set_0" cf:dstPort="val_r">
+    <cf:dataMover cf:compName="zc702" cf:softwareLib="axi_lite"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="hwinst_set_0" cf:srcPort="ap_return" cf:dstInst="swinst_set_0" cf:dstPort="ap_return">
+    <cf:dataMover cf:compName="zc702" cf:softwareLib="axi_lite"/>
+  </cf:connection>
+</cf:model>

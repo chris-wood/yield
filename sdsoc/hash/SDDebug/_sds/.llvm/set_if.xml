@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xd:repository xmlns:xd="http://www.xilinx.com/xd">
+  <xd:component xd:vendor="xilinx.com" xd:library="xd" xd:name="set_if" xd:version="1.0" xd:componentRef="axis_accelerator_adapter" xd:adapteeCompRef="set" xd:type="accelerator">
+    <xd:busInterface xd:name="S_AXI" xd:busTypeRef="aximm" xd:mode="slave" xd:clockRef="s_axi_aclk" xd:resetRef="s_axi_aresetn" xd:dataWidth="32">
+       <xd:reg xd:name="ap_return" xd:offset="0xC0" xd:dataWidth="32"/>
+       <xd:reg xd:name="ap_ctrl" xd:offset="0x28" xd:dataWidth="4"/>
+       <xd:reg xd:name="data" xd:offset="0x80" xd:dataWidth="32"/>
+       <xd:reg xd:name="key" xd:offset="0x84" xd:dataWidth="32"/>
+       <xd:reg xd:name="val_r" xd:offset="0x88" xd:dataWidth="32"/>
+    </xd:busInterface>
+    <xd:busInterface xd:name="m_axi_gmem" xd:componentRef="set" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="aclk" xd:resetRef="aresetn" xd:dataWidth="32">
+       <xd:reg xd:name="data" xd:offset="0x80" xd:dataWidth="32"/>
+    </xd:busInterface>
+  </xd:component>
+</xd:repository>

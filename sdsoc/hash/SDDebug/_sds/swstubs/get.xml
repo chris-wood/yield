@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xd:data xmlns:xd="http://www.xilinx.com/xd">
+  <xd:accel name="get" platform="zc702" compiler="g++" srcfile="main.cpp" srcpath="C:/Users/sskalick/Xilinx/hash/hash/src" flags="-IC:/Users/sskalick/Xilinx/hash/hash/src -IC:/Users/sskalick/Xilinx/hash/hash/src -Wall -O0 -g -fmessage-length=0 -MMD -MP -D __SDSCC__" clk_id="2" ip_requires_adapter="1" ip_is_rtl="0" vlnv="" is_opencl="0" asmfile="main.s"/>
+</xd:data>

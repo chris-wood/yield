@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xd" xd:fcnName="set" xd:type="hls_adapter" xd:adapterCompRef="set_if" xd:clockId="2" xd:componentRef="set" xd:initiationInterval="9" xd:clockPeriod="8.500000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:returnValue xd:busInterfaceRef="ap_return" xd:portInterfaceType="register" xd:dataWidth="32" xd:hwName="ap_return" xd:index="0" xd:offset="0xC0" xd:bufferDepth="16"/>
+  <xd:controlReg xd:name="control" xd:busInterfaceRef="ap_ctrl" xd:portInterfaceType="acc_handshake" xd:type="axis_acc_adapter" xd:offset="0x28" xd:bufferDepth="16" xd:dataWidth="4"/>
+  <xd:arg xd:name="data" xd:swRootName="data" xd:direction="inout" xd:busInterfaceRef="m_axi_gmem" xd:hwName="m_axi_gmem" xd:portInterfaceType="aximm" xd:dataWidth="32" xd:bufferDirection="out"/>
+  <xd:arg xd:name="data" xd:swRootName="data" xd:direction="in" xd:busInterfaceRef="data" xd:hwName="data" xd:portInterfaceType="register" xd:handshakeRef="ap_none" xd:aximmInterfaceRef="m_axi_gmem" xd:dataWidth="32" xd:instanceRef="set_if" xd:index="0" xd:offset="0x80" xd:bufferDepth="16"/>
+  <xd:arg xd:name="key" xd:swRootName="key" xd:direction="in" xd:busInterfaceRef="key" xd:hwName="key" xd:portInterfaceType="register" xd:handshakeRef="ap_none" xd:dataWidth="32" xd:instanceRef="set_if" xd:index="1" xd:offset="0x84" xd:bufferDepth="16"/>
+  <xd:arg xd:name="val" xd:swRootName="val" xd:direction="in" xd:busInterfaceRef="val_r" xd:hwName="val_r" xd:portInterfaceType="register" xd:handshakeRef="ap_none" xd:dataWidth="32" xd:instanceRef="set_if" xd:index="2" xd:offset="0x88" xd:bufferDepth="16"/>
+  <xd:latencyEstimates xd:best-case="8" xd:worst-case="8" xd:average-case="8"/>
+  <xd:resourceEstimates xd:LUT="743" xd:FF="623" xd:BRAM="0" xd:DSP="0"/>
+</xd:acceleratorMap>

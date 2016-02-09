@@ -1,0 +1,10 @@
+<xd:repository xmlns:xd="http://www.xilinx.com/xd" xd:vendor="xilinx.com" xd:library="ip" xd:name="ovld_reg" xd:version="1.0">
+    <xd:component xd:vendor="xilinx.com" xd:library="ip" xd:name="ovld_reg" xd:version="1.0">
+        <xd:busInterface xd:name="clk" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="clk"/>
+        <xd:busInterface xd:name="AP_CTRL" xd:busTypeRef="acc_handshake" xd:mode="slave" xd:direction="in"/>
+        <xd:port xd:name="data_in" xd:direction="in" xd:size="32"/>
+        <xd:port xd:name="vld_in" xd:direction="in"/>
+        <xd:port xd:name="data_out" xd:direction="out" xd:size="32"/>
+        <xd:port xd:name="vld_out" xd:direction="out"/>
+    </xd:component>
+</xd:repository>

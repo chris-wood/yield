@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sdsproject:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:sdsproject="http://www.xilinx.com/sdsproject" name="hash" platform="zc702" os="Standalone" ConfigType="SDDebug">
+  <options insertapm="false" genbitstream="true" gensdcard="false" dmclkid="2" enableHwSwTrace="false" traceApplication="false">
+    <accelerator name="get" filepath="src/main.cpp" clkid="2"/>
+    <accelerator name="set" filepath="src/main.cpp" clkid="2"/>
+  </options>
+</sdsproject:Project>

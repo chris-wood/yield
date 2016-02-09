@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xd:repository xd:vendor="xilinx.com" xd:library="xd" xd:name="xd_ip" xd:version="2.00.a"
+               xmlns:xd="http://www.xilinx.com/xd" >
+  
+  <xd:component xd:vendor="xilinx.com" xd:library="ip" xd:name="axi_stream_router" xd:version="1.0">
+    <xd:busInterface xd:name="M_AXIS_0" xd:busTypeRef="axis" xd:mode="master" xd:direction="out" xd:clockRef="M_AXIS_0_ACLK" />
+    <xd:busInterface xd:name="M_AXIS_1" xd:busTypeRef="axis" xd:mode="master" xd:direction="out" xd:clockRef="M_AXIS_1_ACLK" />
+    <xd:busInterface xd:name="M_AXIS_2" xd:busTypeRef="axis" xd:mode="master" xd:direction="out" xd:clockRef="M_AXIS_2_ACLK" />
+    <xd:busInterface xd:name="M_AXIS_3" xd:busTypeRef="axis" xd:mode="master" xd:direction="out" xd:clockRef="M_AXIS_3_ACLK" />
+    <xd:busInterface xd:name="M_AXIS_4" xd:busTypeRef="axis" xd:mode="master" xd:direction="out" xd:clockRef="M_AXIS_4_ACLK" />
+    <xd:busInterface xd:name="M_AXIS_5" xd:busTypeRef="axis" xd:mode="master" xd:direction="out" xd:clockRef="M_AXIS_5_ACLK" />
+    <xd:busInterface xd:name="M_AXIS_6" xd:busTypeRef="axis" xd:mode="master" xd:direction="out" xd:clockRef="M_AXIS_6_ACLK" />
+    <xd:busInterface xd:name="M_AXIS_7" xd:busTypeRef="axis" xd:mode="master" xd:direction="out" xd:clockRef="M_AXIS_7_ACLK" />
+    <xd:busInterface xd:name="S_AXIS_0" xd:busTypeRef="axis" xd:mode="slave" xd:direction="in" xd:clockRef="S_AXIS_0_ACLK" />
+    <xd:busInterface xd:name="S_AXIS_1" xd:busTypeRef="axis" xd:mode="slave" xd:direction="in" xd:clockRef="S_AXIS_1_ACLK" />
+    <xd:busInterface xd:name="S_AXIS_2" xd:busTypeRef="axis" xd:mode="slave" xd:direction="in" xd:clockRef="S_AXIS_2_ACLK" />
+    <xd:busInterface xd:name="S_AXIS_3" xd:busTypeRef="axis" xd:mode="slave" xd:direction="in" xd:clockRef="S_AXIS_3_ACLK" />
+    <xd:busInterface xd:name="S_AXIS_4" xd:busTypeRef="axis" xd:mode="slave" xd:direction="in" xd:clockRef="S_AXIS_4_ACLK" />
+    <xd:busInterface xd:name="S_AXIS_5" xd:busTypeRef="axis" xd:mode="slave" xd:direction="in" xd:clockRef="S_AXIS_5_ACLK" />
+    <xd:busInterface xd:name="S_AXIS_6" xd:busTypeRef="axis" xd:mode="slave" xd:direction="in" xd:clockRef="S_AXIS_6_ACLK" />
+    <xd:busInterface xd:name="S_AXIS_7" xd:busTypeRef="axis" xd:mode="slave" xd:direction="in" xd:clockRef="S_AXIS_7_ACLK" />
+    <xd:busInterface xd:name="m_axis_rxd" xd:busTypeRef="axis" xd:mode="master" xd:direction="out" xd:clockRef="m_axis_rxd_aclk" xd:resetRef="m_axis_rxd_aresetn"/>
+    <xd:busInterface xd:name="m_axis_rxs" xd:busTypeRef="axis" xd:mode="master" xd:direction="out" xd:clockRef="m_axis_rxs_aclk" xd:resetRef="m_axis_rxs_aresetn"/>
+    <xd:busInterface xd:name="s_axis_txc" xd:busTypeRef="axis" xd:mode="slave" xd:direction="in" xd:clockRef="s_axis_txc_aclk" xd:resetRef="s_axis_txc_aresetn"/>
+    <xd:busInterface xd:name="s_axis_txd" xd:busTypeRef="axis" xd:mode="slave" xd:direction="in" xd:clockRef="s_axis_txd_aclk" xd:resetRef="s_axis_txd_aresetn"/>
+    <xd:busInterface xd:name="m_axis_rxd_signal_reset" xd:busTypeRef="reset" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="m_axis_rxd_aresetn"/>
+    <xd:busInterface xd:name="m_axis_rxs_signal_reset" xd:busTypeRef="reset" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="m_axis_rxs_aresetn"/>
+    <xd:busInterface xd:name="s_axis_txc_signal_reset" xd:busTypeRef="reset" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="s_axis_txc_aresetn"/>
+    <xd:busInterface xd:name="s_axis_txd_signal_reset" xd:busTypeRef="reset" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="s_axis_txd_aresetn"/>
+    <xd:busInterface xd:name="M_AXIS_0_signal_clock" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="M_AXIS_0_ACLK"/>
+    <xd:busInterface xd:name="M_AXIS_1_signal_clock" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="M_AXIS_1_ACLK"/>
+    <xd:busInterface xd:name="M_AXIS_2_signal_clock" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="M_AXIS_2_ACLK"/>
+    <xd:busInterface xd:name="M_AXIS_3_signal_clock" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="M_AXIS_3_ACLK"/>
+    <xd:busInterface xd:name="M_AXIS_4_signal_clock" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="M_AXIS_4_ACLK"/>
+    <xd:busInterface xd:name="M_AXIS_5_signal_clock" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="M_AXIS_5_ACLK"/>
+    <xd:busInterface xd:name="M_AXIS_6_signal_clock" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="M_AXIS_6_ACLK"/>
+    <xd:busInterface xd:name="M_AXIS_7_signal_clock" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="M_AXIS_7_ACLK"/>
+    <xd:busInterface xd:name="S_AXIS_0_signal_clock" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="S_AXIS_0_ACLK"/>
+    <xd:busInterface xd:name="S_AXIS_1_signal_clock" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="S_AXIS_1_ACLK"/>
+    <xd:busInterface xd:name="S_AXIS_2_signal_clock" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="S_AXIS_2_ACLK"/>
+    <xd:busInterface xd:name="S_AXIS_3_signal_clock" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="S_AXIS_3_ACLK"/>
+    <xd:busInterface xd:name="S_AXIS_4_signal_clock" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="S_AXIS_4_ACLK"/>
+    <xd:busInterface xd:name="S_AXIS_5_signal_clock" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="S_AXIS_5_ACLK"/>
+    <xd:busInterface xd:name="S_AXIS_6_signal_clock" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="S_AXIS_6_ACLK"/>
+    <xd:busInterface xd:name="S_AXIS_7_signal_clock" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="S_AXIS_7_ACLK"/>
+    <xd:busInterface xd:name="m_axis_rxd_signal_clock" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="m_axis_rxd_aclk"/>
+    <xd:busInterface xd:name="m_axis_rxs_signal_clock" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="m_axis_rxs_aclk"/>
+    <xd:busInterface xd:name="s_axis_txc_signal_clock" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="s_axis_txc_aclk"/>
+    <xd:busInterface xd:name="s_axis_txd_signal_clock" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="s_axis_txd_aclk"/>
+</xd:component>
+
+</xd:repository>

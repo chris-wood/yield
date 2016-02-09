@@ -1,0 +1,139 @@
+
+
+================================================================
+== Vivado HLS Report for 'set'
+================================================================
+* Date:           Tue Feb 02 21:35:59 2016
+
+* Version:        2015.4 (Build 1412921 on Wed Nov 18 09:58:55 AM 2015)
+* Project:        set
+* Solution:       solution
+* Product family: zynq
+* Target device:  xc7z020clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   8.50|      7.44|        1.06|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |    8|    8|    9|    9|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 2
+* Pipeline: 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+* FSM state operations: 
+
+ <State 1>: 7.44ns
+ST_1: val_read [1/1] 0.00ns
+:0  %val_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %val_r)
+
+ST_1: key_read [1/1] 0.00ns
+:1  %key_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %key)
+
+ST_1: data_read [1/1] 0.00ns
+:2  %data_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %data)
+
+ST_1: data1 [1/1] 0.00ns
+:3  %data1 = call i30 @_ssdm_op_PartSelect.i30.i32.i32.i32(i32 %data_read, i32 2, i32 31)
+
+ST_1: stg_7 [2/2] 7.44ns
+:11  call fastcc void @set_assign_val(i32* %gmem, i30 %data1, i32 %key_read, i32 %val_read)
+
+
+ <State 2>: 0.00ns
+ST_2: stg_8 [1/1] 0.00ns
+:4  call void (...)* @_ssdm_op_SpecBitsMap(i32* %gmem), !map !1
+
+ST_2: stg_9 [1/1] 0.00ns
+:5  call void (...)* @_ssdm_op_SpecBitsMap(i32 %key) nounwind, !map !7
+
+ST_2: stg_10 [1/1] 0.00ns
+:6  call void (...)* @_ssdm_op_SpecBitsMap(i32 %val_r) nounwind, !map !13
+
+ST_2: stg_11 [1/1] 0.00ns
+:7  call void (...)* @_ssdm_op_SpecBitsMap(i32 0) nounwind, !map !17
+
+ST_2: stg_12 [1/1] 0.00ns
+:8  call void (...)* @_ssdm_op_SpecTopModule([4 x i8]* @set_str) nounwind
+
+ST_2: stg_13 [1/1] 0.00ns
+:9  call void (...)* @_ssdm_op_SpecLatency(i32 1, i32 65535, [1 x i8]* @p_str) nounwind
+
+ST_2: stg_14 [1/1] 0.00ns
+:10  call void (...)* @_ssdm_op_SpecInterface(i32* %gmem, [6 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str, [7 x i8]* @p_str2, [1 x i8]* @p_str, [1 x i8]* @p_str) nounwind
+
+ST_2: stg_15 [1/2] 0.00ns
+:11  call fastcc void @set_assign_val(i32* %gmem, i30 %data1, i32 %key_read, i32 %val_read)
+
+ST_2: stg_16 [1/1] 0.00ns
+:12  ret i32 0
+
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+  - Chain level:
+	State 1
+	State 2
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

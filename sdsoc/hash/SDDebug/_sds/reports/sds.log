@@ -1,0 +1,271 @@
+(c) Copyright 2012-2015 Xilinx, Inc. All Rights Reserved.
+#-----------------------------------------------------------
+# Tool version  : sds++ 2015.4 SW Build on Dec 14 2015 23:02:57
+# Start time    : Tue Feb 02 21:36:23 -0800 2016
+# Command line  : sds++ -o hash.elf ./src/main.o -dmclkid 2 -mno-boot-files -target-os standalone -sds-pf zc702
+# Log file      : C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/reports/sds.log
+# Journal file  : C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/reports/sds.jou
+# Report file   : C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/reports/sds.rpt
+#-----------------------------------------------------------
+
+INFO: [SDSoC 0-0] Removing implementation files from previous run
+Libraries: 
+Library Paths C:/Xilinx/SDSoC/2015.4/platforms/zc702/arm-xilinx-eabi/lib
+INFO: [SDSoC 0-0] Analyzing object files
+arm-xilinx-eabi-objcopy -O binary --set-section-flags .xdinfo=alloc --only-section=.xdinfo C:/Users/sskalick/Xilinx/hash/hash/SDDebug/src/main.o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.data/xdinfo.xml
+arm-xilinx-eabi-objcopy -O binary --set-section-flags .xddata=alloc --only-section=.xddata C:/Users/sskalick/Xilinx/hash/hash/SDDebug/src/main.o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.data/get.xml
+arm-xilinx-eabi-objcopy -O binary --set-section-flags .xdpp=alloc --only-section=.xdpp C:/Users/sskalick/Xilinx/hash/hash/SDDebug/src/main.o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.pp/main.ii
+arm-xilinx-eabi-objcopy -O binary --set-section-flags .xdfcnmap=alloc --only-section=.xdfcnmap C:/Users/sskalick/Xilinx/hash/hash/SDDebug/src/main.o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.cdb/get.fcnmap.xml
+arm-xilinx-eabi-objcopy -O binary --set-section-flags .xdhlscore=alloc --only-section=.xdhlscore C:/Users/sskalick/Xilinx/hash/hash/SDDebug/src/main.o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_get_1_0/xilinx_com_hls_get_1_0.zip
+unzip -u -o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_get_1_0/xilinx_com_hls_get_1_0.zip -d C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_get_1_0
+Archive:  C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_get_1_0/xilinx_com_hls_get_1_0.zip
+  inflating: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_get_1_0/component.xml  
+  inflating: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_get_1_0/constraints/get_ooc.xdc  
+  inflating: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_get_1_0/hdl/verilog/get.v  
+  inflating: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_get_1_0/hdl/verilog/get_gmem_m_axi.v  
+  inflating: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_get_1_0/hdl/vhdl/get.vhd  
+  inflating: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_get_1_0/hdl/vhdl/get_gmem_m_axi.vhd  
+  inflating: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_get_1_0/doc/ReleaseNotes.txt  
+  inflating: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_get_1_0/misc/logo.png  
+  inflating: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_get_1_0/xgui/get_v1_0.tcl  
+arm-xilinx-eabi-objcopy -O binary --set-section-flags .xdif=alloc --only-section=.xdif C:/Users/sskalick/Xilinx/hash/hash/SDDebug/src/main.o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.cdb/get_if.xml
+arm-xilinx-eabi-objcopy -O binary --set-section-flags .xddata1=alloc --only-section=.xddata1 C:/Users/sskalick/Xilinx/hash/hash/SDDebug/src/main.o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.data/set.xml
+arm-xilinx-eabi-objcopy -O binary --set-section-flags .xdfcnmap1=alloc --only-section=.xdfcnmap1 C:/Users/sskalick/Xilinx/hash/hash/SDDebug/src/main.o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.cdb/set.fcnmap.xml
+arm-xilinx-eabi-objcopy -O binary --set-section-flags .xdhlscore1=alloc --only-section=.xdhlscore1 C:/Users/sskalick/Xilinx/hash/hash/SDDebug/src/main.o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_set_1_0/xilinx_com_hls_set_1_0.zip
+unzip -u -o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_set_1_0/xilinx_com_hls_set_1_0.zip -d C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_set_1_0
+Archive:  C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_set_1_0/xilinx_com_hls_set_1_0.zip
+  inflating: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_set_1_0/component.xml  
+  inflating: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_set_1_0/constraints/set_ooc.xdc  
+  inflating: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_set_1_0/hdl/verilog/set.v  
+  inflating: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_set_1_0/hdl/verilog/set_assign_val.v  
+  inflating: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_set_1_0/hdl/verilog/set_gmem_m_axi.v  
+  inflating: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_set_1_0/hdl/vhdl/set.vhd  
+  inflating: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_set_1_0/hdl/vhdl/set_assign_val.vhd  
+  inflating: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_set_1_0/hdl/vhdl/set_gmem_m_axi.vhd  
+  inflating: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_set_1_0/doc/ReleaseNotes.txt  
+  inflating: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_set_1_0/misc/logo.png  
+  inflating: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_set_1_0/xgui/set_v1_0.tcl  
+arm-xilinx-eabi-objcopy -O binary --set-section-flags .xdif1=alloc --only-section=.xdif1 C:/Users/sskalick/Xilinx/hash/hash/SDDebug/src/main.o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.cdb/set_if.xml
+build_xd_ip_db  -sds-pf C:/Xilinx/SDSoC/2015.4/platforms/zc702/zc702_hw.pfm  -ip C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_get_1_0 -ip C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_set_1_0  -o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.cdb/xd_ip_db.xml  
+INFO: Using user-defined path for XILINX_XD environment variable C:/Xilinx/SDSoC/2015.4
+processing accelerators: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_get_1_0
+ip_dir: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_get_1_0
+xsltproc --stringparam xpath "spirit:component/spirit:name/text()" C:/Xilinx/SDSoC/2015.4/scripts/xdcc/xpathValueOf.xsl C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_get_1_0/component.xml
+ip_name: get
+processing accelerators: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_set_1_0
+ip_dir: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_set_1_0
+xsltproc --stringparam xpath "spirit:component/spirit:name/text()" C:/Xilinx/SDSoC/2015.4/scripts/xdcc/xpathValueOf.xsl C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo/xilinx_com_hls_set_1_0/component.xml
+ip_name: set
+INFO: [SDSoC 0-0] Generating data motion network
+llvm-link -o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/sds_all.o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/./src/main.s
+
+C:\Users\sskalick\Xilinx\hash\hash\SDDebug>C:\Xilinx\SDSoC\2015.4\llvm-clang\win64\llvm\bin\llvm-link.exe -o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/sds_all.o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/./src/main.s 
+
+C:\Users\sskalick\Xilinx\hash\hash\SDDebug>exit /b 0 
+XidanePass  --platform zc702  --dmclkid 2  --repo C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.cdb/xd_ip_db.xml  --dmdb C:/Xilinx/SDSoC/2015.4/data/DM.db   -os standalone 
+
+C:\Users\sskalick\Xilinx\hash\hash\SDDebug\_sds\.llvm>opt -disable-output -instcombine -mem2reg -basicaa -XidanePass --platform zc702 --dmclkid 2 --repo C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.cdb/xd_ip_db.xml --dmdb C:/Xilinx/SDSoC/2015.4/data/DM.db -os standalone  0<sds_all.o 
+INFO: [SDSoC 0-0] Analyzing hardware accelerators...
+INFO: [SDSoC 0-0] Analyzing callers to hardware accelerators...
+INFO: [SDSoC 0-0] Scheduling data transfer graph for partition 0
+INFO: [SDSoC 0-0] Creating data motion network hardware for partition 0
+INFO: [SDSoC 0-0] Creating software stub functions for partition 0
+INFO: [SDSoC 0-0] Generating data motion network report for partition 0
+INFO: [SDSoC 0-0] Rewriting caller code
+INFO: [SDSoC 0-0] Removing implementation files from previous run C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/p0/ipi
+xsltproc  -o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/p0/ipi/apsys_acc_info.xml  --stringparam P_XD_IP_REPOS C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.cdb/xd_ip_db.xml  C:/Xilinx/SDSoC/2015.4/scripts/xsd/genAdapterPackagedIpInfo.xsl 
+      C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/apsys_0.xml
+INFO: [SDSoC 0-0] Creating block diagram (BD), address map, port information and device registration for partition 0 (this may take a few minutes)
+system_linker -cf-input C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/apsys_0.xml -cf-output-dir _sds/p0 -ip-db C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.cdb/xd_ip_db.xml -ip-repo C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo -sds-pf C:/Xilinx/SDSoC/2015.4/platforms/zc702:standalone -software-only   -target-os standalone -sdsoc
+system_linker started at Tue Feb 02 21:36:29 -0800 2016
+INFO: [SDSoC 0-0] Copying address map
+INFO: [SDSoC 0-0] Creating port and device registration data
+system_linker completed at Tue Feb 02 21:38:19 -0800 2016
+INFO: [SDSoC 0-0] Rewrite caller functions
+arm-xilinx-eabi-objcopy -O binary --set-section-flags .xdinfo=alloc --only-section=.xdinfo C:/Users/sskalick/Xilinx/hash/hash/SDDebug/src/main.o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.data/xdinfo.xml
+caller_rewrite  -rewrite C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/caller0.cfrewrite  -o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/main.cpp  C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/unix_main.cpp  --  -c  -target arm-xilinx-eabi -mcpu=cortex-a9 -mfpu=vfp -O0 -g -w    -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include  -I C:/Xilinx/SDSoC/2015.4/Vivado_HLS/2015.4/include   -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/arm-xilinx-eabi  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/backward   -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include-fixed  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include  -IC:/Users/sskalick/Xilinx/hash/hash/src -IC:/Users/sskalick/Xilinx/hash/hash/src -Wall -O0 -g -fmessage-length=0 -MMD -MP -D __SDSCC__
+INFO: [SDSoC 0-0] Compile caller rewrite file C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/main.cpp
+arm-xilinx-eabi-g++  -c C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/main.cpp  -IC:/Users/sskalick/Xilinx/hash/hash/src -IC:/Users/sskalick/Xilinx/hash/hash/src -Wall -O0 -g -fmessage-length=0 -MMD -MP -D __SDSCC__    -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include  -I C:/Xilinx/SDSoC/2015.4/Vivado_HLS/2015.4/include  -o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/main.o
+INFO: [SDSoC 0-0] Prepare hardware access API functions
+INFO: [SDSoC 0-0] Create accelerator stub functions
+stub_gen  -func get  -stub C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/get.cfrewrite  -o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/main.cpp  C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/unix_main.cpp  --  -c  -target arm-xilinx-eabi -mcpu=cortex-a9 -mfpu=vfp -O0 -g -w    -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include  -I C:/Xilinx/SDSoC/2015.4/Vivado_HLS/2015.4/include   -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/arm-xilinx-eabi  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/backward   -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include-fixed  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include  -IC:/Users/sskalick/Xilinx/hash/hash/src -IC:/Users/sskalick/Xilinx/hash/hash/src -Wall -O0 -g -fmessage-length=0 -MMD -MP -D __SDSCC__
+stub_gen  -func set  -stub C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/set.cfrewrite  -o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/main.cpp  C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/unix_main.cpp  --  -c  -target arm-xilinx-eabi -mcpu=cortex-a9 -mfpu=vfp -O0 -g -w    -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include  -I C:/Xilinx/SDSoC/2015.4/Vivado_HLS/2015.4/include   -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/arm-xilinx-eabi  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/backward   -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include-fixed  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include  -IC:/Users/sskalick/Xilinx/hash/hash/src -IC:/Users/sskalick/Xilinx/hash/hash/src -Wall -O0 -g -fmessage-length=0 -MMD -MP -D __SDSCC__
+INFO: [SDSoC 0-0] Compile hardware access API functions
+arm-xilinx-eabi-gcc   -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include  -I C:/Xilinx/SDSoC/2015.4/Vivado_HLS/2015.4/include  -c  C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/devreg.c
+arm-xilinx-eabi-gcc   -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include  -I C:/Xilinx/SDSoC/2015.4/Vivado_HLS/2015.4/include   -c  C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/portinfo.c
+arm-xilinx-eabi-g++   -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include  -I C:/Xilinx/SDSoC/2015.4/Vivado_HLS/2015.4/include  -c  C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/cf_stub.c
+arm-xilinx-eabi-ar crs C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/libxlnk_stub.a C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/devreg.o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/portinfo.o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/cf_stub.o
+INFO: [SDSoC 0-0] Compile accelerator stub functions
+arm-xilinx-eabi-g++ -c main.cpp   -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include  -I C:/Xilinx/SDSoC/2015.4/Vivado_HLS/2015.4/include -IC:/Users/sskalick/Xilinx/hash/hash/src -IC:/Users/sskalick/Xilinx/hash/hash/src -Wall -O0 -g -fmessage-length=0 -MMD -MP -D __SDSCC__  -o main.o
+arm-xilinx-eabi-g++ -c main.cpp   -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include  -I C:/Xilinx/SDSoC/2015.4/Vivado_HLS/2015.4/include -IC:/Users/sskalick/Xilinx/hash/hash/src -IC:/Users/sskalick/Xilinx/hash/hash/src -Wall -O0 -g -fmessage-length=0 -MMD -MP -D __SDSCC__  -o main.o
+arm-xilinx-eabi-ar crs C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/libhash.a C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/devreg.o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/portinfo.o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/cf_stub.o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/main.o
+hsi -mode batch -notrace -quiet -source C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/standalone_bsp/create_bsp.tcl
+INFO: [Hsi 55-1698] elapsed time for repository loading 0 seconds
+INFO: [SDSoC 0-0] Create board support package library
+hsi -mode batch -notrace -quiet -source C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/standalone_bsp/create_bsp_post.tcl
+INFO: [Hsi 55-1698] elapsed time for repository loading 0 seconds
+"Running Make include in ps7_cortexa9_0/libsrc/canps_v3_0/src"
+
+"Running Make include in ps7_cortexa9_0/libsrc/coresightps_dcc_v1_2/src"
+
+"Running Make include in ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_1/src"
+
+"Running Make include in ps7_cortexa9_0/libsrc/ddrps_v1_0/src"
+
+"Running Make include in ps7_cortexa9_0/libsrc/devcfg_v3_3/src"
+
+"Running Make include in ps7_cortexa9_0/libsrc/dmaps_v2_1/src"
+
+"Running Make include in ps7_cortexa9_0/libsrc/emacps_v3_1/src"
+
+"Running Make include in ps7_cortexa9_0/libsrc/gpiops_v3_1/src"
+
+"Running Make include in ps7_cortexa9_0/libsrc/iicps_v3_0/src"
+
+"Running Make include in ps7_cortexa9_0/libsrc/qspips_v3_2/src"
+
+"Running Make include in ps7_cortexa9_0/libsrc/scugic_v3_1/src"
+
+"Running Make include in ps7_cortexa9_0/libsrc/scutimer_v2_1/src"
+
+"Running Make include in ps7_cortexa9_0/libsrc/scuwdt_v2_1/src"
+
+"Running Make include in ps7_cortexa9_0/libsrc/sdps_v2_6/src"
+
+"Running Make include in ps7_cortexa9_0/libsrc/standalone_v5_3/src"
+
+"Running Make include in ps7_cortexa9_0/libsrc/uartps_v3_1/src"
+
+"Running Make include in ps7_cortexa9_0/libsrc/usbps_v2_2/src"
+
+"Running Make include in ps7_cortexa9_0/libsrc/xadcps_v2_2/src"
+
+"Running Make include in ps7_cortexa9_0/libsrc/xilffs_v2_2/src"
+
+"Running Make libs in ps7_cortexa9_0/libsrc/canps_v3_0/src"
+
+"Compiling canps"
+
+arm-xilinx-eabi-ar: creating ../../../lib/libxil.a
+
+"Running Make libs in ps7_cortexa9_0/libsrc/coresightps_dcc_v1_2/src"
+
+"Compiling coresightps_dcc"
+
+"Running Make libs in ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_1/src"
+
+"Compiling cpu_cortexa9"
+
+"Running Make libs in ps7_cortexa9_0/libsrc/ddrps_v1_0/src"
+
+"Compiling ddrps"
+
+"Running Make libs in ps7_cortexa9_0/libsrc/devcfg_v3_3/src"
+
+"Compiling devcfg"
+
+"Running Make libs in ps7_cortexa9_0/libsrc/dmaps_v2_1/src"
+
+"Compiling dmaps"
+
+"Running Make libs in ps7_cortexa9_0/libsrc/emacps_v3_1/src"
+
+"Compiling emacps"
+
+"Running Make libs in ps7_cortexa9_0/libsrc/gpiops_v3_1/src"
+
+"Compiling gpiops"
+
+"Running Make libs in ps7_cortexa9_0/libsrc/iicps_v3_0/src"
+
+"Compiling iicps"
+
+"Running Make libs in ps7_cortexa9_0/libsrc/qspips_v3_2/src"
+
+"Compiling qspips"
+
+"Running Make libs in ps7_cortexa9_0/libsrc/scugic_v3_1/src"
+
+"Compiling scugic"
+
+"Running Make libs in ps7_cortexa9_0/libsrc/scutimer_v2_1/src"
+
+"Compiling scutimer"
+
+"Running Make libs in ps7_cortexa9_0/libsrc/scuwdt_v2_1/src"
+
+"Compiling scuwdt"
+
+"Running Make libs in ps7_cortexa9_0/libsrc/sdps_v2_6/src"
+
+"Compiling sdps"
+
+"Running Make libs in ps7_cortexa9_0/libsrc/standalone_v5_3/src"
+
+"Compiling standalone"
+
+"Running Make libs in ps7_cortexa9_0/libsrc/uartps_v3_1/src"
+
+"Compiling uartps"
+
+"Running Make libs in ps7_cortexa9_0/libsrc/usbps_v2_2/src"
+
+"Compiling usbps"
+
+"Running Make libs in ps7_cortexa9_0/libsrc/xadcps_v2_2/src"
+
+"Compiling xadcps"
+
+"Running Make libs in ps7_cortexa9_0/libsrc/xilffs_v2_2/src"
+
+"Compiling XilFFs Library"
+
+"Creating archive libxilffs.a"
+
+'Finished building libraries'
+
+generate_bsp: Time (s): cpu = 00:00:01 ; elapsed = 00:00:34 . Memory (MB): peak = 112.727 ; gain = 0.000
+INFO: [SDSoC 0-0] Link application ELF file
+arm-xilinx-eabi-g++ -Wl,-T -Wl,C:/Xilinx/SDSoC/2015.4/platforms/zc702/arm-xilinx-eabi/lscript.ld   C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/main.o   -L C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/standalone_bsp/ps7_cortexa9_0/lib  -L C:/Xilinx/SDSoC/2015.4/platforms/zc702/arm-xilinx-eabi/lib -L C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/lib -LC:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs -Wl,--start-group -lxilffs -lgcc -lc -lstdc++ -Wl,--end-group -Wl,--start-group   -lxilffs -lxil -lgcc -lc  -lsds_lib -lxlnk_stub -lgcc -lc -Wl,--end-group -o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/hash.elf
+arm-xilinx-eabi-objcopy -R .xdinfo -R .xddata -R .xdasm -R .xdfcnmap -R .xdhlscore -R .xdif -R .xdparams -R .xdcore -R .xdsdata -R .xdpp C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/hash.elf
+INFO: [SDSoC 0-0] Enable generation of hardware programming files
+INFO: [SDSoC 0-0] Calling system_linker for partition 0
+system_linker -cf-input C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/apsys_0.xml -cf-output-dir _sds/p0 -ip-db C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.cdb/xd_ip_db.xml -ip-repo C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/iprepo/repo -sds-pf C:/Xilinx/SDSoC/2015.4/platforms/zc702:standalone -bitstream    -target-os standalone -mdev-no-swgen -mdev-no-xsd -sdsoc -sd-output-dir _sds/p0/sd_card -bit-binary -elf C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/hash.elf
+system_linker started at Tue Feb 02 21:39:07 -0800 2016
+INFO: [SDSoC 0-0] Generating bitstream for platform zc702.
+      This may take some time to complete
+... [21:39:40] Starting synth_design
+... [21:39:50] Starting RTL Elaboration : Time (s): cpu = 00:00:16 ; elapsed = 00:00:20 . Memory (MB): peak = 443.500 ; gain = 271.613
+... [21:46:42] Start Loading Part and Timing Information
+... [21:46:42] Start Applying 'set_property' XDC Constraints
+... [21:47:02] Start RTL Component Statistics 
+... [21:47:02] Start RTL Hierarchical Component Statistics 
+... [21:47:02] Start Part Resource Summary
+... [21:47:02] Start Parallel Synthesis Optimization  : Time (s): cpu = 00:07:16 ; elapsed = 00:07:32 . Memory (MB): peak = 1091.828 ; gain = 919.941
+... [21:47:02] Start Cross Boundary Optimization
+... [21:47:07] Start ROM, RAM, DSP and Shift Register Reporting
+... [21:47:12] Start Area Optimization
+... [21:47:28] Start Timing Optimization
+... [21:47:43] Start Applying XDC Timing Constraints
+... [21:47:48] Start Technology Mapping
+... [21:48:03] Start IO Insertion
+... [21:48:03] Start Flattening Before IO Insertion
+... [21:48:03] Start Final Netlist Cleanup
+... [21:48:08] Start Renaming Generated Instances
+... [21:48:08] Start Rebuilding User Hierarchy
+... [21:48:13] Start Renaming Generated Ports
+... [21:48:13] Start Handling Custom Attributes
+... [21:48:13] Start Renaming Generated Nets
+... [21:48:13] Start ROM, RAM, DSP and Shift Register Reporting
+... [21:48:13] Start Writing Synthesis Report
+... [21:49:17] Starting DRC Task
+... [21:49:17] Starting Logic Optimization Task
+... [21:49:27] Starting Connectivity Check Task
+... [21:49:27] Starting Power Optimization Task
+... [21:49:32] Starting PowerOpt Patch Enables Task
+... [21:49:42] Starting Placer Task
+... [21:50:18] Starting Routing Task
+system_linker completed at Tue Feb 02 21:52:10 -0800 2016
+All user specified timing constraints are met.
+sds++ log file saved as C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/reports/sds.log
+sds++ completed at Tue Feb 02 21:52:10 -0800 2016

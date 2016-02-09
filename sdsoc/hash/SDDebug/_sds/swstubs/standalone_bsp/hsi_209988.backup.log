@@ -1,0 +1,73 @@
+#-----------------------------------------------------------
+# hsi v2015.4 (64-bit)
+# SW Build 1412921 on Wed Nov 18 09:43:45 MST 2015
+# 
+# Start of session at: Tue Feb 02 21:15:06 2016
+# Process ID: 209988
+# Current directory: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/standalone_bsp
+# Command line: hsi.exe -mode batch -notrace -quiet -source C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/standalone_bsp/create_bsp_post.tcl
+# Log file: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/standalone_bsp/hsi.log
+# Journal file: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/standalone_bsp\hsi.jou
+#-----------------------------------------------------------
+INFO: [Hsi 55-1698] elapsed time for repository loading 0 seconds
+"Running Make include in ps7_cortexa9_0/libsrc/canps_v3_0/src"
+"Running Make include in ps7_cortexa9_0/libsrc/coresightps_dcc_v1_2/src"
+"Running Make include in ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_1/src"
+"Running Make include in ps7_cortexa9_0/libsrc/ddrps_v1_0/src"
+"Running Make include in ps7_cortexa9_0/libsrc/devcfg_v3_3/src"
+"Running Make include in ps7_cortexa9_0/libsrc/dmaps_v2_1/src"
+"Running Make include in ps7_cortexa9_0/libsrc/emacps_v3_1/src"
+"Running Make include in ps7_cortexa9_0/libsrc/gpiops_v3_1/src"
+"Running Make include in ps7_cortexa9_0/libsrc/iicps_v3_0/src"
+"Running Make include in ps7_cortexa9_0/libsrc/qspips_v3_2/src"
+"Running Make include in ps7_cortexa9_0/libsrc/scugic_v3_1/src"
+"Running Make include in ps7_cortexa9_0/libsrc/scutimer_v2_1/src"
+"Running Make include in ps7_cortexa9_0/libsrc/scuwdt_v2_1/src"
+"Running Make include in ps7_cortexa9_0/libsrc/sdps_v2_6/src"
+"Running Make include in ps7_cortexa9_0/libsrc/standalone_v5_3/src"
+"Running Make include in ps7_cortexa9_0/libsrc/uartps_v3_1/src"
+"Running Make include in ps7_cortexa9_0/libsrc/usbps_v2_2/src"
+"Running Make include in ps7_cortexa9_0/libsrc/xadcps_v2_2/src"
+"Running Make include in ps7_cortexa9_0/libsrc/xilffs_v2_2/src"
+"Running Make libs in ps7_cortexa9_0/libsrc/canps_v3_0/src"
+"Compiling canps"
+arm-xilinx-eabi-ar: creating ../../../lib/libxil.a
+"Running Make libs in ps7_cortexa9_0/libsrc/coresightps_dcc_v1_2/src"
+"Compiling coresightps_dcc"
+"Running Make libs in ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_1/src"
+"Compiling cpu_cortexa9"
+"Running Make libs in ps7_cortexa9_0/libsrc/ddrps_v1_0/src"
+"Compiling ddrps"
+"Running Make libs in ps7_cortexa9_0/libsrc/devcfg_v3_3/src"
+"Compiling devcfg"
+"Running Make libs in ps7_cortexa9_0/libsrc/dmaps_v2_1/src"
+"Compiling dmaps"
+"Running Make libs in ps7_cortexa9_0/libsrc/emacps_v3_1/src"
+"Compiling emacps"
+"Running Make libs in ps7_cortexa9_0/libsrc/gpiops_v3_1/src"
+"Compiling gpiops"
+"Running Make libs in ps7_cortexa9_0/libsrc/iicps_v3_0/src"
+"Compiling iicps"
+"Running Make libs in ps7_cortexa9_0/libsrc/qspips_v3_2/src"
+"Compiling qspips"
+"Running Make libs in ps7_cortexa9_0/libsrc/scugic_v3_1/src"
+"Compiling scugic"
+"Running Make libs in ps7_cortexa9_0/libsrc/scutimer_v2_1/src"
+"Compiling scutimer"
+"Running Make libs in ps7_cortexa9_0/libsrc/scuwdt_v2_1/src"
+"Compiling scuwdt"
+"Running Make libs in ps7_cortexa9_0/libsrc/sdps_v2_6/src"
+"Compiling sdps"
+"Running Make libs in ps7_cortexa9_0/libsrc/standalone_v5_3/src"
+"Compiling standalone"
+"Running Make libs in ps7_cortexa9_0/libsrc/uartps_v3_1/src"
+"Compiling uartps"
+"Running Make libs in ps7_cortexa9_0/libsrc/usbps_v2_2/src"
+"Compiling usbps"
+"Running Make libs in ps7_cortexa9_0/libsrc/xadcps_v2_2/src"
+"Compiling xadcps"
+"Running Make libs in ps7_cortexa9_0/libsrc/xilffs_v2_2/src"
+"Compiling XilFFs Library"
+"Creating archive libxilffs.a"
+'Finished building libraries'
+generate_bsp: Time (s): cpu = 00:00:00 ; elapsed = 00:00:33 . Memory (MB): peak = 103.195 ; gain = 0.000

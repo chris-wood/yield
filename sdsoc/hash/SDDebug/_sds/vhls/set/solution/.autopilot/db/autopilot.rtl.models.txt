@@ -1,0 +1,3 @@
+set_gmem_m_axi
+set_assign_val
+set

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xd:data xd:num_accels="2" xd:format="1" xmlns:xd="http://www.xilinx.com/xd">
+  <xd:accel name="get" id="0"/>
+  <xd:accel name="set" id="1"/>
+</xd:data>

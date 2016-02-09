@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xd" xd:functionName="get" xd:componentRef="get" xd:initiationInterval="9" xd:clockPeriod="8.500000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:returnValue xd:interfaceRef="ap_return" xd:busTypeRef="register" xd:dataWidth="32"/>
+  <xd:controlReg xd:name="control" xd:interfaceRef="ap_ctrl" xd:busTypeRef="acc_handshake" xd:type="acc_handshake"/>
+  <xd:arg xd:name="*(data)" xd:originalName="data" xd:direction="inout" xd:interfaceRef="m_axi_gmem" xd:busTypeRef="aximm" xd:dataWidth="32" xd:bufferDirection="in"/>
+  <xd:arg xd:name="data" xd:originalName="data" xd:direction="in" xd:interfaceRef="data" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:aximmInterfaceRef="m_axi_gmem" xd:dataWidth="32"/>
+  <xd:arg xd:name="key" xd:originalName="key" xd:direction="in" xd:interfaceRef="key" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="32"/>
+  <xd:arg xd:name="val" xd:originalName="val" xd:direction="out" xd:interfaceRef="val_r" xd:busTypeRef="register" xd:handshakeRef="ap_vld" xd:dataWidth="32"/>
+  <xd:latencyEstimates xd:best-case="8" xd:worst-case="8" xd:average-case="8"/>
+  <xd:resourceEstimates xd:LUT="738" xd:FF="590" xd:BRAM="0" xd:DSP="0"/>
+</xd:acceleratorMap>

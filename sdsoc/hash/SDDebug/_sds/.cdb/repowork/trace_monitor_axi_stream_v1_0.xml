@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xd:repository xmlns:xd="http://www.xilinx.com/xd" xd:vendor="xilinx.com" xd:library="ip" xd:name="Trace_Monitor_AXI_Stream" xd:version="1.0">
+    <xd:component xd:vendor="xilinx.com" xd:library="ip" xd:name="Trace_Monitor_AXI_Stream" xd:version="1.0">
+        <xd:busInterface xd:name="resetn" xd:busTypeRef="reset" xd:mode="slave" xd:direction="in" xd:clockPort="clk" xd:library="signal" xd:port="resetn"/>
+        <xd:busInterface xd:name="TRACE_OUT" xd:busTypeRef="sdsoc_trace" xd:mode="master"/>
+        <xd:busInterface xd:name="clk" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="clk"/>
+        <xd:busInterface xd:name="MON_AXIS" xd:busTypeRef="axis" xd:mode="slave" xd:direction="in" xd:hasTlast="true" xd:clockRef="clk" xd:resetRef="resetn"/>
+        <xd:busInterface xd:name="S_AXI" xd:busTypeRef="aximm" xd:mode="slave" xd:clockRef="clk" xd:resetRef="resetn"/>
+    </xd:component>
+</xd:repository>

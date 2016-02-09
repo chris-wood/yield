@@ -1,0 +1,246 @@
+(c) Copyright 2012-2015 Xilinx, Inc. All Rights Reserved.
+#-----------------------------------------------------------
+# Tool version  : sds++ 2015.4 SW Build on Dec 14 2015 23:02:57
+# Start time    : Tue Feb 02 21:35:17 -0800 2016
+# Command line  : sds++ -Wall -O0 -g -I../src -c -fmessage-length=0 -MTsrc/main.o -MMD -MP -MFsrc/main.d -MTsrc/main.d -o src/main.o ../src/main.cpp -sds-hw get main.cpp -clkid 2 -sds-end -sds-hw set main.cpp -clkid 2 -sds-end -target-os standalone -sds-pf zc702
+# Log file      : C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/reports/sds_main.log
+# Journal file  : C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/reports/sds_main.jou
+# Report file   : C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/reports/sds_main.rpt
+#-----------------------------------------------------------
+
+INFO: [SDSoC 0-0] Create data motion intermediate representation
+clang_wrapper -target arm-xilinx-eabi -mcpu=cortex-a9 -mfpu=vfp -O0 -g     -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include  -I C:/Xilinx/SDSoC/2015.4/Vivado_HLS/2015.4/include   -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/arm-xilinx-eabi  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/backward   -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include-fixed  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include -I../src -Wall -g -fmessage-length=0 -MMD -MP -D __SDSCC__ -emit-llvm -S C:/Users/sskalick/Xilinx/hash/hash/src/main.cpp -o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/src/main.s
+
+C:\Users\sskalick\Xilinx\hash\hash\SDDebug>C:\Xilinx\SDSoC\2015.4\llvm-clang\win64\llvm\bin\clang.exe -target arm-xilinx-eabi -mcpu=cortex-a9 -mfpu=vfp -O0 -g -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include -I C:/Xilinx/SDSoC/2015.4/Vivado_HLS/2015.4/include -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2 -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/arm-xilinx-eabi -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/backward -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include-fixed -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include -I../src -Wall -g -fmessage-length=0 -MMD -MP -D __SDSCC__ -emit-llvm -S C:/Users/sskalick/Xilinx/hash/hash/src/main.cpp -o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/src/main.s 
+C:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include\stdlib.h:124:44: warning: unknown attribute '__warning__' ignored [-Wunknown-attributes]
+char *  _EXFUN(mktemp,(char *) _ATTRIBUTE ((__warning__ ("the use of `mktemp' is dangerous; use `mkstemp' instead"))));
+                                            ^
+C:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/_ansi.h:105:42: note: expanded from macro '_ATTRIBUTE'
+#define _ATTRIBUTE(attrs) __attribute__ (attrs)
+                                         ^
+C:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/_ansi.h:65:35: note: expanded from macro '_EXFUN'
+#define _EXFUN(name, proto)             name proto
+                                             ^
+C:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include\stdlib.h:131:65: warning: unknown attribute '__warning__' ignored [-Wunknown-attributes]
+char *  _EXFUN(_mktemp_r, (struct _reent *, char *) _ATTRIBUTE ((__warning__ ("the use of `mktemp' is dangerous; use `mkstemp' instead"))));
+                                                                 ^
+C:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/_ansi.h:105:42: note: expanded from macro '_ATTRIBUTE'
+#define _ATTRIBUTE(attrs) __attribute__ (attrs)
+                                         ^
+C:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/_ansi.h:65:35: note: expanded from macro '_EXFUN'
+#define _EXFUN(name, proto)             name proto
+                                             ^
+
+C:\Users\sskalick\Xilinx\hash\hash\SDDebug>exit /b 0 
+INFO: [SDSoC 0-0] Performing accelerator source linting for get
+sdslint -func get C:/Users/sskalick/Xilinx/hash/hash/src/main.cpp -- -c -target arm-xilinx-eabi -mcpu=cortex-a9 -mfpu=vfp -O0 -g -w    -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include  -I C:/Xilinx/SDSoC/2015.4/Vivado_HLS/2015.4/include   -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/arm-xilinx-eabi  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/backward   -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include-fixed  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include -I../src -Wall -g -fmessage-length=0 -MMD -MP -D __SDSCC__
+INFO: [SDSoC 0-0] Performing accelerator source linting for set
+sdslint -func set C:/Users/sskalick/Xilinx/hash/hash/src/main.cpp -- -c -target arm-xilinx-eabi -mcpu=cortex-a9 -mfpu=vfp -O0 -g -w    -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include  -I C:/Xilinx/SDSoC/2015.4/Vivado_HLS/2015.4/include   -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/arm-xilinx-eabi  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/backward   -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include-fixed  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include -I../src -Wall -g -fmessage-length=0 -MMD -MP -D __SDSCC__
+arm-xilinx-eabi-g++ -c C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/main.cpp -o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/main.o
+arm-xilinx-eabi-objcopy --add-section .xdinfo=C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/main.o.xml C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/main.o
+INFO: [SDSoC 0-0] Performing pragma generation
+clang_wrapper -E -target arm-xilinx-eabi -mcpu=cortex-a9 -mfpu=vfp -O0 -g -w    -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include  -I C:/Xilinx/SDSoC/2015.4/Vivado_HLS/2015.4/include   -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/arm-xilinx-eabi  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/backward   -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include-fixed  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include -IC:/Users/sskalick/Xilinx/hash/hash/src -Wall -g -fmessage-length=0 -MMD -MP -D __SDSCC__ -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include -IC:/Users/sskalick/Xilinx/hash/hash/src -D __SDSVHLS__ C:/Users/sskalick/Xilinx/hash/hash/src/main.cpp -o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls/main_pp.cpp
+
+C:\Users\sskalick\Xilinx\hash\hash\SDDebug>C:\Xilinx\SDSoC\2015.4\llvm-clang\win64\llvm\bin\clang.exe -E -target arm-xilinx-eabi -mcpu=cortex-a9 -mfpu=vfp -O0 -g -w -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include -I C:/Xilinx/SDSoC/2015.4/Vivado_HLS/2015.4/include -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2 -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/arm-xilinx-eabi -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/backward -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include-fixed -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include -IC:/Users/sskalick/Xilinx/hash/hash/src -Wall -g -fmessage-length=0 -MMD -MP -D __SDSCC__ -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include -IC:/Users/sskalick/Xilinx/hash/hash/src -D __SDSVHLS__ C:/Users/sskalick/Xilinx/hash/hash/src/main.cpp -o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls/main_pp.cpp 
+
+C:\Users\sskalick\Xilinx\hash\hash\SDDebug>exit /b 0 
+pragma_gen  -func get   -tcl C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls/get.tcl  C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls/main_pp.cpp  --  -c  -target arm-xilinx-eabi -mcpu=cortex-a9 -mfpu=vfp -O0 -g -w    -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include  -I C:/Xilinx/SDSoC/2015.4/Vivado_HLS/2015.4/include   -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/arm-xilinx-eabi  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/backward   -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include-fixed  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include  -D __SDSVHLS__ -IC:/Users/sskalick/Xilinx/hash/hash/src -Wall -O0 -g -fmessage-length=0 -MMD -MP -D __SDSCC__  -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include -IC:/Users/sskalick/Xilinx/hash/hash/src
+INFO: [SDSoC 0-0] Successfully generated tcl script: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls/get.tcl
+INFO: [SDSoC 0-0] Moving function get to Programmable Logic
+C:/Xilinx/SDSoC/2015.4/Vivado_HLS/2015.4/bin/vivado_hls C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls/get_run.tcl
+================================================================
+  Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC
+  Version 2015.4
+  Build 1412921 on Wed Nov 18 09:58:55 AM 2015
+  Copyright (C) 2015 Xilinx Inc. All rights reserved.
+================================================================
+@I [HLS-10] Running 'C:/Xilinx/SDSoC/2015.4/VIVADO~1/2015.4/bin/unwrapped/win64.o/vivado_hls.exe'
+            for user 'sskalick' on host 'xsjsskalick30' (Windows NT_amd64 version 6.1) on Tue Feb 02 21:35:22 -0800 2016
+            in directory 'C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls'
+@I [HLS-10] Creating and opening project 'C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls/get'.
+@I [HLS-10] Adding design file 'C:/Users/sskalick/Xilinx/hash/hash/src/main.cpp' to the project
+@I [HLS-10] Creating and opening solution 'C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls/get/solution'.
+@I [HLS-10] Cleaning up the solution database.
+@I [HLS-10] Setting target device to ' xc7z020clg484-1 '
+@I [SYN-201] Setting up clock 'default' with a period of 8.5ns.
+@I [HLS-10] Analyzing design file 'C:/Users/sskalick/Xilinx/hash/hash/src/main.cpp' ... 
+@I [HLS-10] Validating synthesis directives ...
+@I [HLS-10] Starting code transformations ...
+@I [HLS-10] Checking synthesizability ...
+@I [XFORM-602] Inlining function 'hash' into 'get' (C:/Users/sskalick/Xilinx/hash/hash/src/main.cpp:35) automatically.
+@I [XFORM-602] Inlining function 'assign_val' into 'get' (C:/Users/sskalick/Xilinx/hash/hash/src/main.cpp:36) automatically.
+@I [XFORM-602] Inlining function 'hash' into 'get' (C:/Users/sskalick/Xilinx/hash/hash/src/main.cpp:35) automatically.
+@I [XFORM-602] Inlining function 'assign_val' into 'get' (C:/Users/sskalick/Xilinx/hash/hash/src/main.cpp:36) automatically.
+@I [HLS-111] Elapsed time: 6.685 seconds; current memory usage: 70.6 MB.
+@I [HLS-10] Starting hardware synthesis ...
+@I [HLS-10] Synthesizing 'get' ...
+@W [SYN-107] Renaming port name 'get/val' to 'get/val_r' to avoid the conflict with HDL keywords or other object names.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Scheduling module 'get' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [SCHED-11] Starting scheduling ...
+@I [SCHED-11] Finished scheduling.
+@I [HLS-111] Elapsed time: 0.016 seconds; current memory usage: 71.1 MB.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Exploring micro-architecture for module 'get' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [BIND-100] Starting micro-architecture generation ...
+@I [BIND-101] Performing variable lifetime analysis.
+@I [BIND-101] Exploring resource sharing.
+@I [BIND-101] Binding ...
+@I [BIND-100] Finished micro-architecture generation.
+@I [HLS-111] Elapsed time: 0.047 seconds; current memory usage: 71.2 MB.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Generating RTL for module 'get' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [RTGEN-500] Setting interface mode on port 'get/gmem' to 'm_axi'.
+@I [RTGEN-500] Setting interface mode on port 'get/data' to 'ap_none'.
+@I [RTGEN-500] Setting interface mode on port 'get/key' to 'ap_none'.
+@I [RTGEN-500] Setting interface mode on port 'get/val_r' to 'ap_vld'.
+@I [RTGEN-500] Setting interface mode on function 'get' to 'ap_ctrl_hs'.
+@I [RTGEN-100] Finished creating RTL model for 'get'.
+@I [HLS-111] Elapsed time: 0.047 seconds; current memory usage: 71.1 MB.
+@I [HLS-10] Finished generating all RTL models.
+@I [WSYSC-301] Generating RTL SystemC for 'get'.
+@I [WVHDL-304] Generating RTL VHDL for 'get'.
+@I [WVLOG-307] Generating RTL Verilog for 'get'.
+@I [IMPL-8] Exporting RTL as an IP in IP-XACT.
+
+****** Vivado v2015.4 (64-bit)
+  **** SW Build 1412921 on Wed Nov 18 09:43:45 MST 2015
+  **** IP Build 1412968 on Wed Nov 18 10:19:19 MST 2015
+    ** Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+
+source run_ippack.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/SDSoC/2015.4/Vivado/2015.4/data/ip'.
+INFO: [Common 17-206] Exiting Vivado at Tue Feb 02 21:35:36 2016...
+@I [HLS-112] Total elapsed time: 29.144 seconds; peak memory usage: 71.2 MB.
+xsltproc --output component.xml  C:/Xilinx/SDSoC/2015.4/scripts/xsd/xdFixAximmAddrSpaceProperty.xsl  component.xml
+zip -u xilinx_com_hls_get_1_0.zip component.xml
+updating: component.xml (164 bytes security) (deflated 95%)
+sed -i -e {s/xilinx\.com\/xidane/xilinx\.com\/xd/g} C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls/get/solution/impl/ip/auxiliary.xml
+xsltproc  --output C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/get.hlsmap1.xml  --stringparam P_CLKID 2  --stringparam P_HLS_TYPE hls  C:/Xilinx/SDSoC/2015.4/scripts/xsd/xdHlsmapRenameAttr.xsl  C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/get_auxiliary.xml
+xsltproc  --output C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/get.hlsmap.xml  C:/Xilinx/SDSoC/2015.4/scripts/xsd/xdHlsmapAdapter.xsl  C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/get.hlsmap1.xml
+xsltproc    --output C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/get.fcnmap.xml  C:/Xilinx/SDSoC/2015.4/scripts/xsd/xdHlsmapAxi4.xsl  C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/get.hlsmap.xml
+xsltproc  --output C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/get_if.xml  C:/Xilinx/SDSoC/2015.4/scripts/xsd/xdHlsAdapterComp.xsl  C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/get.fcnmap.xml
+arm-xilinx-eabi-objcopy --add-section .xddata=C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/get.xml C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/main.o
+arm-xilinx-eabi-objcopy --add-section .xdasm=C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/src/main.s C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/main.o
+arm-xilinx-eabi-g++ -E -I../src -Wall -O0 -g -fmessage-length=0 -MMD -MP -D __SDSCC__ -MTC:/Users/sskalick/Xilinx/hash/hash/SDDebug/src/main.o -MFC:/Users/sskalick/Xilinx/hash/hash/SDDebug/src/main.d -MTC:/Users/sskalick/Xilinx/hash/hash/SDDebug/src/main.d   -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include  -I C:/Xilinx/SDSoC/2015.4/Vivado_HLS/2015.4/include C:/Users/sskalick/Xilinx/hash/hash/src/main.cpp -o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.pp/main.ii
+arm-xilinx-eabi-objcopy --add-section .xdpp=C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.pp/main.ii C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/main.o
+arm-xilinx-eabi-objcopy --add-section .xdfcnmap=C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/get.fcnmap.xml C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/main.o
+arm-xilinx-eabi-objcopy --add-section .xdhlscore=C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls/get/solution/impl/ip/xilinx_com_hls_get_1_0.zip C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/main.o
+arm-xilinx-eabi-objcopy --add-section .xdif=C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/get_if.xml C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/main.o
+INFO: [SDSoC 0-0] Performing pragma generation
+clang_wrapper -E -target arm-xilinx-eabi -mcpu=cortex-a9 -mfpu=vfp -O0 -g -w    -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include  -I C:/Xilinx/SDSoC/2015.4/Vivado_HLS/2015.4/include   -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/arm-xilinx-eabi  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/backward   -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include-fixed  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include -IC:/Users/sskalick/Xilinx/hash/hash/src -Wall -g -fmessage-length=0 -MMD -MP -D __SDSCC__ -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include -IC:/Users/sskalick/Xilinx/hash/hash/src -D __SDSVHLS__ C:/Users/sskalick/Xilinx/hash/hash/src/main.cpp -o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls/main_pp.cpp
+
+C:\Users\sskalick\Xilinx\hash\hash\SDDebug>C:\Xilinx\SDSoC\2015.4\llvm-clang\win64\llvm\bin\clang.exe -E -target arm-xilinx-eabi -mcpu=cortex-a9 -mfpu=vfp -O0 -g -w -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include -I C:/Xilinx/SDSoC/2015.4/Vivado_HLS/2015.4/include -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2 -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/arm-xilinx-eabi -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/backward -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include-fixed -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include -IC:/Users/sskalick/Xilinx/hash/hash/src -Wall -g -fmessage-length=0 -MMD -MP -D __SDSCC__ -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include -IC:/Users/sskalick/Xilinx/hash/hash/src -D __SDSVHLS__ C:/Users/sskalick/Xilinx/hash/hash/src/main.cpp -o C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls/main_pp.cpp 
+
+C:\Users\sskalick\Xilinx\hash\hash\SDDebug>exit /b 0 
+pragma_gen  -func set   -tcl C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls/set.tcl  C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls/main_pp.cpp  --  -c  -target arm-xilinx-eabi -mcpu=cortex-a9 -mfpu=vfp -O0 -g -w    -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include  -I C:/Xilinx/SDSoC/2015.4/Vivado_HLS/2015.4/include   -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/arm-xilinx-eabi  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include/c++/4.9.2/backward   -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/lib/gcc/arm-xilinx-eabi/4.9.2/include-fixed  -IC:/Xilinx/SDSoC/2015.4/SDK/2015.4/gnu/arm/nt/arm-xilinx-eabi/include  -D __SDSVHLS__ -IC:/Users/sskalick/Xilinx/hash/hash/src -Wall -O0 -g -fmessage-length=0 -MMD -MP -D __SDSCC__  -I C:/Xilinx/SDSoC/2015.4/arm-xilinx-eabi/include -IC:/Users/sskalick/Xilinx/hash/hash/src
+INFO: [SDSoC 0-0] Successfully generated tcl script: C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls/set.tcl
+INFO: [SDSoC 0-0] Moving function set to Programmable Logic
+C:/Xilinx/SDSoC/2015.4/Vivado_HLS/2015.4/bin/vivado_hls C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls/set_run.tcl
+================================================================
+  Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC
+  Version 2015.4
+  Build 1412921 on Wed Nov 18 09:58:55 AM 2015
+  Copyright (C) 2015 Xilinx Inc. All rights reserved.
+================================================================
+@I [HLS-10] Running 'C:/Xilinx/SDSoC/2015.4/VIVADO~1/2015.4/bin/unwrapped/win64.o/vivado_hls.exe'
+            for user 'sskalick' on host 'xsjsskalick30' (Windows NT_amd64 version 6.1) on Tue Feb 02 21:35:53 -0800 2016
+            in directory 'C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls'
+@I [HLS-10] Creating and opening project 'C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls/set'.
+@I [HLS-10] Adding design file 'C:/Users/sskalick/Xilinx/hash/hash/src/main.cpp' to the project
+@I [HLS-10] Creating and opening solution 'C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls/set/solution'.
+@I [HLS-10] Cleaning up the solution database.
+@I [HLS-10] Setting target device to ' xc7z020clg484-1 '
+@I [SYN-201] Setting up clock 'default' with a period of 8.5ns.
+@I [HLS-10] Analyzing design file 'C:/Users/sskalick/Xilinx/hash/hash/src/main.cpp' ... 
+@I [HLS-10] Validating synthesis directives ...
+@I [HLS-10] Starting code transformations ...
+@I [HLS-10] Checking synthesizability ...
+@I [XFORM-602] Inlining function 'hash' into 'set' (C:/Users/sskalick/Xilinx/hash/hash/src/main.cpp:44) automatically.
+@I [XFORM-602] Inlining function 'hash' into 'set' (C:/Users/sskalick/Xilinx/hash/hash/src/main.cpp:44) automatically.
+@I [HLS-111] Elapsed time: 6.714 seconds; current memory usage: 79.7 MB.
+@I [HLS-10] Starting hardware synthesis ...
+@I [HLS-10] Synthesizing 'set' ...
+@W [SYN-107] Renaming port name 'set/val' to 'set/val_r' to avoid the conflict with HDL keywords or other object names.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Scheduling module 'set_assign_val' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [SCHED-11] Starting scheduling ...
+@I [SCHED-11] Finished scheduling.
+@I [HLS-111] Elapsed time: 0.015 seconds; current memory usage: 80.6 MB.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Exploring micro-architecture for module 'set_assign_val' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [BIND-100] Starting micro-architecture generation ...
+@I [BIND-101] Performing variable lifetime analysis.
+@I [BIND-101] Exploring resource sharing.
+@I [BIND-101] Binding ...
+@I [BIND-100] Finished micro-architecture generation.
+@I [HLS-111] Elapsed time: 0.031 seconds; current memory usage: 80.6 MB.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Scheduling module 'set' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [SCHED-11] Starting scheduling ...
+@W [SCHED-71] Latency directive discarded for region setsince region contains function calls with variable latency.
+@I [SCHED-11] Finished scheduling.
+@I [HLS-111] Elapsed time: 0.032 seconds; current memory usage: 80.5 MB.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Exploring micro-architecture for module 'set' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [BIND-100] Starting micro-architecture generation ...
+@I [BIND-101] Performing variable lifetime analysis.
+@I [BIND-101] Exploring resource sharing.
+@I [BIND-101] Binding ...
+@I [BIND-100] Finished micro-architecture generation.
+@I [HLS-111] Elapsed time: 0.015 seconds; current memory usage: 80.5 MB.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Generating RTL for module 'set_assign_val' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [RTGEN-100] Finished creating RTL model for 'set_assign_val'.
+@I [HLS-111] Elapsed time: 0.047 seconds; current memory usage: 80.5 MB.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Generating RTL for module 'set' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [RTGEN-500] Setting interface mode on port 'set/gmem' to 'm_axi'.
+@I [RTGEN-500] Setting interface mode on port 'set/data' to 'ap_none'.
+@I [RTGEN-500] Setting interface mode on port 'set/key' to 'ap_none'.
+@I [RTGEN-500] Setting interface mode on port 'set/val_r' to 'ap_none'.
+@I [RTGEN-500] Setting interface mode on function 'set' to 'ap_ctrl_hs'.
+@I [RTGEN-100] Finished creating RTL model for 'set'.
+@I [HLS-111] Elapsed time: 0.109 seconds; current memory usage: 80.6 MB.
+@I [HLS-10] Finished generating all RTL models.
+@I [WSYSC-301] Generating RTL SystemC for 'set'.
+@I [WVHDL-304] Generating RTL VHDL for 'set'.
+@I [WVLOG-307] Generating RTL Verilog for 'set'.
+@I [IMPL-8] Exporting RTL as an IP in IP-XACT.
+
+****** Vivado v2015.4 (64-bit)
+  **** SW Build 1412921 on Wed Nov 18 09:43:45 MST 2015
+  **** IP Build 1412968 on Wed Nov 18 10:19:19 MST 2015
+    ** Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+
+source run_ippack.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/SDSoC/2015.4/Vivado/2015.4/data/ip'.
+INFO: [Common 17-206] Exiting Vivado at Tue Feb 02 21:36:07 2016...
+@I [HLS-112] Total elapsed time: 29.412 seconds; peak memory usage: 80.6 MB.
+xsltproc --output component.xml  C:/Xilinx/SDSoC/2015.4/scripts/xsd/xdFixAximmAddrSpaceProperty.xsl  component.xml
+zip -u xilinx_com_hls_set_1_0.zip component.xml
+updating: component.xml (164 bytes security) (deflated 95%)
+sed -i -e {s/xilinx\.com\/xidane/xilinx\.com\/xd/g} C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls/set/solution/impl/ip/auxiliary.xml
+xsltproc  --output C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/set.hlsmap1.xml  --stringparam P_CLKID 2  --stringparam P_HLS_TYPE hls  C:/Xilinx/SDSoC/2015.4/scripts/xsd/xdHlsmapRenameAttr.xsl  C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/set_auxiliary.xml
+xsltproc  --output C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/set.hlsmap.xml  C:/Xilinx/SDSoC/2015.4/scripts/xsd/xdHlsmapAdapter.xsl  C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/set.hlsmap1.xml
+xsltproc    --output C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/set.fcnmap.xml  C:/Xilinx/SDSoC/2015.4/scripts/xsd/xdHlsmapAxi4.xsl  C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/set.hlsmap.xml
+xsltproc  --output C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/set_if.xml  C:/Xilinx/SDSoC/2015.4/scripts/xsd/xdHlsAdapterComp.xsl  C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/set.fcnmap.xml
+arm-xilinx-eabi-objcopy --add-section .xddata1=C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/set.xml C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/main.o
+arm-xilinx-eabi-objcopy --add-section .xdfcnmap1=C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/set.fcnmap.xml C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/main.o
+arm-xilinx-eabi-objcopy --add-section .xdhlscore1=C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/vhls/set/solution/impl/ip/xilinx_com_hls_set_1_0.zip C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/main.o
+arm-xilinx-eabi-objcopy --add-section .xdif1=C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/.llvm/set_if.xml C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/swstubs/main.o
+sds++ log file saved as C:/Users/sskalick/Xilinx/hash/hash/SDDebug/_sds/reports/sds_main.log
+sds++ completed at Tue Feb 02 21:36:22 -0800 2016
