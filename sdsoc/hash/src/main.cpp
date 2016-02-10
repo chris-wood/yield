@@ -41,7 +41,7 @@ int get(val_type *data, key_type key, val_type &val) {
 #pragma SDS data zero_copy(data)
 int set(val_type *data, key_type key, val_type val) {
 	hash_type h;
-	hash(key,h);
+	hash(key, h);
 	assign_val(data[h], val);
 
 	return 0;
@@ -50,24 +50,23 @@ int set(val_type *data, key_type key, val_type val) {
 /******************************************************/
 int main() {
 
-	//initialize map
-	val_type *data = (val_type *)sds_alloc(10*sizeof(val_type));
-	memset(data,0,10*sizeof(val_type));
+	// Initialize map
+	val_type *data = (val_type *) sds_alloc(10 * sizeof(val_type));
+	memset(data, 0, 10 * sizeof(val_type));
 
 	val_type err;
-	get(data,0,err);
-	printf("err: %08X\n",err);
+	get(data, 0, err);
+	printf("err: %08X\n", err);
 
-	for(unsigned i=0; i<10; i++) {
-		set(data,i,i+1);
+	for (unsigned i = 0; i < 10; i++) {
+		set(data, i, i+1);
 	}
 
-	for(unsigned i=0; i<10; i++) {
+	for (unsigned i = 0; i < 10; i++) {
 		val_type val;
-		get(data,i,val);
-		printf("k: %d  v: %d\n",i,val);
+		get(data, i, val);
+		printf("k: %d  v: %d\n", i, val);
 	}
 
 	sds_free(data);
 }
-
