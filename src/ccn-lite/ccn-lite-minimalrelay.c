@@ -50,8 +50,6 @@ int inet_aton(const char *cp, struct in_addr *inp);
 
 // ----------------------------------------------------------------------
 
-#undef USE_NFN
-
 #define USE_DUP_CHECK
 #define USE_IPV4
 #define USE_SUITE_NDNTLV
@@ -87,10 +85,10 @@ int inet_aton(const char *cp, struct in_addr *inp);
 
 #define CONSTSTR(s)                     s
 
-#define ccnl_malloc(s)                  malloc(s)
-#define ccnl_calloc(n,s)                calloc(n,s)
-#define ccnl_realloc(p,s)               realloc(p,s)
-#define ccnl_free(p)                    free(p)
+#define ccnl_malloc(s)                  sds_malloc(s)
+#define ccnl_calloc(n,s)                sds_calloc(n,s)
+#define ccnl_realloc(p,s)               sds_realloc(p,s)
+#define ccnl_free(p)                    sds_free(p)
 
 #define free_2ptr_list(a,b)     ccnl_free(a), ccnl_free(b)
 #define free_3ptr_list(a,b,c)   ccnl_free(a), ccnl_free(b), ccnl_free(c)
@@ -423,11 +421,9 @@ usage:
     i->mtu = NDN_DEFAULT_MTU;
     i->fwdalli = 1;
     i->sock = ccnl_open_udpdev(udpport);
-    if (i->sock < 0)
-        exit(-1);
+    if (i->sock < 0) exit(-1);
     theRelay.ifcount++;
-    fprintf(stderr, "NDN minimalrelay started, listening on UDP port %d\n",
-            udpport);
+    fprintf(stderr, "NDN minimalrelay started, listening on UDP port %d\n", udpport);
 
     inet_aton(strtok(defaultgw,"/"), &sun.ip4.sin_addr);
     sun.ip4.sin_port = atoi(strtok(NULL, ""));

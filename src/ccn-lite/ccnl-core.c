@@ -969,11 +969,10 @@ ccnl_nonce_isDup(struct ccnl_relay_s *relay, struct ccnl_pkt_s *pkt)
 struct ccnl_suite_s ccnl_core_suites[CCNL_SUITE_LAST];
 
 void
-ccnl_core_RX(struct ccnl_relay_s *relay, int ifndx, unsigned char *data,
-             int datalen, struct sockaddr *sa, int addrlen)
+ccnl_core_RX(struct ccnl_relay_s *relay, int ifndx, unsigned char *data, int datalen)
 {
     unsigned char *base = data;
-    struct ccnl_face_s *from;
+    // struct ccnl_face_s *from;
     int enc, suite = -1, skip;
     dispatchFct dispatch;
 
@@ -987,14 +986,14 @@ ccnl_core_RX(struct ccnl_relay_s *relay, int ifndx, unsigned char *data,
         relay->ifs[ifndx].rx_cnt++;
 #endif
 
-    from = ccnl_get_face_or_create(relay, ifndx, sa, addrlen);
-    if (!from) {
-        DEBUGMSG_CORE(DEBUG, "  no face\n");
-        return;
-    } else {
-        DEBUGMSG_CORE(DEBUG, "  face %d, peer=%s\n", from->faceid,
-                    ccnl_addr2ascii(&from->peer));
-    }
+    // from = ccnl_get_face_or_create(relay, ifndx, sa, addrlen);
+    // if (!from) {
+    //     DEBUGMSG_CORE(DEBUG, "  no face\n");
+    //     return;
+    // } else {
+    //     DEBUGMSG_CORE(DEBUG, "  face %d, peer=%s\n", from->faceid,
+    //                 ccnl_addr2ascii(&from->peer));
+    // }
 
     // loop through all packets in the received frame (UDP, Ethernet etc)
     while (datalen > 0) {
@@ -1016,7 +1015,7 @@ ccnl_core_RX(struct ccnl_relay_s *relay, int ifndx, unsigned char *data,
                      "for suite %s does not exist.\n", ccnl_suite2str(suite));
             return;
         }
-        if (dispatch(relay, from, &data, &datalen) < 0)
+        if (dispatch(relay, &data, &datalen) < 0)
             break;
         if (datalen > 0) {
             DEBUGMSG_CORE(WARNING, "ccnl_core_RX: %d bytes left\n", datalen);
@@ -1029,34 +1028,8 @@ ccnl_core_RX(struct ccnl_relay_s *relay, int ifndx, unsigned char *data,
 void
 ccnl_core_init(void)
 {
-#ifdef USE_SUITE_CCNB
-    ccnl_core_suites[CCNL_SUITE_CCNB].RX         = ccnl_ccnb_forwarder;
-    ccnl_core_suites[CCNL_SUITE_CCNB].cMatch     = ccnl_ccnb_cMatch;
-#endif
-#ifdef USE_SUITE_CCNTLV
-    ccnl_core_suites[CCNL_SUITE_CCNTLV].RX       = ccnl_ccntlv_forwarder;
-    ccnl_core_suites[CCNL_SUITE_CCNTLV].cMatch   = ccnl_ccntlv_cMatch;
-#endif
-#ifdef USE_SUITE_CISTLV
-    ccnl_core_suites[CCNL_SUITE_CISTLV].RX       = ccnl_cistlv_forwarder;
-    ccnl_core_suites[CCNL_SUITE_CISTLV].cMatch   = ccnl_cistlv_cMatch;
-#endif
-#ifdef USE_SUITE_IOTTLV
-    ccnl_core_suites[CCNL_SUITE_IOTTLV].RX       = ccnl_iottlv_forwarder;
-    ccnl_core_suites[CCNL_SUITE_IOTTLV].cMatch   = ccnl_iottlv_cMatch;
-#endif
-#ifdef USE_SUITE_LOCALRPC
-    ccnl_core_suites[CCNL_SUITE_LOCALRPC].RX     = ccnl_localrpc_exec;
-    //    ccnl_core_suites[CCNL_SUITE_LOCALRPC].cMatch = ccnl_localrpc_cMatch;
-#endif
-#ifdef USE_SUITE_NDNTLV
-    ccnl_core_suites[CCNL_SUITE_NDNTLV].RX       = ccnl_ndntlv_forwarder;
-    ccnl_core_suites[CCNL_SUITE_NDNTLV].cMatch   = ccnl_ndntlv_cMatch;
-#endif
-
-#ifdef USE_NFN
-    ZAM_init();
-#endif
+    ccnl_core_suites[CCNL_SUITE_CCNTLV].RX     = ccnl_ccntlv_forwarder;
+    ccnl_core_suites[CCNL_SUITE_CCNTLV].cMatch = ccnl_ccntlv_cMatch;
 }
 
 struct ccnl_buf_s *bufCleanUpList;
