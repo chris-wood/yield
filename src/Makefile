@@ -1,2 +1,2 @@
 all:
-	gcc -o repo repo.c buffer.c
+	gcc -o yield yield.c repo.c parser.c
