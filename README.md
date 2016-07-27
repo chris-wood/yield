@@ -1,5 +1,23 @@
 # yield
 
+# Motivational questions
+
+- Why run over Ethernet instead of over IP? 
+    - Drop in packet cache on the line?
+
+# Questions
+
+- What kind of speedup can we get with an FPGA CS over a software CS?
+    - We would need to implement a high-performance CS in DPDK or netmap
+- What metrics are we actually interested in?
+    - Throughput
+    - "Lookup" latency (time from request in to response out)
+- Can we speed up fragmentation?
+    - We would need to either pre-fragment content to the MTU size (preferred) or perform fragmentation on the fly (not preferred)
+- Can we speed up encryption?  
+    - Interest names would contain the encryption info, e.g., session ID, sequence number, etc.
+    - The KVS would use that to lookup the encryption key and then perform encryption
+
 # References
 
 - http://cial.csie.ncku.edu.tw/presentation/group_pdf/(FPL%202013)%20A%20high-performance%20IPV6%20lookup%20engine%20on%20FPGA.pdf
