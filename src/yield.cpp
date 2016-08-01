@@ -26,6 +26,13 @@ char myIP[4] = {192,168,1,11};
  */
 char myMAC[6] = {0x00, 0x0A, 0x35, 0x01, 0x02, 0x03};
 
+typedef enum {
+    EtherType_IPv4 = 0x8000,
+    EtherType_ARP = 0x0806,
+    EtherType_CCNx = 0x1337,
+} EtherType;
+
+typedef (void (*)(unsigned char*, unsigned)) ProtocolHandler;
 
 // don't hate ~~
 // #include "ccn-lite/ccn-lite-minimalrelay.c"
@@ -34,7 +41,7 @@ char myMAC[6] = {0x00, 0x0A, 0x35, 0x01, 0x02, 0x03};
 #define CLEAR(X, Y) (memset(X, 0, Y * sizeof(unsigned)))
 
 static int
-_processPacket(PacketRepo *repo, int length, uint8_t inputBuffer[MTU_SIZE], uint8_t outputBuffer[MTU_SIZE])
+_protocolHandler_CCNx_Process(PacketRepo *repo, int length, uint8_t inputBuffer[MTU_SIZE], uint8_t outputBuffer[MTU_SIZE])
 {
     printf("Packet size is: %d\n\r", length);
     int i;
@@ -79,6 +86,16 @@ unsigned short checksum(unsigned short *buf, unsigned size) {
  * len - length of the packet in 32-bit words
  */
 void ping_handler(unsigned char *packet, unsigned len) {
+    // Check protocol (ICMP)
+    if (!(packet[23] == 1)) {
+        return;
+    }
+
+    // Check type (echo - ping request)
+    if (!(packet[34] == 8)) {
+        return;
+    }
+
 	unsigned *outbuf = (unsigned*) sds_alloc(BUF_SIZE * sizeof(unsigned));
 	unsigned char *outpacket = (unsigned char *)outbuf;
 
@@ -127,52 +144,78 @@ void ping_handler(unsigned char *packet, unsigned len) {
 	sds_free(outbuf);
 }
 
+static void
+ccnx_handler(unsigned char *packet, unsigned length)
+{
+    // Process the packet
+    length = _protocolHandler_CCNx_Process(repo, length, inputBuffer, outputBuffer);
+    if (length > 0 && length <= MTU_SIZE) {
+        // Write the result
+        write_data_wrapper((unsigned*)outputBuffer, length);
+        CLEAR(outputBuffer, MTU_SIZE);
+    }
+}
+
 /*
  * ARP protocol responder
  * packet - pointer to packet data
  * len - length of the packet in 32-bit words
  */
-void arp_handler(unsigned char *packet, unsigned len) {
+static void 
+arp_handler(unsigned char *packet, unsigned len) 
+{
+    // Verify that this is a request
+    if (!(packet[20] == 0 && packet[21] == 1)) {
+        return;
+    }
+
+    // Verify that the target IP matches our IP
+    if (!(packet[38] == myIP[0] && packet[39] == myIP[1] && packet[40] == myIP[2] && packet[41] == myIP[3])) {
+        return;
+    }
+
+    // Generate and return a response
 	unsigned *outbuf = (unsigned*) sds_alloc(BUF_SIZE * sizeof(unsigned));
 	unsigned char *outpacket = (unsigned char *)outbuf;
 
-	//copy packet
+	// Copy packet
 	memcpy(outbuf,packet,sizeof(unsigned)*len);
 
-	//response packet
+	// Response packet
 	outpacket[21] = 2; //opcode: response
-	//destMAC = srcMAC
+
+    // destMAC = srcMAC
 	outpacket[0] = packet[6];
 	outpacket[1] = packet[7];
 	outpacket[2] = packet[8];
 	outpacket[3] = packet[9];
 	outpacket[4] = packet[10];
 	outpacket[5] = packet[11];
-	//targetMAC = srcMAC
+	// targetMAC = srcMAC
 	outpacket[32] = packet[6];
 	outpacket[33] = packet[7];
 	outpacket[34] = packet[8];
 	outpacket[35] = packet[9];
 	outpacket[36] = packet[10];
 	outpacket[37] = packet[11];
-	//destIP = srcIP
+	// destIP = srcIP
 	outpacket[38] = packet[28];
 	outpacket[39] = packet[29];
 	outpacket[40] = packet[30];
 	outpacket[41] = packet[31];
-	//srcIP = myIP
+	// srcIP = myIP
 	outpacket[28] = myIP[0];
 	outpacket[29] = myIP[1];
 	outpacket[30] = myIP[2];
 	outpacket[31] = myIP[3];
-	//srcMAC = myMAC
+	// srcMAC = myMAC
 	outpacket[6] = myMAC[5];
 	outpacket[7] = myMAC[4];
 	outpacket[8] = myMAC[3];
 	outpacket[9] = myMAC[2];
 	outpacket[10] = myMAC[1];
 	outpacket[11] = myMAC[0];
-	//senderMAC = myMAC
+	// senderMAC = myMAC
 	outpacket[22] = myMAC[5];
 	outpacket[23] = myMAC[4];
 	outpacket[24] = myMAC[3];
@@ -180,7 +223,7 @@ void arp_handler(unsigned char *packet, unsigned len) {
 	outpacket[26] = myMAC[1];
 	outpacket[27] = myMAC[0];
 
-	//send packet
+	// send packet
 	write_data_wrapper(outbuf,len);
 	sds_free(outbuf);
 }
@@ -197,37 +240,47 @@ void print_packet(unsigned *buf, unsigned len) {
 	}
 }
 
+static EtherType
+_packetHandler_GetEtherType(unsigned char *packet, unsigned length)
+{
+    uint16 word = ((uint16_t) packet[12] << 8) | ((uint16_t) packet[13]);
+    return (EtherType) word;
+}
+
+static ProtocolHandler
+_packet_GetHandler(unsigned char *packet, unsigned length)
+{
+    EtherType etherType = _packetHandler_GetEtherType(packet, length);
+    switch (etherType) {
+        case EtherType_IPv4:
+            return ip_handler;
+        case EtherType_ARP:
+            return arp_handler;
+        case EtherType_CCNx:
+            return ccnx_handler;
+        default:
+            return NULL;
+    }
+}
+
 /*
  * Read a packet and figure out what to do with it
  */
-void packet_handler(unsigned char *packet, unsigned len) {
-	//check packet type (ARP)
-	if(packet[12] == 8 && packet[13] == 6) {
-		//check opcode (Request)
-		if(packet[20] == 0 && packet[21] == 1) {
-			//check IP
-			if(packet[38] == myIP[0] && packet[39] == myIP[1] &&
-					packet[40] == myIP[2] && packet[41] == myIP[3]) {
-				arp_handler(packet,len);
-			}
-		}
-	}
-	//check packet type (IP)
-	else if(packet[12] == 8 && packet[13] == 0) {
-		//check protocol (ICMP)
-		if(packet[23] == 1) {
-			//check type (echo - ping request)
-			if(packet[34] == 8) {
-				ping_handler(packet,len);
-			}
-		}
-	}
+static void 
+packet_handler(unsigned char *packet, unsigned length) 
+{
+    PacketHandler handler = _packet_GetHandler(packet, length);
+    if (handler != NULL) {
+        handler(packet, NULL);
+    }
+
+
 	/*
 	 * Chris, add your check here and then call this
 	 */
 	//if(chris's checks) {
 //	// Process the packet
-//	        length = _processPacket(repo, length, inputBuffer, outputBuffer);
+//	        length = _protocolHandler_CCNx_Process(repo, length, inputBuffer, outputBuffer);
 //	        if (length > 0 && length <= MTU_SIZE) {
 //
 //	            // Write the result
