@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdint.h>
 
 #include "parser.h"
 
@@ -38,7 +39,7 @@ _readName(uint8_t *buffer, size_t length)
 {
     size_t len = _getNameLength(buffer, length);
     Buffer *b = (Buffer *) malloc(sizeof(Buffer));
-    b->bytes = malloc(len);
+    b->bytes = (uint8_t*) malloc(len);
     b->length = len;
     memcpy(b->bytes, buffer + _getNameIndex(buffer, length), len);
     return b;
@@ -49,7 +50,7 @@ _readContentObjectHash(uint8_t *buffer, size_t length)
 {
     size_t len = _getContentHashLength(buffer, length);
     Buffer *b = (Buffer *) malloc(sizeof(Buffer));
-    b->bytes = malloc(len);
+    b->bytes = (uint8_t*) malloc(len);
     b->length = len;
     memcpy(b->bytes, buffer + _getContentHashIndex(buffer, length), len);
     return b;

@@ -36,13 +36,14 @@ _testParsePacket()
         uint16_t len = ((uint16_t)(header[2]) << 8) | (uint16_t)(header[3]);
 
         // read the packet into a Buffer
-        Buffer *pktBuffer = malloc(sizeof(Buffer));
-        pktBuffer->bytes = malloc(len);
+        Buffer *pktBuffer = (Buffer*) malloc(sizeof(Buffer));
+        pktBuffer->bytes = (uint8_t*) malloc(len);
         pktBuffer->length = len;
         int numRead = fread(pktBuffer->bytes, 1, len, fp);
 
         Buffer *name = _readName(pktBuffer->bytes, pktBuffer->length);
-        for (size_t i = 0; i < name->length; i++) {
+        size_t i;
+        for (i = 0; i < name->length; i++) {
             putc(name->bytes[i], stdout);
         }
     }
@@ -66,7 +67,8 @@ _loadContent(PacketRepo *repo, Buffer *name, Buffer *hash)
 static void
 _displayBuffer(Buffer *Buffer)
 {
-    for (int i = 0; i < Buffer->length; i++) {
+	int i;
+    for (i = 0; i < Buffer->length; i++) {
         putc(Buffer->bytes[i], stdout);
     }
 }
@@ -77,6 +79,7 @@ _loadDataFromFile(char *fname)
     FILE *fp = fopen(fname, "rb");
 
     if (fp == NULL) {
+    	printf("Couldnt open file: %s\n\r",fname);
         return 0;
     }
 
@@ -92,8 +95,8 @@ _loadDataFromFile(char *fname)
         }
 
         uint16_t len = ((uint16_t)(header[2]) << 8) | (uint16_t)(header[3]);
-        Buffer *pktBuffer = malloc(sizeof(Buffer));
-        pktBuffer->bytes = malloc(len); // allocate packet header room
+        Buffer *pktBuffer = (Buffer*) malloc(sizeof(Buffer));
+        pktBuffer->bytes = (uint8_t*) malloc(len); // allocate packet header room
         pktBuffer->length = len;
         memcpy(pktBuffer->bytes, header, 8); // move the header into the packet
         int numRead = fread(pktBuffer->bytes + 8, 1, len - 8, fp);
@@ -103,7 +106,7 @@ _loadDataFromFile(char *fname)
         Buffer *hash = _readContentObjectHash(pktBuffer->bytes + 8, len - 8);
 
         KeyValue *kv = (KeyValue *) malloc(sizeof(KeyValue));
-        kv->key = malloc(name->length);
+        kv->key = (uint8_t*) malloc(name->length);
         memcpy(kv->key, name->bytes, name->length);
         kv->keylen = name->length;
         kv->value = pktBuffer;
