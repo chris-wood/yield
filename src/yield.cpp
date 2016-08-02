@@ -12,7 +12,6 @@
 #include "ethernet_if.h"
 #include "ethernet_wrap.h"
 
-
 /*
  * User configurable IP Address of the board
  */
@@ -32,20 +31,20 @@ typedef enum {
     EtherType_CCNx = 0x0801,
 } EtherType;
 
-typedef (void (*)(unsigned char*, unsigned)) ProtocolHandler;
-
-// don't hate ~~
-// #include "ccn-lite/ccn-lite-minimalrelay.c"
+// Avoid the awful function pointer mess
+typedef (void (*)(void *, unsigned char*, unsigned)) ProtocolHandler;
 
 #define MTU_SIZE 1500
 #define CLEAR(X, Y) (memset(X, 0, Y * sizeof(unsigned)))
+
+// Statically allocated output buffer
+unsigned char outputBuffer[MTU_SIZE];
 
 static int
 _protocolHandler_CCNx_Process(PacketRepo *repo, int length, uint8_t inputBuffer[MTU_SIZE], uint8_t outputBuffer[MTU_SIZE])
 {
     printf("Packet size is: %d\n\r", length);
-    int i;
-    for (i = 0; i < length; i++) {
+    for (int i = 0; i < length; i++) {
         printf("packet data [%d] : %02x\n\r", i, inputBuffer[i]);
     }
 
@@ -64,15 +63,17 @@ _protocolHandler_CCNx_Process(PacketRepo *repo, int length, uint8_t inputBuffer[
  */
 unsigned short checksum(unsigned short *buf, unsigned size) {
 	unsigned long checksum=0;
-	while(size >1) {
+	while (size > 1) {
 		unsigned short swap = *buf++;
 		swap = (swap >> 8) | ((swap & 0xFF) << 8);
 		checksum += swap;
-		size -=sizeof(unsigned short);
+		size -= sizeof(unsigned short);
 	}
-	if(size) {
-		checksum += *(unsigned char*)buf;
+
+	if (size) {
+		checksum += *(unsigned char*) buf;
 	}
+
 	checksum = (checksum >> 16) + (checksum & 0xffff);
 	checksum += (checksum >>16);
 	checksum = ~checksum;
@@ -85,7 +86,7 @@ unsigned short checksum(unsigned short *buf, unsigned size) {
  * packet - pointer to packet data
  * len - length of the packet in 32-bit words
  */
-void ping_handler(unsigned char *packet, unsigned len) {
+void ping_handler(void *state, unsigned char *packet, unsigned len) {
     // Check protocol (ICMP)
     if (!(packet[23] == 1)) {
         return;
@@ -144,17 +145,6 @@ void ping_handler(unsigned char *packet, unsigned len) {
 	sds_free(outbuf);
 }
 
-static void
-ccnx_handler(unsigned char *packet, unsigned length)
-{
-    // Process the packet
-    length = _protocolHandler_CCNx_Process(repo, length, inputBuffer, outputBuffer);
-    if (length > 0 && length <= MTU_SIZE) {
-        // Write the result
-        write_data_wrapper((unsigned*)outputBuffer, length);
-        CLEAR(outputBuffer, MTU_SIZE);
-    }
-}
 
 /*
  * ARP protocol responder
@@ -162,7 +152,7 @@ ccnx_handler(unsigned char *packet, unsigned length)
  * len - length of the packet in 32-bit words
  */
 static void 
-arp_handler(unsigned char *packet, unsigned len) 
+arp_handler(void *state, unsigned char *packet, unsigned len) 
 {
     // Verify that this is a request
     if (!(packet[20] == 0 && packet[21] == 1)) {
@@ -228,6 +218,21 @@ arp_handler(unsigned char *packet, unsigned len)
 	sds_free(outbuf);
 }
 
+static void
+ccnx_handler(void *state, unsigned char *inputBuffer, unsigned length)
+{
+    // Extract the state
+    PacketRepo *repo = (PacketRepo *) state;
+
+    // Process the packet
+    length = _protocolHandler_CCNx_Process(repo, length, inputBuffer, outputBuffer);
+    if (length > 0 && length <= MTU_SIZE) {
+        // Write the result
+        write_data_wrapper((unsigned*) outputBuffer, length / 4);
+        CLEAR(outputBuffer, MTU_SIZE);
+    }
+}
+
 /*
  * Print out the packet
  * buf - pointer to packet data
@@ -267,11 +272,11 @@ _packet_GetProtocolHandler(unsigned char *packet, unsigned length)
  * Read a packet and figure out what to do with it
  */
 static void 
-packet_handler(unsigned char *packet, unsigned length) 
+packet_handler(void *state, unsigned char *packet, unsigned length) 
 {
     ProtocolHandler handler = _packet_GetProtocolHandler(packet, length);
     if (handler != NULL) {
-        handler(packet, NULL);
+        handler(state, packet, NULL);
     }
 }
 
@@ -288,7 +293,7 @@ _serveNIC(PacketRepo *repo)
         CLEAR(outputBuffer, MTU_SIZE);
 
         //handle the packet if necessary
-		packet_handler((unsigned char *)inbuf,inlen);
+		packet_handler((void *) repo, (unsigned char *)inbuf, inlen);
     }
 
     sds_free(inputBuffer);
