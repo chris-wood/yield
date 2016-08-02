@@ -29,7 +29,7 @@ char myMAC[6] = {0x00, 0x0A, 0x35, 0x01, 0x02, 0x03};
 typedef enum {
     EtherType_IPv4 = 0x8000,
     EtherType_ARP = 0x0806,
-    EtherType_CCNx = 0x1337,
+    EtherType_CCNx = 0x0801,
 } EtherType;
 
 typedef (void (*)(unsigned char*, unsigned)) ProtocolHandler;
@@ -248,7 +248,7 @@ _packetHandler_GetEtherType(unsigned char *packet, unsigned length)
 }
 
 static ProtocolHandler
-_packet_GetHandler(unsigned char *packet, unsigned length)
+_packet_GetProtocolHandler(unsigned char *packet, unsigned length)
 {
     EtherType etherType = _packetHandler_GetEtherType(packet, length);
     switch (etherType) {
@@ -269,26 +269,10 @@ _packet_GetHandler(unsigned char *packet, unsigned length)
 static void 
 packet_handler(unsigned char *packet, unsigned length) 
 {
-    PacketHandler handler = _packet_GetHandler(packet, length);
+    ProtocolHandler handler = _packet_GetProtocolHandler(packet, length);
     if (handler != NULL) {
         handler(packet, NULL);
     }
-
-
-	/*
-	 * Chris, add your check here and then call this
-	 */
-	//if(chris's checks) {
-//	// Process the packet
-//	        length = _protocolHandler_CCNx_Process(repo, length, inputBuffer, outputBuffer);
-//	        if (length > 0 && length <= MTU_SIZE) {
-//
-//	            // Write the result
-//	            write_data_wrapper((unsigned*)outputBuffer, length);
-//	            CLEAR(outputBuffer, MTU_SIZE);
-//	        }
-//		}
-//	}
 }
 
 static int
