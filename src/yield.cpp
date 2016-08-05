@@ -268,18 +268,6 @@ _packet_GetProtocolHandler(unsigned char *packet, unsigned length)
     }
 }
 
-/*
- * Read a packet and figure out what to do with it
- */
-static void 
-packet_handler(void *state, unsigned char *packet, unsigned length) 
-{
-    ProtocolHandler handler = _packet_GetProtocolHandler(packet, length);
-    if (handler != NULL) {
-        handler(state, packet, NULL);
-    }
-}
-
 static int
 _serveNIC(PacketRepo *repo)
 {
@@ -292,8 +280,11 @@ _serveNIC(PacketRepo *repo)
         read_data_wrapper((unsigned*)inputBuffer, length);
         CLEAR(outputBuffer, MTU_SIZE);
 
-        //handle the packet if necessary
-		packet_handler((void *) repo, (unsigned char *)inbuf, inlen);
+        // Handle the packet if we support the protocol.
+        ProtocolHandler handler = _packet_GetProtocolHandler(inbuf, inlen);
+        if (handler != NULL) {
+            handler(state, packet, NULL);
+        }
     }
 
     sds_free(inputBuffer);
