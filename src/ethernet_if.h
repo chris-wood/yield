@@ -1,6 +1,5 @@
-
-#ifndef _COPY_DATA_H_
-#define _COPY_DATA_H_
+#ifndef ethernet_if_h_
+#define ethernet_if_h_
 
 #define BUF_SIZE_BYTES 1520
 #define BUF_SIZE 512
@@ -18,8 +17,6 @@ void read_data(unsigned *fifo, unsigned *buf, unsigned &len);
 
 #endif
 
-
-
 #pragma SDS data mem_attribute (buf:CACHEABLE|PHYSICAL_CONTIGUOUS)
 #pragma SDS data copy (control[0:6], data[0:len], buf[0:len])
 #pragma SDS data data_mover(buf:AXIDMA_SIMPLE)
@@ -28,4 +25,4 @@ void read_data(unsigned *fifo, unsigned *buf, unsigned &len);
 void write_data(unsigned *control, unsigned *data, unsigned *buf, unsigned len);
 
 
-#endif
+#endif // ethernet_if_h_

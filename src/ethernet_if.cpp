@@ -1,6 +1,4 @@
-
 #include "ethernet_if.h"
-
 
 /*
  * Read from ethernet IP

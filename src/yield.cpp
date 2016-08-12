@@ -83,7 +83,7 @@ unsigned short checksum(unsigned short *buf, unsigned size) {
  * packet - pointer to packet data
  * len - length of the packet in 32-bit words
  */
-void ping_handler(unsigned char *packet, unsigned len, unsigned char *outpacket) {
+void ping_handler(uint8_t *packet, unsigned len, uint8_t *outpacket) {
 	// Check protocol (ICMP)
 	if (len < 6 || !(packet[23] == 1)) {
 		return;
@@ -239,27 +239,28 @@ _packetHandler_GetEtherType(unsigned char *packet, unsigned length)
 }
 
 static int
-_serveNIC(PacketRepo *repo, uint8_t *packet, uint8_t *outputBuffer)
+_serveNIC(EthernetFace *face, PacketRepo *repo, uint8_t *inputBuffer, uint8_t *outputBuffer)
 {
 	unsigned length = 0;
 
 	for (;;) {
 		// Read a packet
-		read_data_wrapper((unsigned*)packet, length);
+        ethernet_Read(face, packetBuffer, length);
 
-		if(length > 14) {
+		if (length > 14) {
 			// Handle the packet if we support the protocol.
-			unsigned type = ((uint16_t) packet[12] << 8) | ((uint16_t) packet[13]);
+			unsigned type = ((uint16_t) inputBuffer[12] << 8) | ((uint16_t) inputBuffer[13]);
 			printf("type is: %08x\n\r",type);
+
 			switch (type) {
 			case EtherType_IPv4:
-				ping_handler(packet, length, outputBuffer);
+				ping_handler(face, inputBuffer, length, outputBuffer);
 				break;
 			case EtherType_ARP:
-				arp_handler(packet, length, outputBuffer);
+				arp_handler(face, inputBuffer, length, outputBuffer);
 				break;
 			case EtherType_CCNx:
-				ccnx_handler(repo, packet, length);
+				ccnx_handler(face, repo, inputBuffer, length);
 				break;
 			}
 		}
@@ -274,16 +275,20 @@ main(int argc, char **argv)
 {
 	printf("Starting the forwarder,\n\r");
 
-	uint8_t *packet = (uint8_t *) sds_alloc(MTU_SIZE * sizeof(uint8_t));
+	uint8_t *inputBuffer = (uint8_t *) sds_alloc(MTU_SIZE * sizeof(uint8_t));
 	uint8_t *outputBuffer = (uint8_t *) sds_alloc(MTU_SIZE * sizeof(uint8_t));
 
 	// Create the repo
 	PacketRepo *repo = packetRepo_LoadFromFile("test_data.bin");
 	printf("Repo initialized\n\r");
 
+    // Create the Ethernet face
+    EthernetFace *face = ethernet_CreatePhysicalFace();
+
 	// Start serving packets
-	_serveNIC(repo,packet,outputBuffer);
+	_serveNIC(face, repo, inputBuffer, outputBuffer);
 
 	sds_free(packet);
 	sds_free(outputBuffer);
 }
+
