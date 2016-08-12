@@ -26,13 +26,10 @@ char myIP[4] = {192,168,1,11};
 char myMAC[6] = {0x00, 0x0A, 0x35, 0x01, 0x02, 0x03};
 
 typedef enum {
-    EtherType_IPv4 = 0x8000,
-    EtherType_ARP = 0x0806,
-    EtherType_CCNx = 0x0801,
+	EtherType_IPv4 = 0x0800,
+	EtherType_ARP  = 0x0806,
+	EtherType_CCNx = 0x0801,
 } EtherType;
-
-// Avoid the awful function pointer mess
-typedef (void (*)(void *, unsigned char*, unsigned)) ProtocolHandler;
 
 #define MTU_SIZE 1500
 #define CLEAR(X, Y) (memset(X, 0, Y * sizeof(unsigned)))
@@ -43,17 +40,17 @@ unsigned char outputBuffer[MTU_SIZE];
 static int
 _protocolHandler_CCNx_Process(PacketRepo *repo, int length, uint8_t inputBuffer[MTU_SIZE], uint8_t outputBuffer[MTU_SIZE])
 {
-    printf("Packet size is: %d\n\r", length);
-    for (int i = 0; i < length; i++) {
-        printf("packet data [%d] : %02x\n\r", i, inputBuffer[i]);
-    }
+	printf("Packet size is: %d\n\r", length);
+	for (int i = 0; i < length; i++) {
+		printf("packet data [%d] : %02x\n\r", i, inputBuffer[i]);
+	}
 
-    // fix to extract the name/keyid/hash
-    Buffer *key = _readName(inputBuffer, length);
-    Buffer *response = packetRepo_Lookup(repo, key, NULL);
+	// fix to extract the name/keyid/hash
+	Buffer *key = _readName(inputBuffer, length);
+	Buffer *response = packetRepo_Lookup(repo, key, NULL);
 
-    memcmp(outputBuffer, response->bytes, response->length);
-    return response->length;
+	memcpy(outputBuffer, response->bytes, response->length);
+	return response->length;
 }
 
 /*
@@ -86,22 +83,19 @@ unsigned short checksum(unsigned short *buf, unsigned size) {
  * packet - pointer to packet data
  * len - length of the packet in 32-bit words
  */
-void ping_handler(void *state, unsigned char *packet, unsigned len) {
-    // Check protocol (ICMP)
-    if (!(packet[23] == 1)) {
-        return;
-    }
+void ping_handler(unsigned char *packet, unsigned len, unsigned char *outpacket) {
+	// Check protocol (ICMP)
+	if (len < 6 || !(packet[23] == 1)) {
+		return;
+	}
 
-    // Check type (echo - ping request)
-    if (!(packet[34] == 8)) {
-        return;
-    }
-
-	unsigned *outbuf = (unsigned*) sds_alloc(BUF_SIZE * sizeof(unsigned));
-	unsigned char *outpacket = (unsigned char *)outbuf;
+	// Check type (echo - ping request)
+	if (len < 10 || !(packet[34] == 8)) {
+		return;
+	}
 
 	//copy packet
-	memcpy(outbuf,packet,sizeof(unsigned)*len);
+	memcpy(outpacket,packet,sizeof(unsigned)*len);
 
 	//response packet
 	//srcMAC = myMAC
@@ -141,8 +135,7 @@ void ping_handler(void *state, unsigned char *packet, unsigned len) {
 	outpacket[37] = (chksum & 0xFF);
 
 	//send packet
-	write_data_wrapper(outbuf,len);
-	sds_free(outbuf);
+	write_data_wrapper((unsigned*)outpacket,len);
 }
 
 
@@ -152,29 +145,26 @@ void ping_handler(void *state, unsigned char *packet, unsigned len) {
  * len - length of the packet in 32-bit words
  */
 static void 
-arp_handler(void *state, unsigned char *packet, unsigned len) 
+arp_handler(unsigned char *packet, unsigned len, unsigned char *outpacket)
 {
-    // Verify that this is a request
-    if (!(packet[20] == 0 && packet[21] == 1)) {
-        return;
-    }
+	// Verify that this is a request
+	if (len < 6 || !(packet[20] == 0 && packet[21] == 1)) {
+		return;
+	}
 
-    // Verify that the target IP matches our IP
-    if (!(packet[38] == myIP[0] && packet[39] == myIP[1] && packet[40] == myIP[2] && packet[41] == myIP[3])) {
-        return;
-    }
+	// Verify that the target IP matches our IP
+	if (len < 11 || !(packet[38] == myIP[0] && packet[39] == myIP[1] && packet[40] == myIP[2] && packet[41] == myIP[3])) {
+		return;
+	}
 
-    // Generate and return a response
-	unsigned *outbuf = (unsigned*) sds_alloc(BUF_SIZE * sizeof(unsigned));
-	unsigned char *outpacket = (unsigned char *)outbuf;
-
+	// Generate and return a response
 	// Copy packet
-	memcpy(outbuf,packet,sizeof(unsigned)*len);
+	memcpy(outpacket,packet,sizeof(unsigned)*len);
 
 	// Response packet
 	outpacket[21] = 2; //opcode: response
 
-    // destMAC = srcMAC
+	// destMAC = srcMAC
 	outpacket[0] = packet[6];
 	outpacket[1] = packet[7];
 	outpacket[2] = packet[8];
@@ -214,23 +204,19 @@ arp_handler(void *state, unsigned char *packet, unsigned len)
 	outpacket[27] = myMAC[0];
 
 	// send packet
-	write_data_wrapper(outbuf,len);
-	sds_free(outbuf);
+	write_data_wrapper((unsigned*)outpacket,len);
 }
 
 static void
-ccnx_handler(void *state, unsigned char *inputBuffer, unsigned length)
+ccnx_handler(PacketRepo *repo, unsigned char *inputBuffer, unsigned length)
 {
-    // Extract the state
-    PacketRepo *repo = (PacketRepo *) state;
-
-    // Process the packet
-    length = _protocolHandler_CCNx_Process(repo, length, inputBuffer, outputBuffer);
-    if (length > 0 && length <= MTU_SIZE) {
-        // Write the result
-        write_data_wrapper((unsigned*) outputBuffer, length / 4);
-        CLEAR(outputBuffer, MTU_SIZE);
-    }
+	// Process the packet
+	length = _protocolHandler_CCNx_Process(repo, length, inputBuffer, outputBuffer);
+	if (length > 0 && length <= MTU_SIZE) {
+		// Write the result
+		write_data_wrapper((unsigned*) outputBuffer, length / 4);
+		CLEAR(outputBuffer, MTU_SIZE);
+	}
 }
 
 /*
@@ -248,61 +234,56 @@ void print_packet(unsigned *buf, unsigned len) {
 static EtherType
 _packetHandler_GetEtherType(unsigned char *packet, unsigned length)
 {
-    uint16 word = ((uint16_t) packet[12] << 8) | ((uint16_t) packet[13]);
-    return (EtherType) word;
-}
-
-static ProtocolHandler
-_packet_GetProtocolHandler(unsigned char *packet, unsigned length)
-{
-    EtherType etherType = _packetHandler_GetEtherType(packet, length);
-    switch (etherType) {
-        case EtherType_IPv4:
-            return ip_handler;
-        case EtherType_ARP:
-            return arp_handler;
-        case EtherType_CCNx:
-            return ccnx_handler;
-        default:
-            return NULL;
-    }
+	uint16_t word = ((uint16_t) packet[12] << 8) | ((uint16_t) packet[13]);
+	return (EtherType) word;
 }
 
 static int
-_serveNIC(PacketRepo *repo)
+_serveNIC(PacketRepo *repo, uint8_t *packet, uint8_t *outputBuffer)
 {
-    uint8_t *inputBuffer = (uint8_t *) sds_alloc(MTU_SIZE * sizeof(uint8_t));
-    uint8_t *outputBuffer = (uint8_t *) sds_alloc(MTU_SIZE * sizeof(uint8_t));
-    unsigned length = 0;
+	unsigned length = 0;
 
-    for (;;) {
-        // Read a packet
-        read_data_wrapper((unsigned*)inputBuffer, length);
-        CLEAR(outputBuffer, MTU_SIZE);
+	for (;;) {
+		// Read a packet
+		read_data_wrapper((unsigned*)packet, length);
 
-        // Handle the packet if we support the protocol.
-        ProtocolHandler handler = _packet_GetProtocolHandler(inbuf, inlen);
-        if (handler != NULL) {
-            handler(state, packet, NULL);
-        }
-    }
+		if(length > 14) {
+			// Handle the packet if we support the protocol.
+			unsigned type = ((uint16_t) packet[12] << 8) | ((uint16_t) packet[13]);
+			printf("type is: %08x\n\r",type);
+			switch (type) {
+			case EtherType_IPv4:
+				ping_handler(packet, length, outputBuffer);
+				break;
+			case EtherType_ARP:
+				arp_handler(packet, length, outputBuffer);
+				break;
+			case EtherType_CCNx:
+				ccnx_handler(repo, packet, length);
+				break;
+			}
+		}
+	}
 
-    sds_free(inputBuffer);
-    sds_free(outputBuffer);
-
-    return 0;
+	return 0;
 }
 
 
 int
 main(int argc, char **argv)
 {
-    printf("Starting the forwarder,\n\r");
+	printf("Starting the forwarder,\n\r");
 
-    // Create the repo
-    PacketRepo *repo = packetRepo_LoadFromFile("test_data.bin");
-    printf("Repo initialized\n\r");
+	uint8_t *packet = (uint8_t *) sds_alloc(MTU_SIZE * sizeof(uint8_t));
+	uint8_t *outputBuffer = (uint8_t *) sds_alloc(MTU_SIZE * sizeof(uint8_t));
 
-    // Start serving packets
-    return _serveNIC(repo);
+	// Create the repo
+	PacketRepo *repo = packetRepo_LoadFromFile("test_data.bin");
+	printf("Repo initialized\n\r");
+
+	// Start serving packets
+	_serveNIC(repo,packet,outputBuffer);
+
+	sds_free(packet);
+	sds_free(outputBuffer);
 }
