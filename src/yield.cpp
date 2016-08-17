@@ -4,18 +4,20 @@
 #include <string.h>
 #include "sds_lib.h"
 
+#include "common.h"
 #include "repo.h"
 #include "buffer.h"
 #include "parser.h"
+#include "yield.h"
 
-#include "zc706_net.h"
+//#include "zc706_net.h"
 #include "ethernet_if.h"
 #include "ethernet_wrap.h"
 
 /*
  * User configurable IP Address of the board
  */
-char myIP[4] = {192,168,1,11};
+unsigned char myIP[4] = {192,168,1,11};
 
 /*
  * Fixed MAC address of the board.
@@ -23,7 +25,7 @@ char myIP[4] = {192,168,1,11};
  * 		in the file pf_init.c in the platform sources directory
  * 		(ie. zc706_net/src/standalone/sdk/src
  */
-char myMAC[6] = {0x00, 0x0A, 0x35, 0x01, 0x02, 0x03};
+unsigned char myMAC[6] = {0x00, 0x0A, 0x35, 0x01, 0x02, 0x03};
 
 typedef enum {
 	EtherType_IPv4 = 0x0800,
@@ -34,31 +36,33 @@ typedef enum {
 #define MTU_SIZE 1500
 #define CLEAR(X, Y) (memset(X, 0, Y * sizeof(unsigned)))
 
+struct yield_state {
+    EthernetFace *face;
+    PacketRepo *repo;
+    uint8_t inputBuffer[MTU_SIZE];
+    uint8_t outputBuffer[MTU_SIZE];
+};
+
+YieldState *
+yield_Create(EthernetFace *face, PacketRepo *repo)
+{
+    YieldState *state = (YieldState *) malloc(sizeof(YieldState));
+    state->face = face;
+    state->repo = repo;
+    return state;
+}
+
 // Statically allocated output buffer
 unsigned char outputBuffer[MTU_SIZE];
-
-static int
-_protocolHandler_CCNx_Process(PacketRepo *repo, int length, uint8_t inputBuffer[MTU_SIZE], uint8_t outputBuffer[MTU_SIZE])
-{
-	printf("Packet size is: %d\n\r", length);
-	for (int i = 0; i < length; i++) {
-		printf("packet data [%d] : %02x\n\r", i, inputBuffer[i]);
-	}
-
-	// fix to extract the name/keyid/hash
-	Buffer *key = _readName(inputBuffer, length);
-	Buffer *response = packetRepo_Lookup(repo, key, NULL);
-
-	memcpy(outputBuffer, response->bytes, response->length);
-	return response->length;
-}
 
 /*
  * Internet Checksum computer
  * buf - pointer to data array
  * size - number of bytes in the array (not shorts, bytes)
  */
-unsigned short checksum(unsigned short *buf, unsigned size) {
+unsigned short 
+checksum(unsigned short *buf, unsigned size) 
+{
 	unsigned long checksum=0;
 	while (size > 1) {
 		unsigned short swap = *buf++;
@@ -83,7 +87,9 @@ unsigned short checksum(unsigned short *buf, unsigned size) {
  * packet - pointer to packet data
  * len - length of the packet in 32-bit words
  */
-void ping_handler(uint8_t *packet, unsigned len, uint8_t *outpacket) {
+void 
+ping_handler(uint8_t *packet, unsigned len, uint8_t *outpacket, unsigned &length) 
+{
 	// Check protocol (ICMP)
 	if (len < 6 || !(packet[23] == 1)) {
 		return;
@@ -135,7 +141,7 @@ void ping_handler(uint8_t *packet, unsigned len, uint8_t *outpacket) {
 	outpacket[37] = (chksum & 0xFF);
 
 	//send packet
-	write_data_wrapper((unsigned*)outpacket,len);
+    length = 38;
 }
 
 
@@ -145,7 +151,7 @@ void ping_handler(uint8_t *packet, unsigned len, uint8_t *outpacket) {
  * len - length of the packet in 32-bit words
  */
 static void 
-arp_handler(unsigned char *packet, unsigned len, unsigned char *outpacket)
+arp_handler(unsigned char *packet, unsigned len, unsigned char *outpacket, unsigned &length)
 {
 	// Verify that this is a request
 	if (len < 6 || !(packet[20] == 0 && packet[21] == 1)) {
@@ -157,8 +163,7 @@ arp_handler(unsigned char *packet, unsigned len, unsigned char *outpacket)
 		return;
 	}
 
-	// Generate and return a response
-	// Copy packet
+	// Copy the input packet
 	memcpy(outpacket,packet,sizeof(unsigned)*len);
 
 	// Response packet
@@ -202,21 +207,20 @@ arp_handler(unsigned char *packet, unsigned len, unsigned char *outpacket)
 	outpacket[25] = myMAC[2];
 	outpacket[26] = myMAC[1];
 	outpacket[27] = myMAC[0];
-
-	// send packet
-	write_data_wrapper((unsigned*)outpacket,len);
+    
+    // Save the output length
+	length = 42;
 }
 
 static void
-ccnx_handler(PacketRepo *repo, unsigned char *inputBuffer, unsigned length)
+ccnx_handler(PacketRepo *repo, unsigned char *inputBuffer, unsigned inputLength, unsigned char *outputBuffer, unsigned &outputLength)
 {
-	// Process the packet
-	length = _protocolHandler_CCNx_Process(repo, length, inputBuffer, outputBuffer);
-	if (length > 0 && length <= MTU_SIZE) {
-		// Write the result
-		write_data_wrapper((unsigned*) outputBuffer, length / 4);
-		CLEAR(outputBuffer, MTU_SIZE);
-	}
+	// fix to extract the name/keyid/hash
+	Buffer *key = _readName(inputBuffer, inputLength);
+	Buffer *response = packetRepo_Lookup(repo, key, NULL);
+
+	memcpy(outputBuffer, response->bytes, response->length);
+	outputLength = response->length;
 }
 
 /*
@@ -238,31 +242,49 @@ _packetHandler_GetEtherType(unsigned char *packet, unsigned length)
 	return (EtherType) word;
 }
 
-static int
-_serveNIC(EthernetFace *face, PacketRepo *repo, uint8_t *inputBuffer, uint8_t *outputBuffer)
+int
+yield_ServeNIC(YieldState *state)
 {
-	unsigned length = 0;
+	unsigned inputLength = 0;
+    unsigned outputLength = 0;
+    
+    EthernetFace *face = state->face;
+    PacketRepo *repo = state->repo;
+    uint8_t *inputBuffer = state->inputBuffer;
+    uint8_t *outputBuffer = state->outputBuffer;
 
 	for (;;) {
 		// Read a packet
-        ethernet_Read(face, packetBuffer, length);
+        ethernet_Read(face, inputBuffer, inputLength);
 
-		if (length > 14) {
+#if DEBUG
+	    printf("Packet size is: %d\n\r", inputLength);
+    	for (int i = 0; i < length; i++) {
+	    	printf("packet data [%d] : %02x\n\r", i, inputBuffer[i]);
+    	}
+#endif
+
+		if (inputLength > 14) {
 			// Handle the packet if we support the protocol.
 			unsigned type = ((uint16_t) inputBuffer[12] << 8) | ((uint16_t) inputBuffer[13]);
-			printf("type is: %08x\n\r",type);
+			printf("type is: %08x\n\r", type);
 
 			switch (type) {
 			case EtherType_IPv4:
-				ping_handler(face, inputBuffer, length, outputBuffer);
+				ping_handler(inputBuffer, inputLength, outputBuffer, outputLength);
 				break;
 			case EtherType_ARP:
-				arp_handler(face, inputBuffer, length, outputBuffer);
+				arp_handler(inputBuffer, inputLength, outputBuffer, outputLength);
 				break;
 			case EtherType_CCNx:
-				ccnx_handler(face, repo, inputBuffer, length);
+				ccnx_handler(repo, inputBuffer, inputLength, outputBuffer, outputLength);
 				break;
+            default: 
+                continue;
 			}
+
+            // Write the result
+            ethernet_Write(face, outputBuffer, outputLength);
 		}
 	}
 
@@ -270,25 +292,4 @@ _serveNIC(EthernetFace *face, PacketRepo *repo, uint8_t *inputBuffer, uint8_t *o
 }
 
 
-int
-main(int argc, char **argv)
-{
-	printf("Starting the forwarder,\n\r");
-
-	uint8_t *inputBuffer = (uint8_t *) sds_alloc(MTU_SIZE * sizeof(uint8_t));
-	uint8_t *outputBuffer = (uint8_t *) sds_alloc(MTU_SIZE * sizeof(uint8_t));
-
-	// Create the repo
-	PacketRepo *repo = packetRepo_LoadFromFile("test_data.bin");
-	printf("Repo initialized\n\r");
-
-    // Create the Ethernet face
-    EthernetFace *face = ethernet_CreatePhysicalFace();
-
-	// Start serving packets
-	_serveNIC(face, repo, inputBuffer, outputBuffer);
-
-	sds_free(packet);
-	sds_free(outputBuffer);
-}
 
