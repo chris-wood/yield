@@ -22,7 +22,7 @@
 #ifndef LOCAL
 #include <netinet/ether.h>
 #include <linux/if_packet.h>
-#endif 
+#endif
 
 #include <sys/ioctl.h>
 #include <sys/socket.h>
@@ -31,12 +31,13 @@
 
 struct ethernet_face {
     void *instance;
-    void (*read_wrapper)(void *, unsigned *, unsigned &);
+    void (*read_wrapper)(void *, unsigned *, unsigned *);
     void (*write_wrapper)(void *, unsigned *, unsigned);
 };
 
 typedef struct {
     int id;
+    char *name;
     Queue *queue;
 } MockEthernetFace;
 
@@ -46,21 +47,27 @@ typedef struct {
 	struct sockaddr_ll linkLayerAddress;
     int sockfd;
 } SocketEthernetFace;
-#endif 
+#endif
 
-void 
-mock_read_wrapper(MockEthernetFace *face, uint8_t *buf, unsigned &len) 
+void
+mock_read_wrapper(MockEthernetFace *face, uint8_t *buf, unsigned *len)
 {
+    printf("LOG %d %s: read\n", face->id, face->name);
     Buffer *buffer = (Buffer *) face->queue->get(face->id);
-    memcpy(buf, buffer->bytes, buffer->length);
-    len = buffer->length;
+    if (buffer != NULL) {
+        printf("length = %d\n", buffer->length);
+        memcpy(buf, buffer->bytes, buffer->length);
+        *len = buffer->length;
+    };
 }
 
-void 
-mock_write_wrapper(MockEthernetFace *face, uint8_t *buf, unsigned len) 
+void
+mock_write_wrapper(MockEthernetFace *face, uint8_t *buf, unsigned len)
 {
+    printf("LOG %d %s: write %d\n", face->id, face->name, len);
     Buffer *buffer = buffer_Create(len, buf);
-    face->queue->put(face->id, buffer);
+    int target = face->id == 0 ? 1 : 0;
+    face->queue->put(target, buffer);
 }
 
 #ifndef LOCAL
@@ -101,8 +108,8 @@ socket_write_wrapper(SocketEthernetFace *face, uint8_t *buf, unsigned len)
  * Call platform function and pass buffer to copy into, and length of packet
  * 		- argument buf is expected to be large enough to hold an entire packet
  */
-void 
-read_data_wrapper(EthernetFace *face, uint8_t *buf, unsigned &len) 
+void
+read_data_wrapper(EthernetFace *face, uint8_t *buf, unsigned *len)
 {
 	// Array to represent data stream from platform
 	unsigned rbuf0[1];
@@ -117,8 +124,8 @@ read_data_wrapper(EthernetFace *face, uint8_t *buf, unsigned &len)
 /*
  * Call platform function and pass buffer to copy from, and length of packet
  */
-void 
-write_data_wrapper(EthernetFace *face, uint8_t *buf, unsigned len) 
+void
+write_data_wrapper(EthernetFace *face, uint8_t *buf, unsigned len)
 {
 	unsigned wbuf0[1],wbuf1[1];
 
@@ -142,10 +149,12 @@ _createEmptyFace(void)
 }
 
 static MockEthernetFace *
-_createMockFace(int id)
+_createMockFace(char *name)
 {
     MockEthernetFace *face = (MockEthernetFace *) sds_alloc(sizeof(MockEthernetFace));
-    face->id = id;
+    face->id = -1;
+    face->name = (char *) sds_alloc(strlen(name) + 1);
+    strcpy(face->name, name);
     return face;
 }
 
@@ -183,7 +192,7 @@ _createSocketFace(char *device, unsigned char *dst)
         return NULL;
     }
 
-	// Initialize the Ethernet header with the source 
+	// Initialize the Ethernet header with the source
     memset(packetBuffer, 0, BUF_SIZ);
     struct ether_header *eh = (struct ether_header *) packetBuffer;
 	eh->ether_shost[0] = ((uint8_t *)&interfaceMAC.ifr_hwaddr.sa_data)[0];
@@ -236,20 +245,20 @@ EthernetFace *
 ethernet_CreateSocketFace(char *device, unsigned char *dst)
 {
     EthernetFace *face = _createEmptyFace();
-    
+
     // XXX: do things
-    
+
     return face;
 }
 
 EthernetFace *
-ethernet_CreateMockFace(int id)
+ethernet_CreateMockFace(char *name)
 {
     EthernetFace *face = _createEmptyFace();
 
-    face->read_wrapper = (void (*)(void *, unsigned *, unsigned &)) mock_read_wrapper;
+    face->read_wrapper = (void (*)(void *, unsigned *, unsigned *)) mock_read_wrapper;
     face->write_wrapper = (void (*)(void *, unsigned *, unsigned)) mock_write_wrapper;
-    face->instance = _createMockFace(id);
+    face->instance = _createMockFace(name);
 
     return face;
 }
@@ -262,19 +271,19 @@ ethernet_Connect(EthernetFace *faceA, EthernetFace *faceB)
 
     Queue *queue = new Queue();
     fA->queue = queue;
+    fA->id = 0;
     fB->queue = queue;
+    fB->id = 1;
 }
 
-void 
-ethernet_Read(EthernetFace *face, uint8_t *buffer, unsigned &length)
+void
+ethernet_Read(EthernetFace *face, uint8_t *buffer, unsigned *length)
 {
     face->read_wrapper(face->instance, (unsigned *) buffer, length);
 }
 
-void 
+void
 ethernet_Write(EthernetFace *face, uint8_t *buffer, unsigned length)
 {
     face->write_wrapper(face->instance, (unsigned *) buffer, length);
 }
-
-

@@ -9,8 +9,9 @@ typedef struct packet_generator PacketGenerator;
 
 PacketGenerator *packetGenerator_Create(EthernetFace *face);
 
-// XXX: pick a better name
+void packetGenerator_AddSourceFile(PacketGenerator *gen, char *interestFile);
 void packetGenerator_Send(PacketGenerator *gen);
 Buffer *packetGenerator_Receive(PacketGenerator *gen);
+int packetGenerator_PacketCount(PacketGenerator *gen);
 
 #endif // pktgen_h_

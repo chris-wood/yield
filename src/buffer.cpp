@@ -28,3 +28,12 @@ buffer_Destroy(Buffer **buffer)
     free(*buffer);
     *buffer = NULL;
 }
+
+void
+buffer_Display(Buffer *buffer)
+{
+    for (int i = 0; i < buffer->length - 1; i++) {
+        printf("%x", buffer->bytes[i]);
+    }
+    printf("%x\n", buffer->bytes[buffer->length - 1]);
+}

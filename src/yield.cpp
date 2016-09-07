@@ -60,8 +60,8 @@ unsigned char outputBuffer[MTU_SIZE];
  * buf - pointer to data array
  * size - number of bytes in the array (not shorts, bytes)
  */
-unsigned short 
-checksum(unsigned short *buf, unsigned size) 
+unsigned short
+checksum(unsigned short *buf, unsigned size)
 {
 	unsigned long checksum=0;
 	while (size > 1) {
@@ -87,8 +87,8 @@ checksum(unsigned short *buf, unsigned size)
  * packet - pointer to packet data
  * len - length of the packet in 32-bit words
  */
-void 
-ping_handler(uint8_t *packet, unsigned len, uint8_t *outpacket, unsigned &length) 
+void
+ping_handler(uint8_t *packet, unsigned len, uint8_t *outpacket, unsigned &length)
 {
 	// Check protocol (ICMP)
 	if (len < 6 || !(packet[23] == 1)) {
@@ -150,7 +150,7 @@ ping_handler(uint8_t *packet, unsigned len, uint8_t *outpacket, unsigned &length
  * packet - pointer to packet data
  * len - length of the packet in 32-bit words
  */
-static void 
+static void
 arp_handler(unsigned char *packet, unsigned len, unsigned char *outpacket, unsigned &length)
 {
 	// Verify that this is a request
@@ -207,7 +207,7 @@ arp_handler(unsigned char *packet, unsigned len, unsigned char *outpacket, unsig
 	outpacket[25] = myMAC[2];
 	outpacket[26] = myMAC[1];
 	outpacket[27] = myMAC[0];
-    
+
     // Save the output length
 	length = 42;
 }
@@ -242,54 +242,57 @@ _packetHandler_GetEtherType(unsigned char *packet, unsigned length)
 	return (EtherType) word;
 }
 
+
+
 int
 yield_ServeNIC(YieldState *state)
 {
 	unsigned inputLength = 0;
     unsigned outputLength = 0;
-    
+
     EthernetFace *face = state->face;
     PacketRepo *repo = state->repo;
     uint8_t *inputBuffer = state->inputBuffer;
     uint8_t *outputBuffer = state->outputBuffer;
 
-	for (;;) {
-		// Read a packet
-        ethernet_Read(face, inputBuffer, inputLength);
+	// Read a packet
+	fprintf(stderr, "Reading a packet...\n");
+    ethernet_Read(face, inputBuffer, &inputLength);
 
-#if DEBUG
-	    printf("Packet size is: %d\n\r", inputLength);
-    	for (int i = 0; i < length; i++) {
-	    	printf("packet data [%d] : %02x\n\r", i, inputBuffer[i]);
-    	}
+#if 1
+    fprintf(stderr, "Packet size is: %d\n\r", inputLength);
+	for (int i = 0; i < inputLength; i++) {
+    	fprintf(stderr, "packet data [%d] : %02x\n\r", i, inputBuffer[i]);
+	}
 #endif
 
-		if (inputLength > 14) {
-			// Handle the packet if we support the protocol.
-			unsigned type = ((uint16_t) inputBuffer[12] << 8) | ((uint16_t) inputBuffer[13]);
-			printf("type is: %08x\n\r", type);
+	bool toWrite = true;
+	if (inputLength > 14) {
+		// Handle the packet if we support the protocol.
+		unsigned type = ((uint16_t) inputBuffer[12] << 8) | ((uint16_t) inputBuffer[13]);
+		fprintf(stderr, "type is: %08x\n\r", type);
 
-			switch (type) {
-			case EtherType_IPv4:
-				ping_handler(inputBuffer, inputLength, outputBuffer, outputLength);
-				break;
-			case EtherType_ARP:
-				arp_handler(inputBuffer, inputLength, outputBuffer, outputLength);
-				break;
-			case EtherType_CCNx:
-				ccnx_handler(repo, inputBuffer, inputLength, outputBuffer, outputLength);
-				break;
-            default: 
-                continue;
-			}
+		switch (type) {
+		case EtherType_IPv4:
+			ping_handler(inputBuffer, inputLength, outputBuffer, outputLength);
+			break;
+		case EtherType_ARP:
+			arp_handler(inputBuffer, inputLength, outputBuffer, outputLength);
+			break;
+		case EtherType_CCNx:
+			ccnx_handler(repo, inputBuffer, inputLength, outputBuffer, outputLength);
+			break;
+        default:
+			toWrite = false;
+		}
 
-            // Write the result
-            ethernet_Write(face, outputBuffer, outputLength);
+        // Write the result
+		if (toWrite) {
+			ethernet_Write(face, outputBuffer, outputLength);
+		} else {
+			printf("Nothing written!\n");
 		}
 	}
 
 	return 0;
 }
-
-
-

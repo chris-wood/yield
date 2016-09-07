@@ -11,10 +11,10 @@ struct ethernet_face;
 typedef struct ethernet_face EthernetFace;
 
 EthernetFace *ethernet_CreatePhysicalFace();
-EthernetFace *ethernet_CreateMockFace(int id);
+EthernetFace *ethernet_CreateMockFace(char *name);
 
 void ethernet_Connect(EthernetFace *faceA, EthernetFace *faceB);
-void ethernet_Read(EthernetFace *face, uint8_t *buffer, unsigned &length);
+void ethernet_Read(EthernetFace *face, uint8_t *buffer, unsigned *length);
 void ethernet_Write(EthernetFace *face, uint8_t *buffer, unsigned length);
 
 //void read_data_wrapper(EthernetFace *face, unsigned *buf, unsigned &len);
