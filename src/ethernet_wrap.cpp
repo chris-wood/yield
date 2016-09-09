@@ -65,9 +65,35 @@ void
 mock_write_wrapper(MockEthernetFace *face, uint8_t *buf, unsigned len)
 {
     printf("LOG %d %s: write %d\n", face->id, face->name, len);
-    Buffer *buffer = buffer_Create(len, buf);
+
     int target = face->id == 0 ? 1 : 0;
-    face->queue->put(target, buffer);
+    int length = 14 + len;
+
+    Buffer *packetBuffer = buffer_Allocate(length);
+    memset(packetBuffer->bytes, 0, length);
+
+	packetBuffer->bytes[0] = ~(~target);
+	packetBuffer->bytes[1] = ~(~target);
+    packetBuffer->bytes[2] = ~(~target);
+	packetBuffer->bytes[3] = ~(~target);
+	packetBuffer->bytes[4] = ~(~target);
+	packetBuffer->bytes[5] = ~(~target);
+
+	packetBuffer->bytes[6] = ~target;
+	packetBuffer->bytes[7] = ~target;
+	packetBuffer->bytes[8] = ~target;
+	packetBuffer->bytes[9] = ~target;
+	packetBuffer->bytes[10] = ~target;
+	packetBuffer->bytes[11] = ~target;
+
+    // Set the Ethertype to CCNx
+	packetBuffer->bytes[12] = 0x08;
+	packetBuffer->bytes[13] = 0x01;
+    
+    // Save the packet bytes in the buffer
+    memcpy(packetBuffer->bytes + 14, buf, len);
+
+    face->queue->put(target, packetBuffer);
 }
 
 #ifndef LOCAL
@@ -195,19 +221,19 @@ _createSocketFace(char *device, unsigned char *dst)
 	// Initialize the Ethernet header with the source
     memset(packetBuffer, 0, BUF_SIZ);
     struct ether_header *eh = (struct ether_header *) packetBuffer;
-	eh->ether_shost[0] = ((uint8_t *)&interfaceMAC.ifr_hwaddr.sa_data)[0];
-	eh->ether_shost[1] = ((uint8_t *)&interfaceMAC.ifr_hwaddr.sa_data)[1];
-    eh->ether_shost[2] = ((uint8_t *)&interfaceMAC.ifr_hwaddr.sa_data)[2];
-	eh->ether_shost[3] = ((uint8_t *)&interfaceMAC.ifr_hwaddr.sa_data)[3];
-	eh->ether_shost[4] = ((uint8_t *)&interfaceMAC.ifr_hwaddr.sa_data)[4];
-	eh->ether_shost[5] = ((uint8_t *)&interfaceMAC.ifr_hwaddr.sa_data)[5];
+	packetBuffer->bytes[0] = ((uint8_t *)&interfaceMAC.ifr_hwaddr.sa_data)[0];
+	packetBuffer->bytes[1] = ((uint8_t *)&interfaceMAC.ifr_hwaddr.sa_data)[1];
+    packetBuffer->bytes[2] = ((uint8_t *)&interfaceMAC.ifr_hwaddr.sa_data)[2];
+	packetBuffer->bytes[3] = ((uint8_t *)&interfaceMAC.ifr_hwaddr.sa_data)[3];
+	packetBuffer->bytes[4] = ((uint8_t *)&interfaceMAC.ifr_hwaddr.sa_data)[4];
+	packetBuffer->bytes[5] = ((uint8_t *)&interfaceMAC.ifr_hwaddr.sa_data)[5];
 
-	eh->ether_dhost[0] = dst[0];
-	eh->ether_dhost[1] = dst[1];
-	eh->ether_dhost[2] = dst[2];
-	eh->ether_dhost[3] = dst[3];
-	eh->ether_dhost[4] = dst[4];
-	eh->ether_dhost[5] = dst[5];
+	packetBuffer->bytes[0] = dst[0];
+	packetBuffer->bytes[1] = dst[1];
+	packetBuffer->bytes[2] = dst[2];
+	packetBuffer->bytes[3] = dst[3];
+	packetBuffer->bytes[4] = dst[4];
+	packetBuffer->bytes[5] = dst[5];
 
     // Set the Ethertype
 	eh->ether_type = htons(ETH_P_IP);
