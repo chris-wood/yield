@@ -62,7 +62,8 @@ main(int argc, char **argv)
     for (int i = 0; i < packetGenerator_PacketCount(gen); i++) {
         Buffer *nextPacket = packetGenerator_Next(gen);
 
-        
+        int offset = nextPacket->bytes[7];
+        Buffer *name = _readName(nextPacket->bytes + offset, nextPacket->length - offset);
 
         sendPacket(pktgenFace, nextPacket);
         yield_ServeNIC(state);

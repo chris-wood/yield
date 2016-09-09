@@ -216,10 +216,11 @@ static void
 ccnx_handler(PacketRepo *repo, unsigned char *inputBuffer, unsigned inputLength, unsigned char *outputBuffer, unsigned *outputLength)
 {
 	// fix to extract the name/keyid/hash
-	Buffer *key = _readName(inputBuffer, inputLength);
-    printf("name\n");
+    int messageOffset = inputBuffer[7];
+    unsigned char *messageBuffer = inputBuffer + messageOffset;
+    int messageLength = inputLength - messageOffset;
+	Buffer *key = _readName(messageBuffer, messageLength);
 	Buffer *response = packetRepo_Lookup(repo, key, NULL);
-    printf("response NULL? %d\n", response == NULL);
 
 	memcpy(outputBuffer, response->bytes, response->length);
 	*outputLength = response->length;
@@ -282,7 +283,6 @@ yield_ServeNIC(YieldState *state)
 			arp_handler(inputBuffer, inputLength, outputBuffer, outputLength);
 			break;
 		case EtherType_CCNx:
-            printf("CCNx handler\n");
 			ccnx_handler(repo, inputBuffer + 14, inputLength - 14, outputBuffer, &outputLength);
 			break;
         default:
