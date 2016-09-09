@@ -13,25 +13,8 @@ const unsigned char DST_MAC[6] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
 struct packet_generator {
     int index;
-    int numberOfPackets;
     std::vector<Buffer *> interestPackets;
-    EthernetFace *face;
 };
-
-/*
-static int
-_fillPacket(PacketGenerator *generator)
-{
-    // XXX: load a wire-encoded interest into this packet
-
-    buffer[offset++] = 0x00;
-    buffer[offset++] = 0x01;
-    buffer[offset++] = 0x02;
-    buffer[offset++] = 0x03;
-
-    return offset;
-}
-*/
 
 static Buffer *
 _packetGenerator_ReadPacketBufferFromFile(FILE *fp)
@@ -56,7 +39,7 @@ _packetGenerator_ReadPacketBufferFromFile(FILE *fp)
     return packetBuffer;
 }
 
-static bool
+static int
 _packetGenerator_LoadFile(PacketGenerator *gen, char *file)
 {
     FILE *fp = fopen(file, "rb");
@@ -71,46 +54,32 @@ _packetGenerator_LoadFile(PacketGenerator *gen, char *file)
             break;
         }
         gen->interestPackets.push_back(packetBuffer);
-        gen->numberOfPackets++;
     }
 
     return true;
 }
 
 PacketGenerator *
-packetGenerator_Create(EthernetFace *face)
+packetGenerator_Create(char *file)
 {
     PacketGenerator *generator = (PacketGenerator *) malloc(sizeof(PacketGenerator));
-    generator->face = face;
-    generator->index = 0;
-    generator->numberOfPackets = 0;
+    if (generator != NULL) {
+        generator->index = 0;
+        _packetGenerator_LoadFile(generator, file);
+    }
     return generator;
 }
 
-void
-packetGenerator_AddSourceFile(PacketGenerator *gen, char *interestFile)
-{
-    _packetGenerator_LoadFile(gen, interestFile);
-}
-
-void
-packetGenerator_Send(PacketGenerator *gen)
-{
-    Buffer *packet = gen->interestPackets.at(gen->index);
-    ethernet_Write(gen->face, packet->bytes, packet->length);
-    gen->index = (gen->index + 1) % gen->interestPackets.size();
-}
-
 Buffer *
-packetGenerator_Receive(PacketGenerator *gen)
+packetGenerator_Next(PacketGenerator *gen)
 {
-    Buffer *packetBuffer = buffer_Allocate(1500); // XXX: the read function should probably return the allocated memory
-    ethernet_Read(gen->face, packetBuffer->bytes, (unsigned int *) &(packetBuffer->length));
-    return packetBuffer;
+    Buffer *buffer = gen->interestPackets.at(gen->index);
+    gen->index = (gen->index + 1) % gen->interestPackets.size();
+    return buffer;
 }
 
 int
 packetGenerator_PacketCount(PacketGenerator *gen)
 {
-    return gen->numberOfPackets;
+    return gen->interestPackets.size();
 }
