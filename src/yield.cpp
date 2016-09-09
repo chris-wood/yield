@@ -219,6 +219,7 @@ ccnx_handler(PacketRepo *repo, unsigned char *inputBuffer, unsigned inputLength,
     int messageOffset = inputBuffer[7];
     unsigned char *messageBuffer = inputBuffer + messageOffset;
     int messageLength = inputLength - messageOffset;
+
 	Buffer *key = _readName(messageBuffer, messageLength);
 	Buffer *response = packetRepo_Lookup(repo, key, NULL);
 
