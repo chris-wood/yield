@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-#include <pthread.h>
-
 #include "yield.h"
 #include "pktgen.h"
 #include "common.h"
@@ -50,10 +48,6 @@ main(int argc, char **argv)
     PacketRepo *repo = packetRepo_LoadFromFile(dataFile);
     YieldState *state = yield_Create(yieldFace, repo);
 
-    // Start the yield thread
-    // pthread_t yieldThread;
-    // int yieldThreadId = pthread_create(&yieldThread, NULL, (void *(*)(void *)) yield_ServeNIC, (void*) state);
-
     // Create the packet generator
     PacketGenerator *gen = packetGenerator_Create(interestFile);
 
@@ -61,10 +55,6 @@ main(int argc, char **argv)
     printf("Retrieving %d packets\n", packetGenerator_PacketCount(gen));
     for (int i = 0; i < packetGenerator_PacketCount(gen); i++) {
         Buffer *nextPacket = packetGenerator_Next(gen);
-
-        int offset = nextPacket->bytes[7];
-        Buffer *name = _readName(nextPacket->bytes + offset, nextPacket->length - offset);
-
         sendPacket(pktgenFace, nextPacket);
         yield_ServeNIC(state);
         Buffer *response = receivePacket(pktgenFace);
@@ -72,7 +62,4 @@ main(int argc, char **argv)
             buffer_Display(response);
         }
     }
-    printf("Done\n");
-
-    // pthread_exit(NULL);
 }

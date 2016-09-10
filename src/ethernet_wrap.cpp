@@ -52,10 +52,9 @@ typedef struct {
 void
 mock_read_wrapper(MockEthernetFace *face, uint8_t *buf, unsigned *len)
 {
-    printf("LOG %d %s: read\n", face->id, face->name);
+    //printf("LOG %d %s: read\n", face->id, face->name);
     Buffer *buffer = (Buffer *) face->queue->get(face->id);
     if (buffer != NULL) {
-        printf("length = %d\n", buffer->length);
         memcpy(buf, buffer->bytes, buffer->length);
         *len = buffer->length;
     };
@@ -64,8 +63,7 @@ mock_read_wrapper(MockEthernetFace *face, uint8_t *buf, unsigned *len)
 void
 mock_write_wrapper(MockEthernetFace *face, uint8_t *buf, unsigned len)
 {
-    printf("LOG %d %s: write %d\n", face->id, face->name, len);
-
+    //printf("LOG %d %s: write %d\n", face->id, face->name, len);
     int target = face->id == 0 ? 1 : 0;
     int length = 14 + len;
 

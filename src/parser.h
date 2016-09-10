@@ -3,22 +3,12 @@
 
 #include "buffer.h"
 
-size_t
-_getNameLength(uint8_t *buffer, size_t length);
+Buffer *parser_ReadName(uint8_t *buffer, size_t length);
 
-size_t
-_getNameIndex(uint8_t *buffer, size_t length);
+Buffer *parser_ReadContentId(uint8_t *buffer, size_t length);
 
-size_t
-_getContentHashIndex(uint8_t *buffer, size_t length);
+Buffer *parser_ReadKeyId(uint8_t *buffer, size_t length);
 
-size_t
-_getContentHashLength(uint8_t *buffer, size_t length);
-
-Buffer *
-_readName(uint8_t *buffer, size_t length);
-
-Buffer *
-_readContentObjectHash(uint8_t *buffer, size_t length);
+Buffer *parser_ReadIdentity(uint8_t *buffer, size_t length);
 
 #endif // PARSER_H_

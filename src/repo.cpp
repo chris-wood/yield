@@ -41,7 +41,7 @@ _testParsePacket()
         pktBuffer->length = len;
         int numRead = fread(pktBuffer->bytes, 1, len, fp);
 
-        Buffer *name = _readName(pktBuffer->bytes, pktBuffer->length);
+        Buffer *name = parser_ReadName(pktBuffer->bytes, pktBuffer->length);
         size_t i;
         for (i = 0; i < name->length; i++) {
             putc(name->bytes[i], stdout);
@@ -102,8 +102,8 @@ _loadDataFromFile(char *fname)
         int numRead = fread(pktBuffer->bytes + 8, 1, len - 8, fp);
 
         // Extract the name and hash
-        Buffer *name = _readName(pktBuffer->bytes + 8, len - 8);
-        Buffer *hash = _readContentObjectHash(pktBuffer->bytes + 8, len - 8);
+        Buffer *name = parser_ReadName(pktBuffer->bytes + 8, len - 8);
+        Buffer *hash = parser_ReadContentId(pktBuffer->bytes + 8, len - 8);
 
         KeyValue *kv = (KeyValue *) malloc(sizeof(KeyValue));
         kv->key = (uint8_t*) malloc(name->length);

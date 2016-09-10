@@ -35,7 +35,7 @@ _getContentHashLength(uint8_t *buffer, size_t length) // skip past the name
 }
 
 Buffer *
-_readName(uint8_t *buffer, size_t length)
+parser_ReadName(uint8_t *buffer, size_t length)
 {
     size_t len = _getNameLength(buffer, length);
     Buffer *b = (Buffer *) malloc(sizeof(Buffer));
@@ -46,7 +46,7 @@ _readName(uint8_t *buffer, size_t length)
 }
 
 Buffer *
-_readContentObjectHash(uint8_t *buffer, size_t length)
+parser_ReadContentId(uint8_t *buffer, size_t length)
 {
     size_t len = _getContentHashLength(buffer, length);
     Buffer *b = (Buffer *) malloc(sizeof(Buffer));
@@ -54,4 +54,16 @@ _readContentObjectHash(uint8_t *buffer, size_t length)
     b->length = len;
     memcpy(b->bytes, buffer + _getContentHashIndex(buffer, length), len);
     return b;
+}
+
+Buffer *
+parser_ReadKeyId(uint8_t *buffer, size_t length)
+{
+    return NULL;
+}
+
+Buffer *
+parser_ReadIdentity(uint8_t *buffer, size_t length)
+{
+    return NULL;
 }

@@ -220,7 +220,7 @@ ccnx_handler(PacketRepo *repo, unsigned char *inputBuffer, unsigned inputLength,
     unsigned char *messageBuffer = inputBuffer + messageOffset;
     int messageLength = inputLength - messageOffset;
 
-	Buffer *key = _readName(messageBuffer, messageLength);
+	Buffer *key = parser_ReadName(messageBuffer, messageLength);
 	Buffer *response = packetRepo_Lookup(repo, key, NULL);
 
 	memcpy(outputBuffer, response->bytes, response->length);
@@ -246,8 +246,6 @@ _packetHandler_GetEtherType(unsigned char *packet, unsigned length)
 	return (EtherType) word;
 }
 
-
-
 int
 yield_ServeNIC(YieldState *state)
 {
@@ -260,21 +258,12 @@ yield_ServeNIC(YieldState *state)
     uint8_t *outputBuffer = state->outputBuffer;
 
 	// Read a packet
-	fprintf(stderr, "Reading a packet...\n");
     ethernet_Read(face, inputBuffer, &inputLength);
-
-#if 1
-    fprintf(stderr, "Packet size is: %d\n\r", inputLength);
-	for (int i = 0; i < inputLength; i++) {
-    	fprintf(stderr, "packet data [%d] : %02x\n\r", i, inputBuffer[i]);
-	}
-#endif
 
 	bool toWrite = true;
 	if (inputLength > 14) {
 		// Handle the packet if we support the protocol.
 		unsigned type = ((uint16_t) inputBuffer[12] << 8) | ((uint16_t) inputBuffer[13]);
-		fprintf(stderr, "type is: %08x\n\r", type);
 
 		switch (type) {
 		case EtherType_IPv4:
