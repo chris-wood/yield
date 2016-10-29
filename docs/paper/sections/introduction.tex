@@ -1,0 +1,30 @@
+\section{Introduction}
+Today's media applications are increasingly data-centric. Online services
+such as Netflix, Spotify, and Facebook all seek to provide data to their
+clients as quickly as possible in diverse network and operating conditions. 
+Serving this data has bandwidth, storage, and computation costs of varying
+levels of expense. With respect to bandwidth, heterogeneous links long geographical 
+distances, and rising congestion due to flash floods for data all contribute to
+high expenses. Content Distribution Networks (CDNs) exist minimize this expense 
+by moving data servers closer to clients at the edges
+of the network. CDN points-of-presence (POPs) service fewer and more localized clients,
+thereby improving at least two of these three problems. 
+
+Content-Centric Networking (CCN) is a type of network architecture with one goal
+of providing a native CDN to service many servers (data producers) and clients (consumers)
+simultaneously. CCN serves to transfer named data from producers to consumers. 
+Specifically, consumers obtain data by issuing a request for the desired data,
+identified by its name. The network is responsible for locating the corresponding
+data and returning the result to the consumer. Routers may optionally cache
+this data in transit to service future requests for the same content. 
+
+Compared to TCP/IP-based media services, CCN has several interesting advantages. 
+
+-- no need to prime the caches
+-- less protocol complexity 
+
+XXX: talk about privacy problem and TLS everywhere (as another variant)
+
+While this reduces the bandwidth bottleneck, it still does not solve the remaining
+storage and computation problems. 
+
