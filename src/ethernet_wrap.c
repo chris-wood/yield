@@ -50,7 +50,7 @@ mock_read_wrapper(MockEthernetFace *face, uint8_t *buf, unsigned *len)
     if (buffer != NULL) {
         memcpy(buf, buffer->bytes, buffer->length);
         *len = buffer->length;
-    };
+    }
 }
 
 void
