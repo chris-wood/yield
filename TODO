@@ -1,0 +1,6 @@
+- generate larger test packets (using ccnx-pktgen)
+- create better sketches of the workload (pipeline)
+- write up different designs (hw/sw dedicated repo, linux kernel module, dpdk/netmap-based system, etc.)
+- implement socket face
+- clean up the parser code
+- 
