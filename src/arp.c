@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "sds_lib.h"
-#include "zc706_net.h"
+//#include "zc706_net.h"
 #include "ethernet_if.h"
 #include "ethernet_wrap.h"
 

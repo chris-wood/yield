@@ -14,7 +14,7 @@ buffer_Allocate(int size)
 }
 
 Buffer *
-buffer_Create(size_t length, uint8_t bytes[length])
+buffer_Create(size_t length, uint8_t *bytes)
 {
     Buffer *buffer = buffer_Allocate(length);
     memcpy(buffer->bytes, bytes, length);

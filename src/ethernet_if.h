@@ -1,6 +1,8 @@
 #ifndef ethernet_if_h_
 #define ethernet_if_h_
 
+#include <stdint.h>
+
 #define BUF_SIZE_BYTES 1520
 #define BUF_SIZE 512
 
