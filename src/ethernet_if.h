@@ -15,7 +15,7 @@ void read_data(ap_axiu<32,1,1,1> *fifo, unsigned *buf, unsigned &len);
 
 #pragma SDS data mem_attribute (buf:CACHEABLE|PHYSICAL_CONTIGUOUS)
 #pragma SDS data zero_copy(buf[0:BUF_SIZE])
-void read_data(unsigned *fifo, unsigned *buf, unsigned &len);
+void read_data(unsigned *fifo, unsigned *buf, unsigned *len);
 
 #endif
 

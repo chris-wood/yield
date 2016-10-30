@@ -1,35 +1,37 @@
 cmake_minimum_required(VERSION 3.6)
 project(src)
 
+set(CMAKE_C_STANDARD C99)
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
     arp.c
-    buffer.cpp
+    buffer.c
     buffer.h
     common.h
-    constructor.cpp
-    driver.cpp
-    ethernet_if.cpp
+    constructor.c
+    driver.c
+    ethernet_if.c
     ethernet_if.h
-    ethernet_wrap.cpp
+    ethernet_wrap.c
     ethernet_wrap.h
-    hashmap.cpp
+    hashmap.c
     hashmap.h
-    parser.cpp
+    parser.c
     parser.h
-    pktgen.cpp
+    pktgen.c
     pktgen.h
-    pktgen_main.cpp
-    queue.cpp
+    pktgen_main.c
+    queue.c
     queue.h
-    repo.cpp
+    repo.c
     repo.h
-    ringbuffer.cpp
+    ringbuffer.c
     sds_lib.h
     siphash24.c
-    yield.cpp
+    yield.c
     yield.h
-    yield_main.cpp)
+    yield_main.c)
 
 add_executable(src ${SOURCE_FILES})

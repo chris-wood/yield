@@ -5,6 +5,7 @@
 //#include "zc706_net.h"
 #include "ethernet_if.h"
 #include "ethernet_wrap.h"
+#include "common.h"
 
 /*
  * User configurable IP Address of the board
@@ -48,8 +49,8 @@ unsigned short checksum(unsigned short *buf, unsigned size) {
  * len - length of the packet in 32-bit words
  */
 void ping_handler(unsigned char *packet, unsigned len) {
-	unsigned *outbuf = (unsigned*) sds_alloc(BUF_SIZE * sizeof(unsigned));
-	unsigned char *outpacket = (unsigned char *)outbuf;
+	unsigned *outbuf = (unsigned *) sds_alloc(BUF_SIZE * sizeof(unsigned));
+	unsigned char *outpacket = (unsigned char *) outbuf;
 
 	//copy packet
 	memcpy(outbuf,packet,sizeof(unsigned)*len);
@@ -161,7 +162,7 @@ void arp_handler(unsigned char *packet, unsigned len) {
  */
 void print_packet(unsigned *buf, unsigned len) {
 	printf("Packet size is: %d\n\r",len);
-	for(int i=0; i<len; i++) {
+	for (int i = 0; i < len; i++) {
 		printf("packet data [%d] : %08X\n\r",i,buf[i]);
 	}
 }

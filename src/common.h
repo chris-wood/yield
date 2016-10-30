@@ -2,6 +2,7 @@
 #define common_h_
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #define sds_alloc malloc
 #define sds_free free
