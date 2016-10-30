@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <errno.h>
-
-#include <vector>
 
 #include "pktgen.h"
 
@@ -13,7 +12,8 @@ const unsigned char DST_MAC[6] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
 struct packet_generator {
     int index;
-    std::vector<Buffer *> interestPackets;
+    Buffer **interestPackets;
+    int numPackets;
 };
 
 static Buffer *
@@ -39,6 +39,18 @@ _packetGenerator_ReadPacketBufferFromFile(FILE *fp)
     return packetBuffer;
 }
 
+static void
+_packetGenerator_AppendPacket(PacketGenerator *gen, Buffer *packet)
+{
+    gen->numPackets++;
+    if (gen->interestPackets == NULL) {
+        gen->interestPackets = (Buffer **) malloc(sizeof(Buffer *));
+    } else {
+        gen->interestPackets = (Buffer **) realloc(gen->interestPackets, (gen->numPackets) * sizeof(Buffer *));
+    }
+    gen->interestPackets[gen->numPackets - 1] = packet;
+}
+
 static int
 _packetGenerator_LoadFile(PacketGenerator *gen, char *file)
 {
@@ -53,7 +65,7 @@ _packetGenerator_LoadFile(PacketGenerator *gen, char *file)
         if (packetBuffer == NULL) {
             break;
         }
-        gen->interestPackets.push_back(packetBuffer);
+        _packetGenerator_AppendPacket(gen, packetBuffer);
     }
 
     return true;
@@ -65,6 +77,8 @@ packetGenerator_Create(char *file)
     PacketGenerator *generator = (PacketGenerator *) malloc(sizeof(PacketGenerator));
     if (generator != NULL) {
         generator->index = 0;
+        generator->interestPackets = NULL;
+        generator->numPackets = 0;
         _packetGenerator_LoadFile(generator, file);
     }
     return generator;
@@ -73,13 +87,13 @@ packetGenerator_Create(char *file)
 Buffer *
 packetGenerator_Next(PacketGenerator *gen)
 {
-    Buffer *buffer = gen->interestPackets.at(gen->index);
-    gen->index = (gen->index + 1) % gen->interestPackets.size();
+    Buffer *buffer = gen->interestPackets[gen->index];
+    gen->index = (gen->index + 1) % gen->numPackets;
     return buffer;
 }
 
 int
 packetGenerator_PacketCount(PacketGenerator *gen)
 {
-    return gen->interestPackets.size();
+    return gen->numPackets;
 }

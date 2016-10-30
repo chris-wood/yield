@@ -20,13 +20,13 @@ main(int argc, char **argv)
     printf("Repo initialized\n\r");
 
     // Create the Ethernet face
-    EthernetFace *face = ethernet_CreatePhysicalFace();
+    //EthernetFace *face = ethernet_CreatePhysicalFace();
 
     // Create the Yield instance
-    YieldState *state = yield_Create(face, repo);
+    //YieldState *state = yield_Create(face, repo);
 
 	// Start serving packets
-	yield_ServeNIC(state);
+	//yield_ServeNIC(state);
 
     return 0;
 }

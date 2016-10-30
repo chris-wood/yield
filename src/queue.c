@@ -7,34 +7,43 @@ typedef struct {
     void *item;
 } QueueEntry;
 
-Queue::Queue()
-{
-    // empty
-}
+struct queue {
+    int numEntries;
+    QueueEntry **entries;
+};
 
-Queue::~Queue()
+Queue *
+queue_Create()
 {
-    // empty
+    Queue *queue = (Queue *) malloc(sizeof(Queue));
+    queue->numEntries = 0;
+    queue->entries = NULL;
 }
 
 void
-Queue::put(int id, void *item)
+queue_Put(Queue *queue, int id, void *item)
 {
     QueueEntry *entry = (QueueEntry *) malloc(sizeof(QueueEntry));
     entry->id = id;
     entry->item = item;
 
-    _buffer.push_back(entry);
+    queue->numEntries++;
+    if (queue->entries == NULL) {
+        queue->entries = (QueueEntry **) malloc((queue->numEntries) * sizeof(QueueEntry *));
+    } else {
+        queue->entries = (QueueEntry **) realloc(queue->entries, (queue->numEntries) * sizeof(QueueEntry *));
+    }
+
+    queue->entries[queue->numEntries - 1] = entry;
 }
 
 void *
-Queue::get(int id)
+queue_Get(Queue *queue, int id)
 {
-    for (std::vector<void*>::iterator itr = _buffer.begin(); itr != _buffer.end(); itr++) {
-        QueueEntry *entry = (QueueEntry* )*itr;
+    for (int i = 0; i < queue->numEntries; i++) {
+        QueueEntry  *entry = queue->entries[i];
         if (entry->id == id) {
-            _buffer.erase(itr);
-            return entry->item;
+
         }
     }
     return NULL;

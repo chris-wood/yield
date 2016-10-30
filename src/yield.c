@@ -2,6 +2,8 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
+
 #include "sds_lib.h"
 
 #include "common.h"
@@ -13,6 +15,7 @@
 //#include "zc706_net.h"
 #include "ethernet_if.h"
 #include "ethernet_wrap.h"
+
 
 /*
  * User configurable IP Address of the board
@@ -88,7 +91,7 @@ checksum(unsigned short *buf, unsigned size)
  * len - length of the packet in 32-bit words
  */
 void
-ping_handler(uint8_t *packet, unsigned len, uint8_t *outpacket, unsigned &length)
+ping_handler(uint8_t *packet, unsigned len, uint8_t *outpacket, unsigned *length)
 {
 	// Check protocol (ICMP)
 	if (len < 6 || !(packet[23] == 1)) {
@@ -141,7 +144,7 @@ ping_handler(uint8_t *packet, unsigned len, uint8_t *outpacket, unsigned &length
 	outpacket[37] = (chksum & 0xFF);
 
 	//send packet
-    length = 38;
+    *length = 38;
 }
 
 
@@ -151,7 +154,7 @@ ping_handler(uint8_t *packet, unsigned len, uint8_t *outpacket, unsigned &length
  * len - length of the packet in 32-bit words
  */
 static void
-arp_handler(unsigned char *packet, unsigned len, unsigned char *outpacket, unsigned &length)
+arp_handler(unsigned char *packet, unsigned len, unsigned char *outpacket, unsigned *length)
 {
 	// Verify that this is a request
 	if (len < 6 || !(packet[20] == 0 && packet[21] == 1)) {
@@ -209,7 +212,7 @@ arp_handler(unsigned char *packet, unsigned len, unsigned char *outpacket, unsig
 	outpacket[27] = myMAC[0];
 
     // Save the output length
-	length = 42;
+	*length = 42;
 }
 
 static void
@@ -267,10 +270,10 @@ yield_ServeNIC(YieldState *state)
 
 		switch (type) {
 		case EtherType_IPv4:
-			ping_handler(inputBuffer, inputLength, outputBuffer, outputLength);
+			ping_handler(inputBuffer, inputLength, outputBuffer, &outputLength);
 			break;
 		case EtherType_ARP:
-			arp_handler(inputBuffer, inputLength, outputBuffer, outputLength);
+			arp_handler(inputBuffer, inputLength, outputBuffer, &outputLength);
 			break;
 		case EtherType_CCNx:
 			ccnx_handler(repo, inputBuffer + 14, inputLength - 14, outputBuffer, &outputLength);

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.6)
-project(src)
+project(yield)
 
-set(CMAKE_C_STANDARD C99)
+set(CMAKE_C_STANDARD 99)
 
 set(YIELD_SOURCES
         yield_main.c
@@ -16,6 +16,7 @@ set(YIELD_SOURCES
 set(DRIVER_SOURCES
         driver.c
         yield.c
+        pktgen.c
         ethernet_if.c
         ethernet_wrap.c
         queue.c
