@@ -35,3 +35,8 @@ set(SOURCE_FILES
     yield_main.c)
 
 add_executable(src ${SOURCE_FILES})
+
+add_executable(yield ${YIELD_SOURCES})
+add_executable(pktgen ${PKTGEN_SOURCES})
+add_executable(repo ${REPO_SOURCES})
+
