@@ -4,10 +4,6 @@
 
 #include "yield.h"
 #include "pktgen.h"
-#include "common.h"
-#include "repo.h"
-#include "buffer.h"
-#include "parser.h"
 
 void
 usage()
